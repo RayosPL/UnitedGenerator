@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitedGenerator.Data.Seasons
+namespace UnitedGenerator.Data.Season2
 {
-    internal class Season2 : ISeason
+    internal class Season : ISeason
     {
         public int Number => 2;
 
         public string Name => "Marvel United: X-Men";
+
+        public IBox[] Boxes => new IBox[0];
     }
 }

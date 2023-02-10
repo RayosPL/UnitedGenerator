@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace UnitedGenerator.Data
 {
-    public interface ISeason 
+    public interface IBox
     {
-        int Number { get; }
         string Name { get; }
-        IBox[] Boxes { get; }
+        ISeason Season { get; }
     }
 }

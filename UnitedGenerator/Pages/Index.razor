@@ -6,4 +6,9 @@
 @foreach(var season in DataFactory.Seasons)
 {
     <h1>Season @season.Number - @season.Name</h1>
+
+    @foreach(var box in season.Boxes)
+    {
+        <h2>@box.Name</h2>
+    }
 }
