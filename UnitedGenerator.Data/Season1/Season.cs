@@ -14,9 +14,11 @@ namespace UnitedGenerator.Data.Season1
 
         public IBox[] Boxes => new IBox[]
         {
-            CoreBox
+            CoreBox,
+            RiseOfTheBlackPanther
         };
 
         public IBox CoreBox => new CoreBox(this);
+        public IBox RiseOfTheBlackPanther => new RiseOfTheBlackPantherBox(this);
     }
 }
