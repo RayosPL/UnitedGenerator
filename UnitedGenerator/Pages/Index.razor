@@ -1,9 +1,9 @@
 ﻿@page "/"
+@using UnitedGenerator.Data;
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@foreach(var season in DataFactory.Seasons)
+{
+    <h1>Season @season.Number - @season.Name</h1>
+}
