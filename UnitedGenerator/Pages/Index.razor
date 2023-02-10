@@ -26,5 +26,13 @@
                 <li>@villain.Name</li>
             }
         </ul>
+
+        <h3>Challenges</h3>
+        <ul>
+            @foreach (var challenge in box.Challenges)
+            {
+                <li>@challenge.Name</li>
+            }
+        </ul>
     }
 }

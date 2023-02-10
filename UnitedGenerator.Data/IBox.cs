@@ -12,5 +12,6 @@ namespace UnitedGenerator.Data
         ISeason Season { get; }
         IHero[] Heroes { get; }
         IVillain[] Villains { get; }
+        IChallenge[] Challenges { get; }
     }
 }

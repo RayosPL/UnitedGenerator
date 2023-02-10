@@ -33,6 +33,13 @@ namespace UnitedGenerator.Data.Season1
             Ultron
         };
 
+        public override IChallenge[] Challenges => new IChallenge[]
+        {
+            ModerateChallenge,
+            HardChallenge,
+            HeroicChallenge
+        };
+
         public IHero AntMan => new Hero(this, "Ant-Man");
         public IHero BlackWidow => new Hero(this, "Black Widow");
         public IHero CaptainAmerica => new Hero(this, "Captain America");
@@ -44,5 +51,9 @@ namespace UnitedGenerator.Data.Season1
         public IVillain RedSkull => new Villain(this, "Red Skull");
         public IVillain Taskmaster => new Villain(this, "Taskmaster");
         public IVillain Ultron => new Villain(this, "Ultron");
+
+        public IChallenge ModerateChallenge => new Challenge(this, "Moderate Challenge");
+        public IChallenge HardChallenge => new Challenge(this, "Hard Challenge");
+        public IChallenge HeroicChallenge => new Challenge(this, "Heroic Challenge");
     }
 }
