@@ -17,18 +17,37 @@ namespace UnitedGenerator.Engine
             var heroes = SelectRandom(_data.Heroes, playerCount);
             var villain = SelectRandom(_data.Villains);
             var locations = SelectRandom(_data.Locations, 6);
+            var challenge = SelectRandomOnPercent(_data.Challenges, 20);
 
-            return new GameSetup(heroes, villain, locations);
+            return new GameSetup(heroes, villain, locations, challenge);
         }
 
-        private T SelectRandom<T>(IEnumerable<T> items)
+        private static T? SelectRandomOnPercent<T>(IEnumerable<T> items, int percent)
+            where T : class
+        {
+            if (Percent(percent))
+            {
+                return SelectRandom(items);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private static bool Percent(int percent)
+        {
+            return _random.Next(100) < percent;
+        }
+
+        private static T SelectRandom<T>(IEnumerable<T> items)
         {
             int r = _random.Next(0, items.Count());
 
             return items.ElementAt(r);
         }
 
-        private T[] SelectRandom<T>(IEnumerable<T> items, int count)
+        private static T[] SelectRandom<T>(IEnumerable<T> items, int count)
         {
             List<T> candidates = items.ToList();
             T[] result = new T[count];

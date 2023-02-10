@@ -18,5 +18,7 @@ namespace UnitedGenerator.Engine
         public IVillain[] Villains => Boxes.SelectMany(x => x.Villains).ToArray();
 
         public ILocation[] Locations => Boxes.SelectMany(x => x.Locations).ToArray();
+
+        public IChallenge[] Challenges => Boxes.SelectMany(x => x.Challenges).ToArray();
     }
 }

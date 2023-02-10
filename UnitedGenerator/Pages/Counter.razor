@@ -30,6 +30,12 @@
             <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
         }
     </ul>
+
+    @if (game.Challenge != null)
+    {
+        <h2>Challenge</h2>
+        <div>@game.Challenge.Name (@game.Challenge.Box.Name - Season @game.Challenge.Season.Number)</div>
+    }
 }
 
 @code {

@@ -9,11 +9,12 @@ namespace UnitedGenerator.Engine
 {
     public class GameSetup
     {
-        internal GameSetup(IHero[] heroes, IVillain villain, ILocation[] locations)
+        internal GameSetup(IHero[] heroes, IVillain villain, ILocation[] locations, IChallenge? challenge)
         {
             Heroes = heroes;   
             Villain = villain;
             Locations = locations;
+            Challenge = challenge;
         }
 
         public IHero[] Heroes { get; }
@@ -21,5 +22,7 @@ namespace UnitedGenerator.Engine
         public IVillain Villain { get; }
 
         public ILocation[] Locations { get; }
+
+        public IChallenge? Challenge { get; }
     }
 }
