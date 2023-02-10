@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitedGenerator.Data.Bases
+namespace UnitedGenerator.Data.Common
 {
-    internal class Hero : IHero
+    internal abstract class BoxItem
     {
-        public Hero(IBox box, string name)
+        protected BoxItem(IBox box, string name)
         {
             Name = name;
             Box = box;

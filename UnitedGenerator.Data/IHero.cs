@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnitedGenerator.Data
 {
-    public interface IHero
+    public interface IHero : IBoxItem
     {
-        string Name { get; }
-        IBox Box { get; }
-        ISeason Season { get; }
     }
 }

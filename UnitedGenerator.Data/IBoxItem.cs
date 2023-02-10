@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace UnitedGenerator.Data
 {
-    public interface IVillain : IBoxItem
-    {   
+    public interface IBoxItem
+    {
+        string Name { get; }
+        IBox Box { get; }
+        ISeason Season { get; }
     }
 }
