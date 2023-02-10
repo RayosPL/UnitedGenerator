@@ -12,12 +12,13 @@ namespace UnitedGenerator.Engine
 
         private DataService _data = new DataService();
 
-        public GameSetup Generate()
+        public GameSetup Generate(int playerCount)
         {
-            var heroes = SelectRandom(_data.Heroes, 4);
+            var heroes = SelectRandom(_data.Heroes, playerCount);
             var villain = SelectRandom(_data.Villains);
+            var locations = SelectRandom(_data.Locations, 6);
 
-            return new GameSetup(heroes, villain);
+            return new GameSetup(heroes, villain, locations);
         }
 
         private T SelectRandom<T>(IEnumerable<T> items)

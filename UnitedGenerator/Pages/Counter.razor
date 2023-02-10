@@ -12,6 +12,9 @@
 
 @if (game != null)
 {
+    <h2>Villain</h2>
+    <div>@game.Villain.Name (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
+
     <h2>Heroes</h2>
     <ul>
         @foreach (var hero in game.Heroes)
@@ -20,8 +23,13 @@
         }
     </ul>
 
-    <h2>Villain</h2>
-    <div>@game.Villain.Name (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
+    <h2>Locations</h2>
+    <ul>
+        @foreach (var location in game.Locations)
+        {
+            <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+        }
+    </ul>
 }
 
 @code {
@@ -31,6 +39,6 @@
 
     private void IncrementCount()
     {
-        game = random.Generate();
+        game = random.Generate(4);
     }
 }
