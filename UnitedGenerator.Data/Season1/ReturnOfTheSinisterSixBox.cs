@@ -35,7 +35,16 @@ namespace UnitedGenerator.Data.Season1
 
         public IVillain SinisterSix => new Villain(this, "Sinister Six")
         {
-            HasCustomRules = true
+            HasCustomRules = true,
+            SubVillains = new IVillain[]
+            {
+                DoctorOtctopus,
+                Electro,
+                Kraven,
+                Vulture,
+                Mysterio,
+                Sandman
+            }
         };
     }
 }

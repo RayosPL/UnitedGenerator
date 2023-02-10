@@ -11,8 +11,13 @@ namespace UnitedGenerator.Data.Common
         public Villain(IBox box, string name) : base(box, name)
         {
             HasCustomRules = false;
+            SubVillains = new IVillain[0];
         }
 
         public bool HasCustomRules { get; init; }
+
+        public bool IsMultiVillain => SubVillains.Any();
+
+        public IVillain[] SubVillains { get; init; }
     }
 }

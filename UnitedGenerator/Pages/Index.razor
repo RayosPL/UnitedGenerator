@@ -31,12 +31,19 @@
                     <li>
                         @villain.Name
 
+                        <ul>
+
                         @if (villain.HasCustomRules)
                         {
-                            <ul>
-                                <li>Has Custom Rules!</li>
-                            </ul>
+                            <li>Has Custom Rules!</li>
                         }
+
+                        @foreach(var sub in villain.SubVillains)
+                        {
+                            <li>Sub Villain: @sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                        }
+
+                        </ul>
 
                     </li>
                 }
