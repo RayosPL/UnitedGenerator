@@ -17,12 +17,14 @@ namespace UnitedGenerator.Data.Season1
             CoreBox,
             RiseOfTheBlackPanther,
             TalesOfAsgardBox,
-            EnterTheSpiderVerse
+            EnterTheSpiderVerse,
+            ReturnOfTheSinisterSix
         };
 
         public CoreBox CoreBox => new CoreBox(this);
         public RiseOfTheBlackPantherBox RiseOfTheBlackPanther => new RiseOfTheBlackPantherBox(this);
         public TalesOfAsgardBox TalesOfAsgardBox => new TalesOfAsgardBox(this);
         public EnterTheSpiderVerseBox EnterTheSpiderVerse => new EnterTheSpiderVerseBox(this);
+        public ReturnOfTheSinisterSixBox ReturnOfTheSinisterSix => new ReturnOfTheSinisterSixBox(this);
     }
 }

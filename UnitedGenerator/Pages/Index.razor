@@ -11,36 +11,48 @@
     {
         <h2>@box.Name</h2>
 
-        <h3>Heroes</h3>
-        <ul>
-            @foreach (var hero in box.Heroes.OrderBy(x => x.Name))
-            {
-                <li>@hero.Name</li>
-            }
-        </ul>
+        @if (box.Heroes.Any())
+        {
+            <h3>Heroes</h3>
+            <ul>
+                @foreach (var hero in box.Heroes.OrderBy(x => x.Name))
+                {
+                    <li>@hero.Name</li>
+                }
+            </ul>
+        }
 
-        <h3>Villains</h3>
-        <ul>
-            @foreach (var villain in box.Villains.OrderBy(x => x.Name))
-            {
-                <li>@villain.Name</li>
-            }
-        </ul>
+        @if (box.Villains.Any())
+        {
+            <h3>Villains</h3>
+            <ul>
+                @foreach (var villain in box.Villains.OrderBy(x => x.Name))
+                {
+                    <li>@villain.Name</li>
+                }
+            </ul>
+        }
 
-        <h3>Locations</h3>
-        <ul>
-            @foreach (var location in box.Locations.OrderBy(x => x.Name))
-            {
-                <li>@location.Name</li>
-            }
-        </ul>
+        if (box.Locations.Any())
+        {
+            <h3>Locations</h3>
+            <ul>
+                @foreach (var location in box.Locations.OrderBy(x => x.Name))
+                {
+                    <li>@location.Name</li>
+                }
+            </ul>
+        }
 
-        <h3>Challenges</h3>
-        <ul>
-            @foreach (var challenge in box.Challenges.OrderBy(x => x.Name))
-            {
-                <li>@challenge.Name</li>
-            }
-        </ul>
+        if (box.Challenges.Any())
+        {
+            <h3>Challenges</h3>
+            <ul>
+                @foreach (var challenge in box.Challenges.OrderBy(x => x.Name))
+                {
+                    <li>@challenge.Name</li>
+                }
+            </ul>
+        }
     }
 }
