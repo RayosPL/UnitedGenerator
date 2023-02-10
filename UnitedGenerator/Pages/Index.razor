@@ -27,6 +27,14 @@
             }
         </ul>
 
+        <h3>Locations</h3>
+        <ul>
+            @foreach (var location in box.Locations)
+            {
+                <li>@location.Name</li>
+            }
+        </ul>
+
         <h3>Challenges</h3>
         <ul>
             @foreach (var challenge in box.Challenges)

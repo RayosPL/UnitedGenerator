@@ -19,7 +19,7 @@ namespace UnitedGenerator.Data.Common
 
         public virtual IHero[] Heroes => new IHero[0];
         public virtual IVillain[] Villains => new IVillain[0];
-
+        public virtual ILocation[] Locations => new ILocation[0];
         public virtual IChallenge[] Challenges => new IChallenge[0];
     }
 }
