@@ -8,7 +8,8 @@
 
 <h1>Game</h1>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Generate</button>
+<button class="btn btn-primary" @onclick="GenerateGame">Generate Game</button>
+<button class="btn btn-primary" @onclick="GenerateMultiVillainGame">Generate Multi Villain Game</button>
 
 @if (game != null)
 {
@@ -58,12 +59,18 @@
 }
 
 @code {
-    private GameRandomizer random = new GameRandomizer();
+    private readonly GameRandomizer random = new GameRandomizer();
 
     private GameSetup? game = null;
+    private int playerCount = 4;
 
-    private void IncrementCount()
+    private void GenerateGame()
     {
-        game = random.Generate(4);
+        game = random.Generate(playerCount);
+    }
+
+    private void GenerateMultiVillainGame()
+    {
+        game = random.Generate(playerCount, onlyMultiVillains: true);
     }
 }

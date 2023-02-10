@@ -12,10 +12,17 @@ namespace UnitedGenerator.Engine
 
         private DataService _data = new DataService();
 
-        public GameSetup Generate(int playerCount)
+        public GameSetup Generate(int playerCount, bool onlyMultiVillains = false)
         {
+            var allVillains = _data.Villains;
+
+            if(onlyMultiVillains)
+            {
+                allVillains = allVillains.Where(x => x.IsMultiVillain).ToArray();
+            }
+
             var heroes = SelectRandom(_data.Heroes, playerCount);
-            var villain = SelectRandom(_data.Villains);
+            var villain = SelectRandom(allVillains);
             var locations = SelectRandom(_data.Locations, 6);
             var challenge = SelectRandomOnPercent(_data.Challenges, 20);
 
