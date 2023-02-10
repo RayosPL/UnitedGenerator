@@ -17,7 +17,7 @@ namespace UnitedGenerator.Data.Season1
 
         public override IVillain[] Villains => new IVillain[]
         {
-            DoctorOtctopus,
+            DoctorOctopus,
             Electro,
             Kraven,
             Vulture,
@@ -26,7 +26,7 @@ namespace UnitedGenerator.Data.Season1
             SinisterSix
         };
 
-        public IVillain DoctorOtctopus => new Villain(this, "Doctor Otctopus");
+        public IVillain DoctorOctopus => new Villain(this, "Doctor Octopus");
         public IVillain Electro => new Villain(this, "Electro");
         public IVillain Kraven => new Villain(this, "Kraven");
         public IVillain Vulture => new Villain(this, "Vulture");
