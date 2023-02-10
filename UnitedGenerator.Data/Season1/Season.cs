@@ -18,7 +18,8 @@ namespace UnitedGenerator.Data.Season1
             RiseOfTheBlackPanther,
             TalesOfAsgardBox,
             EnterTheSpiderVerse,
-            ReturnOfTheSinisterSix
+            ReturnOfTheSinisterSix,
+            GuardiansOfTheGalaxyRemix
         };
 
         public CoreBox CoreBox => new CoreBox(this);
@@ -26,5 +27,6 @@ namespace UnitedGenerator.Data.Season1
         public TalesOfAsgardBox TalesOfAsgardBox => new TalesOfAsgardBox(this);
         public EnterTheSpiderVerseBox EnterTheSpiderVerse => new EnterTheSpiderVerseBox(this);
         public ReturnOfTheSinisterSixBox ReturnOfTheSinisterSix => new ReturnOfTheSinisterSixBox(this);
+        public GuardiansOfTheGalaxyRemixBox GuardiansOfTheGalaxyRemix => new GuardiansOfTheGalaxyRemixBox(this);
     }
 }
