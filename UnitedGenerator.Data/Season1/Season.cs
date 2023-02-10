@@ -20,7 +20,8 @@ namespace UnitedGenerator.Data.Season1
             EnterTheSpiderVerse,
             ReturnOfTheSinisterSix,
             GuardiansOfTheGalaxyRemix,
-            KickstarterBonus
+            KickstarterBonus,
+            KickstarterPromo
         };
 
         public CoreBox CoreBox => new CoreBox(this);
@@ -30,5 +31,6 @@ namespace UnitedGenerator.Data.Season1
         public ReturnOfTheSinisterSixBox ReturnOfTheSinisterSix => new ReturnOfTheSinisterSixBox(this);
         public GuardiansOfTheGalaxyRemixBox GuardiansOfTheGalaxyRemix => new GuardiansOfTheGalaxyRemixBox(this);
         public KickstarterBonusBox KickstarterBonus => new KickstarterBonusBox(this);
+        public KickstarterPromoBox KickstarterPromo => new KickstarterPromoBox(this);
     }
 }
