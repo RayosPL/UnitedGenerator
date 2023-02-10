@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace UnitedGenerator.Data
 {
-    public interface IBox
+    public interface IVillain
     {
         string Name { get; }
+        IBox Box { get; }
         ISeason Season { get; }
-        IHero[] Heroes { get; }
-        IVillain[] Villains { get; }
     }
 }

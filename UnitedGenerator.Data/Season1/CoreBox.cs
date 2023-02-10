@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitedGenerator.Data.Bases;
 
-namespace UnitedGenerator.Data.Season1.Core
+namespace UnitedGenerator.Data.Season1
 {
-    internal class Box : BoxBase
+    internal class CoreBox : BoxBase
     {
-        public Box(ISeason season) : base(season)
+        public CoreBox(ISeason season) : base(season)
         {
         }
 
@@ -21,13 +21,24 @@ namespace UnitedGenerator.Data.Season1.Core
             CaptainAmerica,
             CaptainMarvel,
             Hulk,
-            IronMan,            
+            IronMan
+        };
+
+        public override IVillain[] Villains => new IVillain[]
+        {
+            RedSkull,
+            Taskmaster,
+            Ultron
         };
 
         public IHero BlackWidow => new Hero(this, "Black Widow");
         public IHero CaptainAmerica => new Hero(this, "Captain America");
         public IHero CaptainMarvel => new Hero(this, "Captain Marvel");
         public IHero Hulk => new Hero(this, "Hulk");
-        public IHero IronMan => new Hero(this, "Iron Man");   
+        public IHero IronMan => new Hero(this, "Iron Man");
+
+        public IVillain RedSkull => new Villain(this, "Red Skull");
+        public IVillain Taskmaster => new Villain(this, "Taskmaster");
+        public IVillain Ultron => new Villain(this, "Ultron");
     }
 }

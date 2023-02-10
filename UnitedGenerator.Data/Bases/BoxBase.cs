@@ -18,5 +18,6 @@ namespace UnitedGenerator.Data.Bases
         public ISeason Season { get; }
 
         public virtual IHero[] Heroes => new IHero[0];
+        public virtual IVillain[] Villains => new IVillain[0];
     }
 }

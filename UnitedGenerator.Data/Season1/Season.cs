@@ -17,6 +17,6 @@ namespace UnitedGenerator.Data.Season1
             CoreBox
         };
 
-        public IBox CoreBox => new Core.Box(this);
+        public IBox CoreBox => new CoreBox(this);
     }
 }
