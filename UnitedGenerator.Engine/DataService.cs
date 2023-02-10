@@ -7,7 +7,7 @@ using UnitedGenerator.Data;
 
 namespace UnitedGenerator.Engine
 {
-    public class DataService
+    internal class DataService
     {
         public ISeason[] Seasons => DataFactory.Seasons;
 

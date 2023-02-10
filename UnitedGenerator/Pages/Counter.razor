@@ -12,19 +12,22 @@
         <ul>
     @foreach (var hero in heros)
             {
-                            <li>@hero.Name</li>
+                <li>@hero.Name (@hero.Box.Name)</li>
             }
         </ul>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Generate</button>
 
 @code {
-    private DataService dataService = new DataService();
+    private GameRandomizer random = new GameRandomizer();
     private List<IHero> heros = new List<IHero>();
 
     private void IncrementCount()
     {
         heros.Clear();
-        heros.AddRange(dataService.Heroes.Take(4));
+
+        var game = random.Generate();
+
+        heros.AddRange(game.Heroes);
     }
 }
