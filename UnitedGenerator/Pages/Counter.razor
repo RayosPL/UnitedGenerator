@@ -6,28 +6,31 @@
 
 
 
-<h1>Heroes</h1>
-
-<h3>Heroes</h3>
-        <ul>
-    @foreach (var hero in heros)
-            {
-                <li>@hero.Name (@hero.Box.Name)</li>
-            }
-        </ul>
+<h1>Game</h1>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Generate</button>
 
+@if (game != null)
+{
+    <h2>Heroes</h2>
+    <ul>
+        @foreach (var hero in game.Heroes)
+        {
+            <li>@hero.Name (@hero.Box.Name)</li>
+        }
+    </ul>
+
+    <h2>Villain</h2>
+    <div>@game.Villain.Name (@game.Villain.Box.Name)</div>
+}
+
 @code {
     private GameRandomizer random = new GameRandomizer();
-    private List<IHero> heros = new List<IHero>();
+
+    private GameSetup? game = null;
 
     private void IncrementCount()
     {
-        heros.Clear();
-
-        var game = random.Generate();
-
-        heros.AddRange(game.Heroes);
+        game = random.Generate();
     }
 }

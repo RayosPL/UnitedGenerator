@@ -9,11 +9,14 @@ namespace UnitedGenerator.Engine
 {
     public class GameSetup
     {
-        internal GameSetup(IHero[] heroes)
+        internal GameSetup(IHero[] heroes, IVillain villain)
         {
-            Heroes = heroes;    
+            Heroes = heroes;   
+            Villain = villain;
         }
 
         public IHero[] Heroes { get; }
+
+        public IVillain Villain { get; }
     }
 }

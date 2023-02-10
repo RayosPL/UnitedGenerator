@@ -14,5 +14,7 @@ namespace UnitedGenerator.Engine
         public IBox[] Boxes => Seasons.SelectMany(x => x.Boxes).ToArray();
 
         public IHero[] Heroes => Boxes.SelectMany(x => x.Heroes).ToArray();
+
+        public IVillain[] Villains => Boxes.SelectMany(x => x.Villains).ToArray();
     }
 }

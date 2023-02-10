@@ -15,8 +15,16 @@ namespace UnitedGenerator.Engine
         public GameSetup Generate()
         {
             var heroes = SelectRandom(_data.Heroes, 4);
+            var villain = SelectRandom(_data.Villains);
 
-            return new GameSetup(heroes);
+            return new GameSetup(heroes, villain);
+        }
+
+        private T SelectRandom<T>(IEnumerable<T> items)
+        {
+            int r = _random.Next(0, items.Count());
+
+            return items.ElementAt(r);
         }
 
         private T[] SelectRandom<T>(IEnumerable<T> items, int count)
