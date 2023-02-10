@@ -16,12 +16,12 @@
     <ul>
         @foreach (var hero in game.Heroes)
         {
-            <li>@hero.Name (@hero.Box.Name)</li>
+            <li>@hero.Name (@hero.Box.Name - Season @hero.Season.Number)</li>
         }
     </ul>
 
     <h2>Villain</h2>
-    <div>@game.Villain.Name (@game.Villain.Box.Name)</div>
+    <div>@game.Villain.Name (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
 }
 
 @code {
