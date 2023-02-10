@@ -21,7 +21,7 @@ namespace UnitedGenerator.Data.Season1
             SpiderWoman,
             SquirrelGirl,
             ThePunisher,
-            Venom,
+            VenomHero,
             Vision,
             WarMachine,
             SheHulk,
@@ -45,20 +45,33 @@ namespace UnitedGenerator.Data.Season1
             Falcon,
             GhostRider,
             Hawkeye,
-            Hela,
             HowardTheDuck,
             IronFist,
             JessicaJones,
             AmericaChavez,
             BlackCat,
-            Blade,
+            Blade
+        };
+
+        public override IVillain[] Villains => new IVillain[]
+        {
+            Kang,
+            BaronZemo,
+            VenomVillain,
+            Kingpin,
+            Modok,
+            Rhino,
+            Bullseye,
+            Carnage,
+            CorvusGlave,
+            Hela
         };
 
         public IHero SpiderMan2099 => new Hero(this, "Spider-Man 2099");
         public IHero SpiderWoman => new Hero(this, "Spider-Woman");
         public IHero SquirrelGirl => new Hero(this, "Squirrel Girl");
         public IHero ThePunisher => new Hero(this, "The Punisher");
-        public IHero Venom => new Hero(this, "Venom");
+        public IHero VenomHero => new Hero(this, "Venom");
         public IHero Vision => new Hero(this, "Vision");
         public IHero WarMachine => new Hero(this, "War Machine");
         public IHero SheHulk => new Hero(this, "She-Hulk");
@@ -82,12 +95,22 @@ namespace UnitedGenerator.Data.Season1
         public IHero Falcon => new Hero(this, "Falcon");
         public IHero GhostRider => new Hero(this, "Ghost Rider");
         public IHero Hawkeye => new Hero(this, "Hawkeye");
-        public IHero Hela => new Hero(this, "Hela");
         public IHero HowardTheDuck => new Hero(this, "Howard The Duck");
         public IHero IronFist => new Hero(this, "Iron Fist");
         public IHero JessicaJones => new Hero(this, "Jessica Jones");
         public IHero AmericaChavez => new Hero(this, "America Chavez");
         public IHero BlackCat => new Hero(this, "Black Cat");
         public IHero Blade => new Hero(this, "Blade");
+
+        public IVillain Kang => new Villain(this, "Kang");
+        public IVillain BaronZemo => new Villain(this, "Baron Zemo");
+        public IVillain VenomVillain => new Villain(this, "Venom");
+        public IVillain Kingpin => new Villain(this, "Kingpin");
+        public IVillain Modok => new Villain(this, "M.O.D.O.K");
+        public IVillain Rhino => new Villain(this, "Rhino");
+        public IVillain Bullseye => new Villain(this, "Bullseye");
+        public IVillain Carnage => new Villain(this, "Carnage");
+        public IVillain CorvusGlave => new Villain(this, "Corvus Glave");
+        public IVillain Hela => new Villain(this, "Hela");
     }
 }
