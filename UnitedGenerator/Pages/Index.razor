@@ -3,17 +3,17 @@
 
 <PageTitle>Index</PageTitle>
 
-@foreach(var season in DataFactory.Seasons)
+@foreach (var season in DataFactory.Seasons.OrderBy(x => x.Number))
 {
     <h1>Season @season.Number - @season.Name</h1>
 
-    @foreach(var box in season.Boxes)
+    @foreach(var box in season.Boxes.OrderBy(x => x.Name))
     {
         <h2>@box.Name</h2>
 
         <h3>Heroes</h3>
         <ul>
-            @foreach(var hero in box.Heroes)
+            @foreach (var hero in box.Heroes.OrderBy(x => x.Name))
             {
                 <li>@hero.Name</li>
             }
@@ -21,7 +21,7 @@
 
         <h3>Villains</h3>
         <ul>
-            @foreach (var villain in box.Villains)
+            @foreach (var villain in box.Villains.OrderBy(x => x.Name))
             {
                 <li>@villain.Name</li>
             }
@@ -29,7 +29,7 @@
 
         <h3>Locations</h3>
         <ul>
-            @foreach (var location in box.Locations)
+            @foreach (var location in box.Locations.OrderBy(x => x.Name))
             {
                 <li>@location.Name</li>
             }
@@ -37,7 +37,7 @@
 
         <h3>Challenges</h3>
         <ul>
-            @foreach (var challenge in box.Challenges)
+            @foreach (var challenge in box.Challenges.OrderBy(x => x.Name))
             {
                 <li>@challenge.Name</li>
             }

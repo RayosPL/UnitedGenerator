@@ -15,6 +15,16 @@
     <h2>Villain</h2>
     <div>@game.Villain.Name (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
 
+    <h3>Challenge</h3>
+    @if (game.Challenge != null)
+    {
+        <div>@game.Challenge.Name (@game.Challenge.Box.Name - Season @game.Challenge.Season.Number)</div>
+    }
+    else
+    {
+        <div>(None)</div>
+    }
+
     <h2>Heroes</h2>
     <ul>
         @foreach (var hero in game.Heroes)
@@ -30,12 +40,6 @@
             <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
         }
     </ul>
-
-    @if (game.Challenge != null)
-    {
-        <h2>Challenge</h2>
-        <div>@game.Challenge.Name (@game.Challenge.Box.Name - Season @game.Challenge.Season.Number)</div>
-    }
 }
 
 @code {
