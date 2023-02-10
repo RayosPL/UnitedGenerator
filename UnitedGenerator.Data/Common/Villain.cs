@@ -10,6 +10,9 @@ namespace UnitedGenerator.Data.Common
     {
         public Villain(IBox box, string name) : base(box, name)
         {
+            HasCustomRules = false;
         }
+
+        public bool HasCustomRules { get; init; }
     }
 }

@@ -32,6 +32,10 @@ namespace UnitedGenerator.Data.Season1
         public IVillain Vulture => new Villain(this, "Vulture");
         public IVillain Mysterio => new Villain(this, "Mysterio");
         public IVillain Sandman => new Villain(this, "Sandman");
-        public IVillain SinisterSix => new Villain(this, "Sinister Six");
+
+        public IVillain SinisterSix => new Villain(this, "Sinister Six")
+        {
+            HasCustomRules = true
+        };
     }
 }

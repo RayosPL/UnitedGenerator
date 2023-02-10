@@ -28,7 +28,17 @@
             <ul>
                 @foreach (var villain in box.Villains.OrderBy(x => x.Name))
                 {
-                    <li>@villain.Name</li>
+                    <li>
+                        @villain.Name
+
+                        @if (villain.HasCustomRules)
+                        {
+                            <ul>
+                                <li>Has Custom Rules!</li>
+                            </ul>
+                        }
+
+                    </li>
                 }
             </ul>
         }
