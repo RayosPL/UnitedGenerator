@@ -1,18 +1,30 @@
 ﻿@page "/counter"
+@using UnitedGenerator.Data;
+@using UnitedGenerator.Engine;
 
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<h1>Heroes</h1>
+
+<h3>Heroes</h3>
+        <ul>
+    @foreach (var hero in heros)
+            {
+                            <li>@hero.Name</li>
+            }
+        </ul>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Generate</button>
 
 @code {
-    private int currentCount = 0;
+    private DataService dataService = new DataService();
+    private List<IHero> heros = new List<IHero>();
 
     private void IncrementCount()
     {
-        currentCount++;
+        heros.Clear();
+        heros.AddRange(dataService.Heroes.Take(4));
     }
 }
