@@ -16,11 +16,13 @@ namespace UnitedGenerator.Data.Season1
         {
             CoreBox,
             RiseOfTheBlackPanther,
-            TalesOfAsgardBox
+            TalesOfAsgardBox,
+            EnterTheSpiderVerse
         };
 
         public CoreBox CoreBox => new CoreBox(this);
         public RiseOfTheBlackPantherBox RiseOfTheBlackPanther => new RiseOfTheBlackPantherBox(this);
         public TalesOfAsgardBox TalesOfAsgardBox => new TalesOfAsgardBox(this);
+        public EnterTheSpiderVerseBox EnterTheSpiderVerse => new EnterTheSpiderVerseBox(this);
     }
 }
