@@ -10,5 +10,12 @@
     @foreach(var box in season.Boxes)
     {
         <h2>@box.Name</h2>
+        <h3>Heroes</h3>
+        <ul>
+        @foreach(var hero in box.Heroes)
+        {
+            <li>@hero.Name</li>
+        }
+        </ul>
     }
 }

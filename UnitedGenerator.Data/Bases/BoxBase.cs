@@ -16,5 +16,7 @@ namespace UnitedGenerator.Data.Bases
         public abstract string Name { get; }
 
         public ISeason Season { get; }
+
+        public virtual IHero[] Heroes => new IHero[0];
     }
 }
