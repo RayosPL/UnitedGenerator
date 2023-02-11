@@ -79,7 +79,7 @@
         {
             <h3>Anti-Heroes</h3>
             <ul>
-                @foreach (var villain in box.Villains.OrderBy(x => x.Name))
+                @foreach (var villain in box.AntiHeroes.OrderBy(x => x.Name))
                 {
                     <li>
                         @villain.Name

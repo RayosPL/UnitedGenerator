@@ -14,9 +14,11 @@ namespace UnitedGenerator.Data.Season2
 
         public IBox[] Boxes => new IBox[]
         {
-            CoreBox
+            CoreBox,
+            Deadpool
         };
 
         public CoreBox CoreBox => new CoreBox(this);
+        public DeadpoolBox Deadpool => new DeadpoolBox(this);
     }
 }
