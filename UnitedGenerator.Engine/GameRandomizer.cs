@@ -81,7 +81,12 @@ namespace UnitedGenerator.Engine
             }
 
             var locations = SelectRandom(candidateLocations, 6);
-            var challenge = SelectRandomOnPercent(candidateChallenges, 20);
+
+            IChallenge? challenge = null;
+            if (!villain.DisableChallenges)
+            {
+                challenge = SelectRandomOnPercent(candidateChallenges, 20);
+            }
 
             return new[]
             {

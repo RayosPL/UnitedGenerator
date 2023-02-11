@@ -38,6 +38,11 @@
                             <li>Has Custom Rules!</li>
                         }
 
+                        @if (villain.DisableChallenges)
+                        {
+                            <li>No Challenges Allowed!</li>
+                        }
+
                         @if (villain.PreGamesCount > 0)
                         {
                             <li>Number of pre-games: @villain.PreGamesCount</li>

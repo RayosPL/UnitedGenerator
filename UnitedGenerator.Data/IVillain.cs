@@ -11,6 +11,7 @@ namespace UnitedGenerator.Data
         bool HasCustomRules { get; }
         bool IsMultiVillain { get; }
         int PreGamesCount { get; }
+        bool DisableChallenges { get; }
         IVillain[] SubVillains { get; }
         IVillain[] PreGameCandidateVillains { get; }
         ILocation[] AssignedLocations { get; }

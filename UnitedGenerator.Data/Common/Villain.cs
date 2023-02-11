@@ -12,6 +12,7 @@ namespace UnitedGenerator.Data.Common
         {
             HasCustomRules = false;
             PreGamesCount = 0;
+            DisableChallenges = false;
             SubVillains = new IVillain[0];
             AssignedLocations = new ILocation[0];
             AdditionalHeroGroups = new IHeroGroupDefinition[0];
@@ -21,6 +22,8 @@ namespace UnitedGenerator.Data.Common
         public bool HasCustomRules { get; init; }
         
         public int PreGamesCount { get; init; }
+
+        public bool DisableChallenges { get; init; }
 
         public bool IsMultiVillain => SubVillains.Any();
 

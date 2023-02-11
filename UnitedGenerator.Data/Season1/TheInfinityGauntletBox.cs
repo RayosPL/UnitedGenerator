@@ -46,6 +46,7 @@ namespace UnitedGenerator.Data.Season1
         {
             PreGamesCount = 3,
             HasCustomRules = true,
+            DisableChallenges = true,
             AssignedLocations = new[]
             {
                 WakandaFields,
