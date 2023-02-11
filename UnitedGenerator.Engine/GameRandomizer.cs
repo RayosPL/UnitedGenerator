@@ -19,6 +19,11 @@ namespace UnitedGenerator.Engine
             var candidateHeroes = _data.Heroes;
             var candidateChallenges = _data.Challenges;
 
+            var heroGroups = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("Heroes", playerCount)
+            };
+
             if (onlyMultiVillains)
             {
                 candidateVillains = candidateVillains.Where(x => x.IsMultiVillain).ToArray();
@@ -32,7 +37,12 @@ namespace UnitedGenerator.Engine
                 candidateLocations = villain.AssignedLocations.Concat(additionalLocations).ToArray();
             }
 
-            var heroes = SelectRandom(candidateHeroes, playerCount);
+            var heroes = new List<HeroGroup>();
+            foreach (var group in heroGroups)
+            {
+                heroes.Add(new HeroGroup(group.Key, SelectRandom(candidateHeroes, group.Value)));
+            }
+
             var locations = SelectRandom(candidateLocations, 6);
             var challenge = SelectRandomOnPercent(candidateChallenges, 20);
 
