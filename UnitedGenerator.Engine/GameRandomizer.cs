@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnitedGenerator.Data;
+using UnitedGenerator.Engine.Utils;
 
 namespace UnitedGenerator.Engine
 {
     public class GameRandomizer
     {
-        private static readonly Random _random = new Random();
-
         private DataService _data = new DataService();
 
         public GameSetup[] Generate(
@@ -41,25 +40,29 @@ namespace UnitedGenerator.Engine
                 candidateVillains = candidateVillains.Where(x => x.IsAntiHero).ToArray();
             }
 
-            var villain = SelectRandom(candidateVillains);
-            var preGameVillains = new IVillain[0];
-            string mainTitle = "Game";
+            var villain = candidateVillains.RandomOrDefault();
 
-            if (villain.PreGamesCount > 0)
+            if (villain != null)
             {
-                mainTitle = "Main Game";
-                var candidates = _data.Villains.Where(x => villain.PreGameCandidateVillains.Contains(x));
+                var preGameVillains = new IVillain[0];
+                string mainTitle = "Game";
 
-                preGameVillains = SelectRandom(candidates, villain.PreGamesCount);
+                if (villain.PreGamesCount > 0)
+                {
+                    mainTitle = "Main Game";
+                    var candidates = _data.Villains.Where(x => villain.PreGameCandidateVillains.Contains(x));
+
+                    preGameVillains = candidates.TakeRandom(villain.PreGamesCount);
+                }
+
+                int i = 1;
+                foreach (var preVillain in preGameVillains)
+                {
+                    games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, teamPercent, challengePercent, preVillain, onlyAntiHeroes, hazardousChallenge));
+                }
+
+                games.AddRange(GenerateVillainFight(mainTitle, playerCount, teamPercent, challengePercent, villain, onlyAntiHeroes, hazardousChallenge));
             }
-
-            int i = 1;
-            foreach(var preVillain in preGameVillains)
-            {
-                games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, teamPercent, challengePercent, preVillain, onlyAntiHeroes, hazardousChallenge));
-            }
-
-            games.AddRange(GenerateVillainFight(mainTitle, playerCount, teamPercent, challengePercent, villain, onlyAntiHeroes, hazardousChallenge));
 
             return games.ToArray();
         }
@@ -103,7 +106,7 @@ namespace UnitedGenerator.Engine
 
             if (villain.AssignedLocations.Any())
             {
-                var additionalLocations = SelectRandom(candidateLocations, 6 - villain.AssignedLocations.Length);
+                var additionalLocations = candidateLocations.TakeRandom(6 - villain.AssignedLocations.Length);
                 candidateLocations = villain.AssignedLocations.Concat(additionalLocations).ToArray();
             }
 
@@ -112,7 +115,7 @@ namespace UnitedGenerator.Engine
                 heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(playerCount)));
             }
 
-            var team = SelectRandomOnPercent(candidateTeams, teamPercent);
+            var team = candidateTeams.RandomOrDefaultByChance(teamPercent);
             var additionalHeroes = new IHero[0];
 
             if (team != null)
@@ -124,12 +127,15 @@ namespace UnitedGenerator.Engine
             var heroes = new List<HeroGroup>();
             foreach (var group in heroGroups)
             {
-                var selected = SelectRandom(candidateHeroes, group.Value);
+                var selected = candidateHeroes.TakeRandom(group.Value);
                 candidateHeroes = candidateHeroes.Except(selected).ToArray();
 
                 if(selected.Count() < group.Value)
                 {
-                    selected = selected.Concat(SelectRandom(additionalHeroes, group.Value - selected.Count())).ToArray();
+                    selected = selected
+                        .Concat(additionalHeroes.TakeRandom(group.Value - selected.Count()))
+                        .ToArray();
+
                     additionalHeroes = additionalHeroes.Except(selected).ToArray();
                 }
 
@@ -139,75 +145,31 @@ namespace UnitedGenerator.Engine
             IChallenge? challenge = null;
             if (!villain.DisableChallenges)
             {
-                challenge = SelectRandomOnPercent(candidateChallenges, challengePercent);
+                challenge = candidateChallenges.RandomOrDefaultByChance(challengePercent);
             }
 
             if (hazardousChallenge)
             {
-                challenge = SelectRandomOnPercent(candidateChallenges.Where(x => x.HazardousLocationsCount > 0), 100);
+                challenge = candidateChallenges.Where(x => x.HazardousLocationsCount > 0).RandomOrDefault();
             }
 
-            var locations = SelectRandom(villain.AssignedLocations, 6).ToList();
+            var locations = villain.AssignedLocations.TakeRandom(6).ToList();
             candidateLocations = candidateLocations.Except(locations).ToArray();
 
             if (challenge != null)
             {
-                locations.AddRange(SelectRandom(candidateLocations.Where(x => x.Hazardous), challenge.HazardousLocationsCount));
+                locations.AddRange(candidateLocations.Where(x => x.Hazardous).TakeRandom(challenge.HazardousLocationsCount));
                 candidateLocations = candidateLocations.Except(locations).ToArray();
             }
 
-            locations.AddRange(SelectRandom(candidateLocations, 6 - locations.Count));
+            locations.AddRange(candidateLocations.TakeRandom(6 - locations.Count));
             
-            var randomOrderLocations = SelectRandom(locations, 6);
+            var randomOrderLocations = locations.TakeRandom(6);
 
             return new[]
             {
                 new GameSetup(title, heroes, villain, randomOrderLocations, challenge)
             };
-        }
-
-        private static T? SelectRandomOnPercent<T>(IEnumerable<T> items, int percent)
-            where T : class
-        {
-            if (Percent(percent))
-            {
-                return SelectRandom(items);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        private static bool Percent(int percent)
-        {
-            return _random.Next(100) < percent;
-        }
-
-        private static T SelectRandom<T>(IEnumerable<T> items)
-        {
-            int r = _random.Next(0, items.Count());
-
-            return items.ElementAt(r);
-        }
-
-        private static T[] SelectRandom<T>(IEnumerable<T> items, int count)
-        {
-            count = Math.Min(count, items.Count());
-
-            List<T> candidates = items.ToList();
-            T[] result = new T[count];
-
-            for(int i = 0; i < count; i++)
-            {
-                int r = _random.Next(0, candidates.Count);
-
-                result[i] = candidates[r];
-
-                candidates.RemoveAt(r);
-            }
-
-            return result;
         }
     }
 }
