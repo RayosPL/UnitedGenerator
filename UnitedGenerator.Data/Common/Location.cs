@@ -10,6 +10,11 @@ namespace UnitedGenerator.Data.Common
     {
         public Location(IBox box, string name) : base(box, name)
         {
+            ExcludeFromRandomSelection = false;
         }
+
+        public bool ExcludeFromRandomSelection { get; init; }
+
+        public bool IncludeInRandomSelection => !ExcludeFromRandomSelection;
     }
 }

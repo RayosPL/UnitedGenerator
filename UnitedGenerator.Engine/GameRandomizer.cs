@@ -14,17 +14,27 @@ namespace UnitedGenerator.Engine
 
         public GameSetup Generate(int playerCount, bool onlyMultiVillains = false)
         {
-            var allVillains = _data.Villains;
+            var candidateVillains = _data.Villains;
+            var candidateLocations = _data.Locations.Where(x => x.IncludeInRandomSelection).ToArray();
+            var candidateHeroes = _data.Heroes;
+            var candidateChallenges = _data.Challenges;
 
-            if(onlyMultiVillains)
+            if (onlyMultiVillains)
             {
-                allVillains = allVillains.Where(x => x.IsMultiVillain).ToArray();
+                candidateVillains = candidateVillains.Where(x => x.IsMultiVillain).ToArray();
             }
 
-            var heroes = SelectRandom(_data.Heroes, playerCount);
-            var villain = SelectRandom(allVillains);
-            var locations = SelectRandom(_data.Locations, 6);
-            var challenge = SelectRandomOnPercent(_data.Challenges, 20);
+            var villain = SelectRandom(candidateVillains);
+
+            if (villain.AssignedLocations.Any())
+            {
+                var additionalLocations = SelectRandom(candidateLocations, 6 - villain.AssignedLocations.Length);
+                candidateLocations = villain.AssignedLocations.Concat(additionalLocations).ToArray();
+            }
+
+            var heroes = SelectRandom(candidateHeroes, playerCount);
+            var locations = SelectRandom(candidateLocations, 6);
+            var challenge = SelectRandomOnPercent(candidateChallenges, 20);
 
             return new GameSetup(heroes, villain, locations, challenge);
         }
@@ -56,6 +66,8 @@ namespace UnitedGenerator.Engine
 
         private static T[] SelectRandom<T>(IEnumerable<T> items, int count)
         {
+            count = Math.Min(count, items.Count());
+
             List<T> candidates = items.ToList();
             T[] result = new T[count];
 

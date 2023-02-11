@@ -43,6 +43,11 @@
                             <li>Sub Villain: @sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
                         }
 
+                        @foreach(var location in villain.AssignedLocations)
+                        {
+                            <li>Assigned Location: @location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+                        }
+
                         </ul>
 
                     </li>
@@ -56,7 +61,13 @@
             <ul>
                 @foreach (var location in box.Locations.OrderBy(x => x.Name))
                 {
-                    <li>@location.Name</li>
+                    <li>
+                        @location.Name
+                        @if (!location.IncludeInRandomSelection)
+                        {
+                            <ul><li>Exclude from random selection!</li></ul>
+                        }
+                    </li>
                 }
             </ul>
         }

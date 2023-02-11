@@ -11,5 +11,6 @@ namespace UnitedGenerator.Data
         bool HasCustomRules { get; }
         bool IsMultiVillain { get; }
         IVillain[] SubVillains { get; }
+        ILocation[] AssignedLocations { get; }
     }
 }

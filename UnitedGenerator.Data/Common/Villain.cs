@@ -12,6 +12,7 @@ namespace UnitedGenerator.Data.Common
         {
             HasCustomRules = false;
             SubVillains = new IVillain[0];
+            AssignedLocations = new ILocation[0];
         }
 
         public bool HasCustomRules { get; init; }
@@ -19,5 +20,7 @@ namespace UnitedGenerator.Data.Common
         public bool IsMultiVillain => SubVillains.Any();
 
         public IVillain[] SubVillains { get; init; }
+
+        public ILocation[] AssignedLocations { get; init; }
     }
 }
