@@ -13,7 +13,7 @@ namespace UnitedGenerator.Data.Season1
         {
         }
 
-        public override string Name => "Core Box";
+        public override string Name => "Marvel United: Core Box";
 
         public override IHero[] Heroes => new IHero[]
         {

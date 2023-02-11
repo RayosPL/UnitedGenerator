@@ -12,6 +12,11 @@ namespace UnitedGenerator.Data.Season2
 
         public string Name => "Marvel United: X-Men";
 
-        public IBox[] Boxes => new IBox[0];
+        public IBox[] Boxes => new IBox[]
+        {
+            CoreBox
+        };
+
+        public CoreBox CoreBox => new CoreBox(this);
     }
 }

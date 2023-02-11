@@ -19,6 +19,6 @@ namespace UnitedGenerator.Engine
 
         public ILocation[] Locations => Boxes.SelectMany(x => x.Locations).ToArray();
 
-        public IChallenge[] Challenges => Boxes.SelectMany(x => x.Challenges).ToArray();
+        public IChallenge[] Challenges => Boxes.SelectMany(x => x.Challenges).OrderBy(x => x.Season.Number).DistinctBy(x => x.Name).ToArray();
     }
 }

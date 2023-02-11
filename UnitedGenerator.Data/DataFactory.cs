@@ -11,7 +11,7 @@ namespace UnitedGenerator.Data
         public static ISeason[] Seasons => new ISeason[]
         {
             Season1,
-            //Season2
+            Season2
         };
 
         internal static Season1.Season Season1 => new Season1.Season();
