@@ -9,6 +9,7 @@ namespace UnitedGenerator.Data
     public interface IBoxItem
     {
         string Name { get; }
+        string Id { get; }
         IBox Box { get; }
         ISeason Season { get; }
     }

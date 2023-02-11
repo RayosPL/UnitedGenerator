@@ -13,13 +13,14 @@ namespace UnitedGenerator.Data.Common
             HasCustomRules = false;
             PreGamesCount = 0;
             DisableChallenges = false;
+            IsAntiHero = false;
             SubVillains = new IVillain[0];
             AssignedLocations = new ILocation[0];
             AdditionalHeroGroups = new IHeroGroupDefinition[0];
             PreGameCandidateVillains = new IVillain[0];
         }
 
-        public virtual bool IsAntiHero => false;
+        public virtual bool IsAntiHero { get; protected set; }
 
         public bool HasCustomRules { get; init; }
         

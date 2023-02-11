@@ -10,8 +10,7 @@ namespace UnitedGenerator.Data.Common
     {
         public AntiHero(IBox box, string name) : base(box, name)
         {
+            IsAntiHero = true;
         }
-
-        public override bool IsAntiHero => true;
     }
 }

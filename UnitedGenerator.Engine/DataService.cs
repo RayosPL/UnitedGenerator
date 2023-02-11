@@ -13,12 +13,14 @@ namespace UnitedGenerator.Engine
 
         public IBox[] Boxes => Seasons.SelectMany(x => x.Boxes).ToArray();
 
-        public IHero[] Heroes => Boxes.SelectMany(x => x.Heroes).ToArray();
+        public IHero[] Heroes => Boxes.SelectMany(x => x.Heroes).Concat(AntiHeroes).ToArray();
 
-        public IVillain[] Villains => Boxes.SelectMany(x => x.Villains).ToArray();
+        public IVillain[] Villains => Boxes.SelectMany(x => x.Villains).Concat(AntiHeroes).ToArray();
 
         public ILocation[] Locations => Boxes.SelectMany(x => x.Locations).ToArray();
 
         public IChallenge[] Challenges => Boxes.SelectMany(x => x.Challenges).OrderBy(x => x.Season.Number).DistinctBy(x => x.Name).ToArray();
+
+        private IAntiHero[] AntiHeroes => Boxes.SelectMany(x => x.AntiHeroes).ToArray();
     }
 }

@@ -7,13 +7,14 @@
 <button class="btn btn-primary" @onclick="GenerateGame">Generate Game</button>
 <button class="btn btn-primary" @onclick="GenerateMultiVillainGame">Generate Multi Villain Game</button>
 <button class="btn btn-primary" @onclick="GeneratePreGameVillainGame">Generate Pre-Game Villain Game</button>
+<button class="btn btn-primary" @onclick="GenerateAntiHeroGame">Generate Anti-Hero Only Game</button>
 
 @foreach(var game in games)
 {
     <h1>@game.Title</h1>
 
     <h2>Villain</h2>
-    <div>@game.Villain.Name (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
+    <div>@game.Villain.Name @(game.Villain.IsAntiHero ? "[Anti-Hero]" : "") (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
     
     @if (game.Villain.HasCustomRules)
     {
@@ -25,7 +26,7 @@
         <ul>
             @foreach (var villain in game.Villain.SubVillains)
             {
-                <li>@villain.Name (@villain.Box.Name - Season @villain.Season.Number)</li>
+                <li>@villain.Name @(villain.IsAntiHero ? "[Anti-Hero]" : "") (@villain.Box.Name - Season @villain.Season.Number)</li>
             }
         </ul>
     }
@@ -46,7 +47,7 @@
         <ol>
             @foreach (var hero in group.Heroes)
             {
-                <li>@hero.Name (@hero.Box.Name - Season @hero.Season.Number)</li>
+                <li>@hero.Name @(hero.IsAntiHero ? "[Anti-Hero]" : "") (@hero.Box.Name - Season @hero.Season.Number)</li>
             }
         </ol>
     }
@@ -79,5 +80,10 @@
     private void GeneratePreGameVillainGame()
     {
         games = random.Generate(playerCount, onlyPreGameVillains: true);
+    }
+
+    private void GenerateAntiHeroGame()
+    {
+        games = random.Generate(playerCount, onlyAntiHeroes: true);
     }
 }

@@ -13,7 +13,11 @@ namespace UnitedGenerator.Engine
 
         private DataService _data = new DataService();
 
-        public GameSetup[] Generate(int playerCount, bool onlyMultiVillains = false, bool onlyPreGameVillains = false)
+        public GameSetup[] Generate(
+            int playerCount, 
+            bool onlyMultiVillains = false, 
+            bool onlyPreGameVillains = false,
+            bool onlyAntiHeroes = false)
         {
             var games = new List<GameSetup>();
 
@@ -27,6 +31,11 @@ namespace UnitedGenerator.Engine
             if (onlyPreGameVillains)
             {
                 candidateVillains = candidateVillains.Where(x => x.PreGamesCount > 0).ToArray();
+            }
+
+            if (onlyAntiHeroes)
+            {
+                candidateVillains = candidateVillains.Where(x => x.IsAntiHero).ToArray();
             }
 
             var villain = SelectRandom(candidateVillains);
@@ -44,19 +53,24 @@ namespace UnitedGenerator.Engine
             int i = 1;
             foreach(var preVillain in preGameVillains)
             {
-                games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, preVillain));
+                games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, preVillain, onlyAntiHeroes));
             }
 
-            games.AddRange(GenerateVillainFight(mainTitle, playerCount, villain));
+            games.AddRange(GenerateVillainFight(mainTitle, playerCount, villain, onlyAntiHeroes));
 
             return games.ToArray();
         }
 
-        private GameSetup[] GenerateVillainFight(string title, int playerCount, IVillain villain)
+        private GameSetup[] GenerateVillainFight(string title, int playerCount, IVillain villain, bool onlyAntiHeroes)
         {
             var candidateLocations = _data.Locations.Where(x => x.IncludeInRandomSelection).ToArray();
-            var candidateHeroes = _data.Heroes;
+            var candidateHeroes = _data.Heroes.Where(x => x.Id != villain.Id).ToArray();
             var candidateChallenges = _data.Challenges;
+
+            if (onlyAntiHeroes)
+            {
+                candidateHeroes = candidateHeroes.Where(x => x.IsAntiHero).ToArray();
+            }
 
             var heroGroups = new List<KeyValuePair<string, int>>()
             {
