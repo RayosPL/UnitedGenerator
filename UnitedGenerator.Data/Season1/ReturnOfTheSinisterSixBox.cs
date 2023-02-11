@@ -38,7 +38,7 @@ namespace UnitedGenerator.Data.Season1
             HasCustomRules = true,
             SubVillains = new IVillain[]
             {
-                DoctorOtctopus,
+                DoctorOctopus,
                 Electro,
                 Kraven,
                 Vulture,

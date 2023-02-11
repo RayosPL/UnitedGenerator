@@ -21,7 +21,8 @@ namespace UnitedGenerator.Data.Season1
             ReturnOfTheSinisterSix,
             GuardiansOfTheGalaxyRemix,
             KickstarterBonus,
-            KickstarterPromo
+            KickstarterPromo,
+            TheInfinityGauntlet
         };
 
         public CoreBox CoreBox => new CoreBox(this);
@@ -32,5 +33,6 @@ namespace UnitedGenerator.Data.Season1
         public GuardiansOfTheGalaxyRemixBox GuardiansOfTheGalaxyRemix => new GuardiansOfTheGalaxyRemixBox(this);
         public KickstarterBonusBox KickstarterBonus => new KickstarterBonusBox(this);
         public KickstarterPromoBox KickstarterPromo => new KickstarterPromoBox(this);
+        public TheInfinityGauntletBox TheInfinityGauntlet => new TheInfinityGauntletBox(this);
     }
 }
