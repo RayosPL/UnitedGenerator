@@ -175,6 +175,12 @@
                         {
                             <li>Exclude from random selection!</li>
                         }
+
+                        @if (location.HasCustomRules)
+                        {
+                            <li>Has Custom Rules!</li>
+                        }
+
                         @if (location.Hazardous)
                         {
                             <li>Hazardous!</li>

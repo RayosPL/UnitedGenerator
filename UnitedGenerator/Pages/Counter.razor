@@ -64,7 +64,12 @@
     <ol>
         @foreach (var location in game.Locations)
         {
-            <li>@location.Name @(location.Hazardous ? "[Hazardous]" : "") (@location.Box.Name - Season @location.Season.Number)</li>
+            <li>
+                @location.Name 
+                @(location.Hazardous ? "[Hazardous]" : "")
+                @(location.HasCustomRules ? "[Custom Rules]" : "")
+                (@location.Box.Name - Season @location.Season.Number)
+            </li>
         }
     </ol>
 }
