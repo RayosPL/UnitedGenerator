@@ -15,5 +15,6 @@ namespace UnitedGenerator.Data
         IAntiHero[] AntiHeroes { get; }
         ILocation[] Locations { get; }
         IChallenge[] Challenges { get; }
+        IHeroTeam[] Teams { get; }
     }
 }

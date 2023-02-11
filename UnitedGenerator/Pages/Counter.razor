@@ -9,6 +9,7 @@
 <button class="btn btn-primary" @onclick="GeneratePreGameVillainGame">Generate Pre-Game Villain Game</button>
 <button class="btn btn-primary" @onclick="GenerateAntiHeroGame">Generate Anti-Hero Only Game</button>
 <button class="btn btn-primary" @onclick="GenerateGameWithHazardousChallenge">Generate Game with Hazardous Challenge</button>
+<button class="btn btn-primary" @onclick="GenerateGameWithHeroTeam">Generate Game with Hero Team</button>
 
 @foreach(var game in games)
 {
@@ -45,6 +46,12 @@
     @foreach (var group in game.HeroGroups)
     {
         <h2>@group.Name</h2>
+
+        @if (group.Team != null)
+        {
+            <div>Team: @group.Team.Name (@group.Team.TeamType)</div>
+        }
+
         <ol>
             @foreach (var hero in group.Heroes)
             {
@@ -67,29 +74,36 @@
 
     private GameSetup[] games = new GameSetup[0];
     private int playerCount = 4;
+    private int teamPercent = 2;
+    private int challengePercent = 20;
 
     private void GenerateGame()
     {
-        games = random.Generate(playerCount);
+        games = random.Generate(playerCount, teamPercent, challengePercent);
     }
 
     private void GenerateMultiVillainGame()
     {
-        games = random.Generate(playerCount, onlyMultiVillains: true);
+        games = random.Generate(playerCount, teamPercent, challengePercent, onlyMultiVillains: true);
     }
 
     private void GeneratePreGameVillainGame()
     {
-        games = random.Generate(playerCount, onlyPreGameVillains: true);
+        games = random.Generate(playerCount, teamPercent, challengePercent, onlyPreGameVillains: true);
     }
 
     private void GenerateAntiHeroGame()
     {
-        games = random.Generate(playerCount, onlyAntiHeroes: true);
+        games = random.Generate(playerCount, teamPercent, challengePercent, onlyAntiHeroes: true);
     }
 
     private void GenerateGameWithHazardousChallenge()
     {
-        games = random.Generate(playerCount, hazardousChallenge: true);
+        games = random.Generate(playerCount, teamPercent, challengePercent, hazardousChallenge: true);
+    }
+
+    private void GenerateGameWithHeroTeam()
+    {
+        games = random.Generate(playerCount, 100, challengePercent);
     }
 }

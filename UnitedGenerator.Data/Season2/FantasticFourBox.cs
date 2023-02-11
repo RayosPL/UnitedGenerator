@@ -47,6 +47,11 @@ namespace UnitedGenerator.Data.Season2
             TakeoverChallenge
         };
 
+        public override IHeroTeam[] Teams => new IHeroTeam[]
+        {
+            FantasticFour
+        };
+
         public IHero MisterFantastic => new Hero(this, "Mister Fantastic");
         public IHero InvisibleWoman => new Hero(this, "Invisible Woman");
         public IHero HumanTorch => new Hero(this, "Human Torch");
@@ -58,7 +63,7 @@ namespace UnitedGenerator.Data.Season2
         public IVillain SuperSkrull => new Villain(this, "Super-Skrull");
 
         public ILocation YancyStreet => new Location(this, "4 Yancy Street");
-        public ILocation BaxterBuilding => new Location(this, "Baxter Building");
+        public ILocation BaxterBuilding => new Location(this, "Baxter Building"); // TODO Extra Rules
         public ILocation MountWundagore => new Location(this, "Mount Wundagore");
         public ILocation Latveria => new Location(this, "Latveria")
         {
@@ -72,5 +77,7 @@ namespace UnitedGenerator.Data.Season2
                 DataFactory.Season1.CoreBox.Ultron
             }
         };
+
+        public IHeroTeam FantasticFour => new CardSynergyTeam(this, "Fantastic Four", MisterFantastic, InvisibleWoman, HumanTorch, TheThing);
     }
 }

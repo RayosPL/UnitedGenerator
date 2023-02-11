@@ -14,7 +14,9 @@ namespace UnitedGenerator.Engine
         private DataService _data = new DataService();
 
         public GameSetup[] Generate(
-            int playerCount, 
+            int playerCount,
+            int teamPercent,
+            int challengePercent,
             bool onlyMultiVillains = false, 
             bool onlyPreGameVillains = false,
             bool onlyAntiHeroes = false,
@@ -54,15 +56,22 @@ namespace UnitedGenerator.Engine
             int i = 1;
             foreach(var preVillain in preGameVillains)
             {
-                games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, preVillain, onlyAntiHeroes, hazardousChallenge));
+                games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, teamPercent, challengePercent, preVillain, onlyAntiHeroes, hazardousChallenge));
             }
 
-            games.AddRange(GenerateVillainFight(mainTitle, playerCount, villain, onlyAntiHeroes, hazardousChallenge));
+            games.AddRange(GenerateVillainFight(mainTitle, playerCount, teamPercent, challengePercent, villain, onlyAntiHeroes, hazardousChallenge));
 
             return games.ToArray();
         }
 
-        private GameSetup[] GenerateVillainFight(string title, int playerCount, IVillain villain, bool onlyAntiHeroes, bool hazardousChallenge)
+        private GameSetup[] GenerateVillainFight(
+            string title, 
+            int playerCount, 
+            int teamPercent,
+            int challengePercent,
+            IVillain villain, 
+            bool onlyAntiHeroes, 
+            bool hazardousChallenge)
         {
             var candidateLocations = _data
                 .Locations
@@ -79,6 +88,8 @@ namespace UnitedGenerator.Engine
                 .Where(x => !x.IncompatibleVillains.Contains(villain))
                 .Where(x => x.HazardousLocationsCount + villain.AssignedLocations.Count() <= 6)
                 .ToArray();
+
+            var candidateTeams = _data.HeroTeams;
 
             if (onlyAntiHeroes)
             {
@@ -101,16 +112,34 @@ namespace UnitedGenerator.Engine
                 heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(playerCount)));
             }
 
+            var team = SelectRandomOnPercent(candidateTeams, teamPercent);
+            var additionalHeroes = new IHero[0];
+
+            if (team != null)
+            {
+                additionalHeroes = candidateHeroes;
+                candidateHeroes = team.TeamMembers;
+            }
+
             var heroes = new List<HeroGroup>();
             foreach (var group in heroGroups)
             {
-                heroes.Add(new HeroGroup(group.Key, SelectRandom(candidateHeroes, group.Value)));
+                var selected = SelectRandom(candidateHeroes, group.Value);
+                candidateHeroes = candidateHeroes.Except(selected).ToArray();
+
+                if(selected.Count() < group.Value)
+                {
+                    selected = selected.Concat(SelectRandom(additionalHeroes, group.Value - selected.Count())).ToArray();
+                    additionalHeroes = additionalHeroes.Except(selected).ToArray();
+                }
+
+                heroes.Add(new HeroGroup(group.Key, team, selected));
             }
 
             IChallenge? challenge = null;
             if (!villain.DisableChallenges)
             {
-                challenge = SelectRandomOnPercent(candidateChallenges, 20);
+                challenge = SelectRandomOnPercent(candidateChallenges, challengePercent);
             }
 
             if (hazardousChallenge)

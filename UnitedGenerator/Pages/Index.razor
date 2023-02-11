@@ -138,6 +138,30 @@
             </ul>
         }
 
+        if (box.Teams.Any())
+        {
+            <h3>Teams</h3>
+            <ul>
+                @foreach(var team in box.Teams)
+                {
+                    <li>
+                        @team.Name
+                        <ul>
+                            <li>Type: @team.TeamType</li>
+                            <li>Members
+                                <ul>
+                                    @foreach(var member in team.TeamMembers)
+                                    {
+                                        <li>@member.Name (@member.Box.Name - Season @member.Season.Number)</li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        }
+
         if (box.Locations.Any())
         {
             <h3>Locations</h3>

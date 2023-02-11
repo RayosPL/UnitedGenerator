@@ -22,5 +22,6 @@ namespace UnitedGenerator.Data.Common
         public virtual IAntiHero[] AntiHeroes => new IAntiHero[0];
         public virtual ILocation[] Locations => new ILocation[0];
         public virtual IChallenge[] Challenges => new IChallenge[0];
+        public virtual IHeroTeam[] Teams => new IHeroTeam[0];
     }
 }

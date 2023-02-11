@@ -15,6 +15,8 @@ namespace UnitedGenerator.Engine
 
         public IHero[] Heroes => Boxes.SelectMany(x => x.Heroes).Concat(AntiHeroes).ToArray();
 
+        public IHeroTeam[] HeroTeams => Boxes.SelectMany(x => x.Teams).ToArray();
+
         public IVillain[] Villains => Boxes.SelectMany(x => x.Villains).Concat(AntiHeroes).ToArray();
 
         public ILocation[] Locations => Boxes.SelectMany(x => x.Locations).ToArray();

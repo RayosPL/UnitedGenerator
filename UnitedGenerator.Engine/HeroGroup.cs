@@ -9,13 +9,15 @@ namespace UnitedGenerator.Engine
 {
     public class HeroGroup
     {
-        internal HeroGroup(string name, IHero[] heroes)
+        internal HeroGroup(string name, IHeroTeam? team, IEnumerable<IHero> heroes)
         {
             Name = name;
-            Heroes = heroes;
+            Team = team;
+            Heroes = heroes.ToArray();
         }
 
         public string Name { get; }
+        public IHeroTeam? Team { get; }
         public IHero[] Heroes { get; }
     }
 }
