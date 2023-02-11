@@ -4,15 +4,13 @@
 
 <PageTitle>Counter</PageTitle>
 
-
-
-<h1>Game</h1>
-
 <button class="btn btn-primary" @onclick="GenerateGame">Generate Game</button>
 <button class="btn btn-primary" @onclick="GenerateMultiVillainGame">Generate Multi Villain Game</button>
 
-@if (game != null)
+@foreach(var game in games)
 {
+    <h1>@game.Title</h1>
+
     <h2>Villain</h2>
     <div>@game.Villain.Name (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
     
@@ -64,16 +62,16 @@
 @code {
     private readonly GameRandomizer random = new GameRandomizer();
 
-    private GameSetup? game = null;
+    private GameSetup[] games = new GameSetup[0];
     private int playerCount = 4;
 
     private void GenerateGame()
     {
-        game = random.Generate(playerCount);
+        games = random.Generate(playerCount);
     }
 
     private void GenerateMultiVillainGame()
     {
-        game = random.Generate(playerCount, onlyMultiVillains: true);
+        games = random.Generate(playerCount, onlyMultiVillains: true);
     }
 }

@@ -12,7 +12,7 @@ namespace UnitedGenerator.Engine
 
         private DataService _data = new DataService();
 
-        public GameSetup Generate(int playerCount, bool onlyMultiVillains = false)
+        public GameSetup[] Generate(int playerCount, bool onlyMultiVillains = false)
         {
             var candidateVillains = _data.Villains;
             var candidateLocations = _data.Locations.Where(x => x.IncludeInRandomSelection).ToArray();
@@ -37,7 +37,7 @@ namespace UnitedGenerator.Engine
                 candidateLocations = villain.AssignedLocations.Concat(additionalLocations).ToArray();
             }
 
-            foreach(var group in villain.AdditionalHeroGroups)
+            foreach (var group in villain.AdditionalHeroGroups)
             {
                 heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(playerCount)));
             }
@@ -51,7 +51,10 @@ namespace UnitedGenerator.Engine
             var locations = SelectRandom(candidateLocations, 6);
             var challenge = SelectRandomOnPercent(candidateChallenges, 20);
 
-            return new GameSetup(heroes, villain, locations, challenge);
+            return new[]
+            {
+                new GameSetup("Game", heroes, villain, locations, challenge)
+            };
         }
 
         private static T? SelectRandomOnPercent<T>(IEnumerable<T> items, int percent)

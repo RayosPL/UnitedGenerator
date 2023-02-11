@@ -9,13 +9,16 @@ namespace UnitedGenerator.Engine
 {
     public class GameSetup
     {
-        internal GameSetup(IEnumerable<HeroGroup> heroGroups, IVillain villain, IEnumerable<ILocation> locations, IChallenge? challenge)
+        internal GameSetup(string title, IEnumerable<HeroGroup> heroGroups, IVillain villain, IEnumerable<ILocation> locations, IChallenge? challenge)
         {
+            Title = title;
             HeroGroups = heroGroups.ToArray();   
             Villain = villain;
             Locations = locations.ToArray();
             Challenge = challenge;
         }
+
+        public string Title { get; }
 
         public HeroGroup[] HeroGroups { get; }
 
