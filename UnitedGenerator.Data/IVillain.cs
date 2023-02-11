@@ -10,7 +10,9 @@ namespace UnitedGenerator.Data
     {   
         bool HasCustomRules { get; }
         bool IsMultiVillain { get; }
+        int PreGamesCount { get; }
         IVillain[] SubVillains { get; }
+        IVillain[] PreGameCandidateVillains { get; }
         ILocation[] AssignedLocations { get; }
         IHeroGroupDefinition[] AdditionalHeroGroups { get; } 
     }

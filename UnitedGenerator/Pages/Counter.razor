@@ -6,6 +6,7 @@
 
 <button class="btn btn-primary" @onclick="GenerateGame">Generate Game</button>
 <button class="btn btn-primary" @onclick="GenerateMultiVillainGame">Generate Multi Villain Game</button>
+<button class="btn btn-primary" @onclick="GeneratePreGameVillainGame">Generate Pre-Game Villain Game</button>
 
 @foreach(var game in games)
 {
@@ -73,5 +74,10 @@
     private void GenerateMultiVillainGame()
     {
         games = random.Generate(playerCount, onlyMultiVillains: true);
+    }
+
+    private void GeneratePreGameVillainGame()
+    {
+        games = random.Generate(playerCount, onlyPreGameVillains: true);
     }
 }

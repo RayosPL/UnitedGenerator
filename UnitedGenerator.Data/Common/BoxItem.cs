@@ -19,5 +19,26 @@ namespace UnitedGenerator.Data.Common
         public IBox Box { get; }
 
         public ISeason Season => Box.Season;
+
+        public string Id => $"{Season.Name}.{Box.Name}.{Name}";
+
+        public override bool Equals(object? obj)
+        {
+            var other = obj as BoxItem;
+
+            if (other == null) return false;
+
+            return Id.Equals(other.Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return Id;
+        }
     }
 }

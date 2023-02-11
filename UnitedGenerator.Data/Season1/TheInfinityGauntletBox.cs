@@ -44,6 +44,8 @@ namespace UnitedGenerator.Data.Season1
         public IVillain ProximaMidnight => new Villain(this, "Proxima Midnight");
         public IVillain Thanos => new Villain(this, "Thanos")
         {
+            PreGamesCount = 3,
+            HasCustomRules = true,
             AssignedLocations = new[]
             {
                 WakandaFields,
@@ -56,6 +58,13 @@ namespace UnitedGenerator.Data.Season1
             AdditionalHeroGroups = new[]
             {
                 new BackupHeroes()
+            },
+            PreGameCandidateVillains = new[]
+            {
+                EbonyMaw,
+                BlackDwarf,
+                ProximaMidnight,
+                DataFactory.Season1.KickstarterPromo.CorvusGlave
             }
         };
 

@@ -38,6 +38,21 @@
                             <li>Has Custom Rules!</li>
                         }
 
+                        @if (villain.PreGamesCount > 0)
+                        {
+                            <li>Number of pre-games: @villain.PreGamesCount</li>
+                        }
+
+                        @foreach(var sub in villain.PreGameCandidateVillains)
+                        {
+                            <li>Pre-game Candidate Villain: @sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                        }
+
+                        @foreach(var group in villain.AdditionalHeroGroups)
+                        {
+                            <li>Additional Heroes: @group.GroupName (@group.Description)</li>
+                        }
+
                         @foreach(var sub in villain.SubVillains)
                         {
                             <li>Sub Villain: @sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
@@ -46,11 +61,6 @@
                         @foreach(var location in villain.AssignedLocations)
                         {
                             <li>Assigned Location: @location.Name (@location.Box.Name - Season @location.Season.Number)</li>
-                        }
-
-                        @foreach(var group in villain.AdditionalHeroGroups)
-                        {
-                            <li>Additional Heroes: @group.GroupName (@group.Description)</li>
                         }
 
                         </ul>

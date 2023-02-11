@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnitedGenerator.Data;
 
 namespace UnitedGenerator.Engine
 {
@@ -12,9 +13,47 @@ namespace UnitedGenerator.Engine
 
         private DataService _data = new DataService();
 
-        public GameSetup[] Generate(int playerCount, bool onlyMultiVillains = false)
+        public GameSetup[] Generate(int playerCount, bool onlyMultiVillains = false, bool onlyPreGameVillains = false)
         {
+            var games = new List<GameSetup>();
+
             var candidateVillains = _data.Villains;
+
+            if (onlyMultiVillains)
+            {
+                candidateVillains = candidateVillains.Where(x => x.IsMultiVillain).ToArray();
+            }
+
+            if (onlyPreGameVillains)
+            {
+                candidateVillains = candidateVillains.Where(x => x.PreGamesCount > 0).ToArray();
+            }
+
+            var villain = SelectRandom(candidateVillains);
+            var preGameVillains = new IVillain[0];
+            string mainTitle = "Game";
+
+            if (villain.PreGamesCount > 0)
+            {
+                mainTitle = "Main Game";
+                var candidates = _data.Villains.Where(x => villain.PreGameCandidateVillains.Contains(x));
+
+                preGameVillains = SelectRandom(candidates, villain.PreGamesCount);
+            }
+
+            int i = 1;
+            foreach(var preVillain in preGameVillains)
+            {
+                games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, preVillain));
+            }
+
+            games.AddRange(GenerateVillainFight(mainTitle, playerCount, villain));
+
+            return games.ToArray();
+        }
+
+        private GameSetup[] GenerateVillainFight(string title, int playerCount, IVillain villain)
+        {
             var candidateLocations = _data.Locations.Where(x => x.IncludeInRandomSelection).ToArray();
             var candidateHeroes = _data.Heroes;
             var candidateChallenges = _data.Challenges;
@@ -23,13 +62,6 @@ namespace UnitedGenerator.Engine
             {
                 new KeyValuePair<string, int>("Heroes", playerCount)
             };
-
-            if (onlyMultiVillains)
-            {
-                candidateVillains = candidateVillains.Where(x => x.IsMultiVillain).ToArray();
-            }
-
-            var villain = SelectRandom(candidateVillains);
 
             if (villain.AssignedLocations.Any())
             {
@@ -53,7 +85,7 @@ namespace UnitedGenerator.Engine
 
             return new[]
             {
-                new GameSetup("Game", heroes, villain, locations, challenge)
+                new GameSetup(title, heroes, villain, locations, challenge)
             };
         }
 
