@@ -66,7 +66,7 @@ namespace UnitedGenerator.Engine
         {
             var candidateLocations = _data.Locations.Where(x => x.IncludeInRandomSelection).ToArray();
             var candidateHeroes = _data.Heroes.Where(x => x.Id != villain.Id).ToArray();
-            var candidateChallenges = _data.Challenges;
+            var candidateChallenges = _data.Challenges.Where(x => x.HazardousLocationsCount + villain.AssignedLocations.Count() <= 6).ToArray();
 
             if (onlyAntiHeroes)
             {
@@ -95,8 +95,6 @@ namespace UnitedGenerator.Engine
                 heroes.Add(new HeroGroup(group.Key, SelectRandom(candidateHeroes, group.Value)));
             }
 
-            var locations = SelectRandom(candidateLocations, 6);
-
             IChallenge? challenge = null;
             if (!villain.DisableChallenges)
             {
@@ -108,9 +106,22 @@ namespace UnitedGenerator.Engine
                 challenge = SelectRandomOnPercent(candidateChallenges.Where(x => x.HazardousLocationsCount > 0), 100);
             }
 
+            var locations = SelectRandom(villain.AssignedLocations, 6).ToList();
+            candidateLocations = candidateLocations.Except(locations).ToArray();
+
+            if (challenge != null)
+            {
+                locations.AddRange(SelectRandom(candidateLocations.Where(x => x.Hazardous), challenge.HazardousLocationsCount));
+                candidateLocations = candidateLocations.Except(locations).ToArray();
+            }
+
+            locations.AddRange(SelectRandom(candidateLocations, 6 - locations.Count));
+            
+            var randomOrderLocations = SelectRandom(locations, 6);
+
             return new[]
             {
-                new GameSetup(title, heroes, villain, locations, challenge)
+                new GameSetup(title, heroes, villain, randomOrderLocations, challenge)
             };
         }
 
