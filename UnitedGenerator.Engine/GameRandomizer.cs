@@ -65,8 +65,6 @@ namespace UnitedGenerator.Engine
                 .Where(x => x.Id != villain.Id)
                 .ToArray();
 
-            var candidateTeams = _data.HeroTeams;
-
             if (config.OnlyUseAntiHeroes)
             {
                 candidateHeroes = candidateHeroes.Where(x => x.IsAntiHero).ToArray();
@@ -82,7 +80,7 @@ namespace UnitedGenerator.Engine
                 heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(config.PlayerCount)));
             }
 
-            var team = candidateTeams.RandomOrDefaultByChance(config.SelectTeamProbability);
+            var team = _data.HeroTeams.RandomOrDefaultByChance(config.SelectTeamProbability);
             var additionalHeroes = new IHero[0];
 
             if (team != null)
