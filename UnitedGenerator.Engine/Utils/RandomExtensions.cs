@@ -22,6 +22,11 @@ namespace UnitedGenerator.Engine.Utils
             return default(T);
         }
 
+        public static T[] Randomize<T>(this IEnumerable<T> items)
+        {
+            return items.TakeRandom(items.Count());
+        }
+
         public static T[] TakeRandom<T>(this IEnumerable<T> items, int count)
         {
             List<T> candidates = items.ToList();

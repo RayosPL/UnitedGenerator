@@ -60,11 +60,6 @@ namespace UnitedGenerator.Engine
 
         private GameSetup GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain)
         {
-            var candidateLocations = _data
-                .Locations
-                .Where(x => x.IncludeInRandomSelection)
-                .ToArray();
-
             var candidateHeroes = _data
                 .Heroes
                 .Where(x => x.Id != villain.Id)
@@ -81,12 +76,6 @@ namespace UnitedGenerator.Engine
             {
                 new KeyValuePair<string, int>("Heroes", config.PlayerCount)
             };
-
-            if (villain.AssignedLocations.Any())
-            {
-                var additionalLocations = candidateLocations.TakeRandom(6 - villain.AssignedLocations.Length);
-                candidateLocations = villain.AssignedLocations.Concat(additionalLocations).ToArray();
-            }
 
             foreach (var group in villain.AdditionalHeroGroups)
             {
@@ -125,20 +114,11 @@ namespace UnitedGenerator.Engine
                 .Filter(villain, config)
                 .RandomOrDefaultByChance(config.SelectChallengeProbability);
 
-            var locations = villain.AssignedLocations.TakeRandom(6).ToList();
-            candidateLocations = candidateLocations.Except(locations).ToArray();
+            ILocation[] locations = _data
+                .Locations
+                .FilterAndSelect(villain, challenge);
 
-            if (challenge != null)
-            {
-                locations.AddRange(candidateLocations.Where(x => x.Hazardous).TakeRandom(challenge.HazardousLocationsCount));
-                candidateLocations = candidateLocations.Except(locations).ToArray();
-            }
-
-            locations.AddRange(candidateLocations.TakeRandom(6 - locations.Count));
-            
-            var randomOrderLocations = locations.TakeRandom(6);
-
-            return new GameSetup(title, heroes, villain, randomOrderLocations, challenge);
+            return new GameSetup(title, heroes, villain, locations, challenge);
         }
     }
 }
