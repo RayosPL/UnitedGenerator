@@ -31,6 +31,12 @@ namespace UnitedGenerator.Data.Season2
             Juggernaut
         };
 
+        public override IAntiHero[] AntiHeroes => new IAntiHero[]
+        {
+            Magneto,
+            Mystique
+        };
+
         public override ILocation[] Locations => new ILocation[]
         {
             XavierInstituteForHigherLearning,
@@ -59,6 +65,9 @@ namespace UnitedGenerator.Data.Season2
 
         public IVillain Sabretooth => new Villain(this, "Sabretooth");
         public IVillain Juggernaut => new Villain(this, "Juggernaut");
+
+        public IAntiHero Magneto => new AntiHero(this, "Magneto");
+        public IAntiHero Mystique => new AntiHero(this, "Mystique");
 
         public ILocation XavierInstituteForHigherLearning => new Location(this, "Xavier Institute for Higher Learning");
         public ILocation HangarBay => new Location(this, "Hangar Bay");

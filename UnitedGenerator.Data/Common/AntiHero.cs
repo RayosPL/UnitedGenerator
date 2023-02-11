@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace UnitedGenerator.Data.Common
 {
-    internal class Hero : BoxItem, IHero
+    internal class AntiHero : Villain, IAntiHero
     {
-        public Hero(IBox box, string name) : base(box, name)
+        public AntiHero(IBox box, string name) : base(box, name)
         {
         }
 
-        public bool IsAntiHero => false;
+        public override bool IsAntiHero => true;
     }
 }

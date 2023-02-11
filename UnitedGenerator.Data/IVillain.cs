@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace UnitedGenerator.Data
 {
     public interface IVillain : IBoxItem
-    {   
+    {
+        bool IsAntiHero { get; }
         bool HasCustomRules { get; }
         bool IsMultiVillain { get; }
         int PreGamesCount { get; }

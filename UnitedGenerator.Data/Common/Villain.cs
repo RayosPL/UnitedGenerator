@@ -19,6 +19,8 @@ namespace UnitedGenerator.Data.Common
             PreGameCandidateVillains = new IVillain[0];
         }
 
+        public virtual bool IsAntiHero => false;
+
         public bool HasCustomRules { get; init; }
         
         public int PreGamesCount { get; init; }

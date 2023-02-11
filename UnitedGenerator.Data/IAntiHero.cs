@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnitedGenerator.Data
 {
-    public interface IHero : IBoxItem
+    public interface IAntiHero : IHero, IVillain
     {
-        bool IsAntiHero { get; }
     }
 }
