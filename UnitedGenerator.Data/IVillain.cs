@@ -12,5 +12,6 @@ namespace UnitedGenerator.Data
         bool IsMultiVillain { get; }
         IVillain[] SubVillains { get; }
         ILocation[] AssignedLocations { get; }
+        IHeroGroupDefinition[] AdditionalHeroGroups { get; } 
     }
 }

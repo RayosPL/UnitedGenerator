@@ -52,6 +52,10 @@ namespace UnitedGenerator.Data.Season1
                 QuantumTunnel,
                 Titan,
                 AvengersMansion
+            },
+            AdditionalHeroGroups = new[]
+            {
+                new BackupHeroes()
             }
         };
 
@@ -86,5 +90,17 @@ namespace UnitedGenerator.Data.Season1
         {
             ExcludeFromRandomSelection = true,
         };
+
+        private class BackupHeroes : IHeroGroupDefinition
+        {
+            public string GroupName => "Backup Heroes";
+
+            public string Description => "1 less than starting number of heroes";
+
+            public int GroupSize(int playerCount)
+            {
+                return playerCount - 1;
+            }
+        }
     }
 }

@@ -44,21 +44,21 @@
     @foreach (var group in game.HeroGroups)
     {
         <h2>@group.Name</h2>
-        <ul>
+        <ol>
             @foreach (var hero in group.Heroes)
             {
                 <li>@hero.Name (@hero.Box.Name - Season @hero.Season.Number)</li>
             }
-        </ul>
+        </ol>
     }
 
     <h2>Locations</h2>
-    <ul>
+    <ol>
         @foreach (var location in game.Locations)
         {
             <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
         }
-    </ul>
+    </ol>
 }
 
 @code {

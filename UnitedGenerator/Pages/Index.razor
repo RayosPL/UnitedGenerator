@@ -48,6 +48,11 @@
                             <li>Assigned Location: @location.Name (@location.Box.Name - Season @location.Season.Number)</li>
                         }
 
+                        @foreach(var group in villain.AdditionalHeroGroups)
+                        {
+                            <li>Additional Heroes: @group.GroupName (@group.Description)</li>
+                        }
+
                         </ul>
 
                     </li>

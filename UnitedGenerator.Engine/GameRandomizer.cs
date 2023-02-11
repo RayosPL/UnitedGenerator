@@ -37,6 +37,11 @@ namespace UnitedGenerator.Engine
                 candidateLocations = villain.AssignedLocations.Concat(additionalLocations).ToArray();
             }
 
+            foreach(var group in villain.AdditionalHeroGroups)
+            {
+                heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(playerCount)));
+            }
+
             var heroes = new List<HeroGroup>();
             foreach (var group in heroGroups)
             {
