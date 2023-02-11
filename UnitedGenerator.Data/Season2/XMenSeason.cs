@@ -18,7 +18,8 @@ namespace UnitedGenerator.Data.Season2
             Deadpool,
             FirstClass,
             XForce,
-            FantasticFour
+            FantasticFour,
+            DaysOfFuturePast
         };
 
         public XMenCoreBox CoreBox => new XMenCoreBox(this);
@@ -26,5 +27,6 @@ namespace UnitedGenerator.Data.Season2
         public FirstClassBox FirstClass => new FirstClassBox(this);
         public XForceBox XForce => new XForceBox(this);
         public FantasticFourBox FantasticFour => new FantasticFourBox(this);
+        public DaysOfFuturePastBox DaysOfFuturePast => new DaysOfFuturePastBox(this);
     }
 }
