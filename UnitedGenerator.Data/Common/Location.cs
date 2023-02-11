@@ -11,6 +11,7 @@ namespace UnitedGenerator.Data.Common
         public Location(IBox box, string name) : base(box, name)
         {
             ExcludeFromRandomSelection = false;
+            Hazardous = false;
         }
 
         public bool Hazardous { get; init; }

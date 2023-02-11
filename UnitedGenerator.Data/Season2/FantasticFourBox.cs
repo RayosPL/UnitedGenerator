@@ -65,6 +65,12 @@ namespace UnitedGenerator.Data.Season2
             Hazardous = true
         };
 
-        public IChallenge TakeoverChallenge => new Challenge(this, "TakeoverChallenge");
+        public IChallenge TakeoverChallenge => new Challenge(this, "Takeover Challenge")
+        {
+            IncompatibleVillains = new[]
+            {
+                DataFactory.Season1.CoreBox.Ultron
+            }
+        };
     }
 }

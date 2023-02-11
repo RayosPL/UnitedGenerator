@@ -64,9 +64,21 @@ namespace UnitedGenerator.Engine
 
         private GameSetup[] GenerateVillainFight(string title, int playerCount, IVillain villain, bool onlyAntiHeroes, bool hazardousChallenge)
         {
-            var candidateLocations = _data.Locations.Where(x => x.IncludeInRandomSelection).ToArray();
-            var candidateHeroes = _data.Heroes.Where(x => x.Id != villain.Id).ToArray();
-            var candidateChallenges = _data.Challenges.Where(x => x.HazardousLocationsCount + villain.AssignedLocations.Count() <= 6).ToArray();
+            var candidateLocations = _data
+                .Locations
+                .Where(x => x.IncludeInRandomSelection)
+                .ToArray();
+
+            var candidateHeroes = _data
+                .Heroes
+                .Where(x => x.Id != villain.Id)
+                .ToArray();
+
+            var candidateChallenges = _data
+                .Challenges
+                .Where(x => !x.IncompatibleVillains.Contains(villain))
+                .Where(x => x.HazardousLocationsCount + villain.AssignedLocations.Count() <= 6)
+                .ToArray();
 
             if (onlyAntiHeroes)
             {

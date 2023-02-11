@@ -11,8 +11,10 @@ namespace UnitedGenerator.Data.Common
         public Challenge(IBox box, string name) : base(box, name)
         {
             HazardousLocationsCount = 0;
+            IncompatibleVillains = new IVillain[0];
         }
 
         public int HazardousLocationsCount { get; init; }
+        public IVillain[] IncompatibleVillains { get; init; }
     }
 }

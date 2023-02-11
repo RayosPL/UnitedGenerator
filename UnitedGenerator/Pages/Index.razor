@@ -167,7 +167,29 @@
             <ul>
                 @foreach (var challenge in box.Challenges.OrderBy(x => x.Name))
                 {
-                    <li>@challenge.Name</li>
+                    <li>
+                        @challenge.Name
+                        <ul>
+                            @if(challenge.HazardousLocationsCount > 0)
+                            {
+                                <li>Hazardous Locations: @challenge.HazardousLocationsCount</li>
+                            }
+
+                        @if (challenge.IncompatibleVillains.Any())
+                        {
+                            <li>
+                                Incompatible Villains
+
+                                <ul>
+                                    @foreach(var villain in challenge.IncompatibleVillains)
+                                    {
+                                        <li>@villain.Name (@villain.Box.Name - Season @villain.Season.Number)</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        </ul>
+                    </li>
                 }
             </ul>
         }

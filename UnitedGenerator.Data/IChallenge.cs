@@ -9,5 +9,6 @@ namespace UnitedGenerator.Data
     public interface IChallenge : IBoxItem
     {
         int HazardousLocationsCount { get; }
+        IVillain[] IncompatibleVillains { get; }
     }
 }
