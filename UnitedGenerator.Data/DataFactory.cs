@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnitedGenerator.Data.Season1;
+using UnitedGenerator.Data.Season2;
 
 namespace UnitedGenerator.Data
 {
@@ -14,7 +16,7 @@ namespace UnitedGenerator.Data
             Season2
         };
 
-        internal static Season1.Season Season1 => new Season1.Season();
-        internal static Season2.Season Season2 => new Season2.Season();
+        internal static MarvelUnitedSeason Season1 => new MarvelUnitedSeason();
+        internal static XMenSeason Season2 => new XMenSeason();
     }
 }

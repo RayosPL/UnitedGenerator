@@ -7,9 +7,9 @@ using UnitedGenerator.Data.Common;
 
 namespace UnitedGenerator.Data.Season2
 {
-    internal class CoreBox : BoxBase
+    internal class XMenCoreBox : BoxBase
     {
-        public CoreBox(ISeason season) : base(season)
+        public XMenCoreBox(ISeason season) : base(season)
         {
         }
 

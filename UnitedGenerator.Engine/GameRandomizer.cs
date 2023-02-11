@@ -21,7 +21,7 @@ namespace UnitedGenerator.Engine
         {
             var games = new List<GameSetup>();
 
-            var candidateVillains = _data.Villains;
+            var candidateVillains = _data.Villains.Where(x => x.IncludeInRandomVillainSelection).ToArray();
 
             if (onlyMultiVillains)
             {

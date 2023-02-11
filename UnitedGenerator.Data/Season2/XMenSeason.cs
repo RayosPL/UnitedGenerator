@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnitedGenerator.Data.Season2
 {
-    internal class Season : ISeason
+    internal class XMenSeason : ISeason
     {
         public int Number => 2;
 
@@ -15,10 +15,12 @@ namespace UnitedGenerator.Data.Season2
         public IBox[] Boxes => new IBox[]
         {
             CoreBox,
-            Deadpool
+            Deadpool,
+            FirstClass
         };
 
-        public CoreBox CoreBox => new CoreBox(this);
+        public XMenCoreBox CoreBox => new XMenCoreBox(this);
         public DeadpoolBox Deadpool => new DeadpoolBox(this);
+        public FirstClassBox FirstClass => new FirstClassBox(this);
     }
 }

@@ -14,11 +14,16 @@ namespace UnitedGenerator.Data.Common
             PreGamesCount = 0;
             DisableChallenges = false;
             IsAntiHero = false;
+            ExcludeFromRandomSelection = false;
             SubVillains = new IVillain[0];
             AssignedLocations = new ILocation[0];
             AdditionalHeroGroups = new IHeroGroupDefinition[0];
             PreGameCandidateVillains = new IVillain[0];
         }
+
+        public bool ExcludeFromRandomSelection { get; init; }
+
+        public bool IncludeInRandomVillainSelection => !ExcludeFromRandomSelection;
 
         public virtual bool IsAntiHero { get; protected set; }
 

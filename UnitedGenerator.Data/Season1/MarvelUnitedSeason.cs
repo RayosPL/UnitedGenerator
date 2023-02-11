@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnitedGenerator.Data.Season1
 {
-    internal class Season : ISeason
+    internal class MarvelUnitedSeason : ISeason
     {
         public int Number => 1;
 
