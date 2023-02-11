@@ -99,7 +99,6 @@
         games = random.Generate(new GenerationConfiguration(playerCount)
             {
                 OnlyVillainsWithPreGames = true
-
             });
     }
 
@@ -115,7 +114,8 @@
     {
         games = random.Generate(new GenerationConfiguration(playerCount)
             {
-                ForceHazardousLocationsChallenge = true
+                OnlyHazardousLocationsChallenge = true,
+                SelectChallengeProbability = 100
             });
     }
 

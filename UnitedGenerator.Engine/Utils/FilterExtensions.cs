@@ -10,6 +10,25 @@ namespace UnitedGenerator.Engine.Utils
 {
     internal static class FilterExtensions
     {
+        public static IChallenge[] Filter(this IChallenge[] items, IVillain villain, GenerationConfiguration config)
+        {
+            if (villain.DisableChallenges)
+            {
+                return new IChallenge[0];
+            }
+
+            var result = items
+                .Where(x => !x.IncompatibleVillains.Contains(villain))
+                .Where(x => x.HazardousLocationsCount + villain.AssignedLocations.Count() <= 6);
+
+            if (config.OnlyHazardousLocationsChallenge)
+            {
+                result = result.Where(x => x.HazardousLocationsCount > 0);
+            }
+
+            return result.ToArray();
+        }
+
         public static IVillain[] Filter(this IVillain[] items, GenerationConfiguration config)
         {
             var result = items.Where(x => x.IncludeInRandomVillainSelection);

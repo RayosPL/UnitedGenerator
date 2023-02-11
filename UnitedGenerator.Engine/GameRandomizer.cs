@@ -70,12 +70,6 @@ namespace UnitedGenerator.Engine
                 .Where(x => x.Id != villain.Id)
                 .ToArray();
 
-            var candidateChallenges = _data
-                .Challenges
-                .Where(x => !x.IncompatibleVillains.Contains(villain))
-                .Where(x => x.HazardousLocationsCount + villain.AssignedLocations.Count() <= 6)
-                .ToArray();
-
             var candidateTeams = _data.HeroTeams;
 
             if (config.OnlyUseAntiHeroes)
@@ -126,16 +120,10 @@ namespace UnitedGenerator.Engine
                 heroes.Add(new HeroGroup(group.Key, team, selected));
             }
 
-            IChallenge? challenge = null;
-            if (!villain.DisableChallenges)
-            {
-                challenge = candidateChallenges.RandomOrDefaultByChance(config.SelectChanceProbability);
-            }
-
-            if (config.ForceHazardousLocationsChallenge)
-            {
-                challenge = candidateChallenges.Where(x => x.HazardousLocationsCount > 0).RandomOrDefault();
-            }
+            IChallenge? challenge = _data
+                .Challenges
+                .Filter(villain, config)
+                .RandomOrDefaultByChance(config.SelectChallengeProbability);
 
             var locations = villain.AssignedLocations.TakeRandom(6).ToList();
             candidateLocations = candidateLocations.Except(locations).ToArray();

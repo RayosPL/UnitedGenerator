@@ -12,15 +12,15 @@ namespace UnitedGenerator.Engine.Models
         { 
             PlayerCount = playerCount;
             SelectTeamProbability = 5;
-            SelectChanceProbability = 20;
+            SelectChallengeProbability = 20;
         }
 
         public int PlayerCount { get; }
         public int SelectTeamProbability { get; init; }
-        public int SelectChanceProbability { get; init; }
+        public int SelectChallengeProbability { get; init; }
         public bool OnlyVillainTeams { get; init; }
         public bool OnlyVillainsWithPreGames { get; init; }
         public bool OnlyUseAntiHeroes { get; init; }
-        public bool ForceHazardousLocationsChallenge { get; init; }
+        public bool OnlyHazardousLocationsChallenge { get; init; }
     }
 }
