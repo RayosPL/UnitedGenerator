@@ -10,6 +10,19 @@ namespace UnitedGenerator.Engine.Utils
     {
         private static readonly Random _random = new Random();
 
+        public static T[] TakeRandomWithBackup<T>(this IEnumerable<T> items, int count, IEnumerable<T> backupItems)
+        {
+            var result = items.TakeRandom(count);
+
+            int missing = count - result.Count();
+
+            result = result
+                .Concat(backupItems.TakeRandom(missing))
+                .ToArray();
+
+            return result;
+        }
+
         public static T? RandomOrDefault<T>(this IEnumerable<T> items)
         {
             if (items.Any())

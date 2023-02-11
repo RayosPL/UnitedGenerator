@@ -60,16 +60,6 @@ namespace UnitedGenerator.Engine
 
         private GameSetup GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain)
         {
-            var candidateHeroes = _data
-                .Heroes
-                .Where(x => x.Id != villain.Id)
-                .ToArray();
-
-            if (config.OnlyUseAntiHeroes)
-            {
-                candidateHeroes = candidateHeroes.Where(x => x.IsAntiHero).ToArray();
-            }
-
             var heroGroups = new List<KeyValuePair<string, int>>()
             {
                 new KeyValuePair<string, int>("Heroes", config.PlayerCount)
@@ -80,43 +70,104 @@ namespace UnitedGenerator.Engine
                 heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(config.PlayerCount)));
             }
 
-            var team = _data.HeroTeams.RandomOrDefaultByChance(config.SelectTeamProbability);
-            var additionalHeroes = new IHero[0];
+            IHeroTeam? team = SelectTeam(config);
 
-            if (team != null)
+            List<HeroGroup> heroes = GenerateHeroGroups(heroGroups, team, villain, config);
+
+            IChallenge? challenge = SelectChallenge(config, villain);
+
+            ILocation[] locations = SelectLocations(villain, challenge);
+
+            return new GameSetup(title, heroes, villain, locations, challenge);
+        }
+
+        private IHeroTeam? SelectTeam(GenerationConfiguration config)
+        {
+            return _data
+                .HeroTeams
+                .RandomOrDefaultByChance(config.SelectTeamProbability);
+        }
+
+        private IChallenge? SelectChallenge(GenerationConfiguration config, IVillain villain)
+        {
+            return _data
+                .Challenges
+                .Filter(villain, config)
+                .RandomOrDefaultByChance(config.SelectChallengeProbability);
+        }
+
+        private ILocation[] SelectLocations(IVillain villain, IChallenge? challenge)
+        {
+            ILocation[] candidateLocations = _data
+                .Locations
+                .Filter();
+
+            var villainLocations = villain.AssignedLocations;
+
+            var challengeLocations = GetChallengeLocations(candidateLocations.Except(villainLocations), challenge, villainLocations);
+
+            int missing = 6 - villainLocations.Count() - challengeLocations.Count();
+
+            var remainingLocations = candidateLocations
+                .Except(villainLocations)
+                .Except(challengeLocations)
+                .TakeRandom(missing);
+
+            return villainLocations
+                .Concat(challengeLocations)
+                .Concat(remainingLocations)
+                .Randomize();
+        }
+
+        private ILocation[] GetChallengeLocations(IEnumerable<ILocation> candidateLocations, IChallenge? challenge, ILocation[] existingLocations)
+        {
+            if (challenge != null && challenge.HazardousLocationsCount > 0)
             {
-                additionalHeroes = candidateHeroes;
-                candidateHeroes = team.TeamMembers;
+                int existing = existingLocations.Count(x => x.Hazardous);
+
+                int missing = challenge.HazardousLocationsCount - existing;
+
+                return candidateLocations
+                    .Where(x => x.Hazardous)
+                    .TakeRandom(missing);
             }
 
+            return new ILocation[0];
+        }
+
+        private List<HeroGroup> GenerateHeroGroups(List<KeyValuePair<string, int>> heroGroups, IHeroTeam? team, IVillain villain, GenerationConfiguration config)
+        {
+            var candidateHeroes = _data
+                .Heroes
+                .Filter(villain, config);
+
             var heroes = new List<HeroGroup>();
+            var used = new List<IHero>();
+
             foreach (var group in heroGroups)
             {
-                var selected = candidateHeroes.TakeRandom(group.Value);
-                candidateHeroes = candidateHeroes.Except(selected).ToArray();
+                IHero[] selected;
 
-                if(selected.Count() < group.Value)
+                if (team != null)
                 {
-                    selected = selected
-                        .Concat(additionalHeroes.TakeRandom(group.Value - selected.Count()))
-                        .ToArray();
-
-                    additionalHeroes = additionalHeroes.Except(selected).ToArray();
+                    selected = team
+                        .TeamMembers
+                        .Except(used)
+                        .TakeRandomWithBackup(group.Value, candidateHeroes.Except(used));
                 }
+                else
+                {
+                    selected = candidateHeroes
+                        .Except(used)
+                        .TakeRandom(group.Value);
+                }
+
+                used.AddRange(selected);
 
                 heroes.Add(new HeroGroup(group.Key, team, selected));
             }
 
-            IChallenge? challenge = _data
-                .Challenges
-                .Filter(villain, config)
-                .RandomOrDefaultByChance(config.SelectChallengeProbability);
-
-            ILocation[] locations = _data
-                .Locations
-                .FilterAndSelect(villain, challenge);
-
-            return new GameSetup(title, heroes, villain, locations, challenge);
+            return heroes;
         }
     }
 }

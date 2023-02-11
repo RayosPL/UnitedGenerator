@@ -10,27 +10,23 @@ namespace UnitedGenerator.Engine.Utils
 {
     internal static class FilterExtensions
     {
-        public static ILocation[] FilterAndSelect(this ILocation[] items, IVillain villain, IChallenge? challenge)
+        public static IHero[] Filter(this IEnumerable<IHero> items, IVillain villain, GenerationConfiguration config)
         {
-            items = items
+            var result = items.Where(x => x.Id != villain.Id);
+
+            if (config.OnlyUseAntiHeroes)
+            {
+                result = result.Where(x => x.IsAntiHero).ToArray();
+            }
+
+            return result.ToArray();
+        }
+
+        public static ILocation[] Filter(this ILocation[] items)
+        {
+            return items
                 .Where(x => x.IncludeInRandomSelection)
                 .ToArray();
-
-            var villainLocations = villain.AssignedLocations;
-
-            var challengeLocations = items
-                .Except(villainLocations)
-                .Filter(challenge, villainLocations);
-
-            var remainingLocations = items
-                .Except(villainLocations)
-                .Except(challengeLocations)
-                .TakeRandom(6 - villainLocations.Count() - challengeLocations.Count());
-
-            return villainLocations
-                .Concat(challengeLocations)
-                .Concat(remainingLocations)
-                .Randomize();
         }
 
         public static IChallenge[] Filter(this IChallenge[] items, IVillain villain, GenerationConfiguration config)
@@ -77,18 +73,6 @@ namespace UnitedGenerator.Engine.Utils
         public static T[] WhereIsContainedIn<T>(this IEnumerable<T> items, IEnumerable<T> assertItems)
         {
             return items.Where(x => assertItems.Contains(x)).ToArray();
-        }
-
-        private static ILocation[] Filter(this IEnumerable<ILocation> items, IChallenge? challenge, IEnumerable<ILocation> existingLocations)
-        {
-            if (challenge != null && challenge.HazardousLocationsCount > 0)
-            {
-                int existing = existingLocations.Count(x => x.Hazardous);
-
-                return items.Where(x => x.Hazardous).TakeRandom(challenge.HazardousLocationsCount - existing);
-            }
-
-            return new ILocation[0];
         }
     }
 }
