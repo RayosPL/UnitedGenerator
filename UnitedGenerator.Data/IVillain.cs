@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data
     {
         bool IsAntiHero { get; }
         bool HasCustomRules { get; }
-        bool IsMultiVillain { get; }
+        bool IsVillainTeam { get; }
         int PreGamesCount { get; }
         bool DisableChallenges { get; }
         bool IncludeInRandomVillainSelection { get; }

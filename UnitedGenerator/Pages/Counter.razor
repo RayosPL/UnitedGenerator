@@ -24,7 +24,7 @@
         <div>Note: Has Custom Rules!</div>
     }
 
-    @if (game.Villain.IsMultiVillain)
+    @if (game.Villain.IsVillainTeam)
     {
         <ul>
             @foreach (var villain in game.Villain.SubVillains)

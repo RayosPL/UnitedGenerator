@@ -33,7 +33,7 @@ namespace UnitedGenerator.Data.Common
 
         public bool DisableChallenges { get; init; }
 
-        public bool IsMultiVillain => SubVillains.Any();
+        public bool IsVillainTeam => SubVillains.Any();
 
         public IVillain[] SubVillains { get; init; }
 

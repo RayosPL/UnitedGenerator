@@ -15,53 +15,50 @@ namespace UnitedGenerator.Engine
 
         public GameSetup[] Generate(GenerationConfiguration config)
         {
-            var games = new List<GameSetup>();
-
-            var candidateVillains = _data.Villains.Where(x => x.IncludeInRandomVillainSelection).ToArray();
-
-            if (config.OnlyVillainTeams)
-            {
-                candidateVillains = candidateVillains.Where(x => x.IsMultiVillain).ToArray();
-            }
-
-            if (config.OnlyVillainsWithPreGames)
-            {
-                candidateVillains = candidateVillains.Where(x => x.PreGamesCount > 0).ToArray();
-            }
-
-            if (config.OnlyUseAntiHeroes)
-            {
-                candidateVillains = candidateVillains.Where(x => x.IsAntiHero).ToArray();
-            }
-
-            var villain = candidateVillains.RandomOrDefault();
+            var villain = _data
+                .Villains
+                .Filter(config)
+                .RandomOrDefault();
 
             if (villain != null)
             {
-                var preGameVillains = new IVillain[0];
-                string mainTitle = "Game";
-
                 if (villain.PreGamesCount > 0)
                 {
-                    mainTitle = "Main Game";
-                    var candidates = _data.Villains.Where(x => villain.PreGameCandidateVillains.Contains(x));
-
-                    preGameVillains = candidates.TakeRandom(villain.PreGamesCount);
+                    return GenerateVillainFightWithPreGames(config, villain);
                 }
-
-                int i = 1;
-                foreach (var preVillain in preGameVillains)
+                else
                 {
-                    games.AddRange(GenerateVillainFight($"Pre-Game {i++}", config, preVillain));
+                    return new[]
+                    {
+                        GenerateVillainFight("Single Game", config, villain)
+                    };
                 }
-
-                games.AddRange(GenerateVillainFight(mainTitle, config, villain));
             }
+
+            return new GameSetup[0];
+        }
+
+        private GameSetup[] GenerateVillainFightWithPreGames(GenerationConfiguration config, IVillain villain)
+        {
+            var games = new List<GameSetup>();
+
+            var preGameVillains = _data
+                        .Villains
+                        .WhereIsContainedIn(villain.PreGameCandidateVillains)
+                        .TakeRandom(villain.PreGamesCount);
+
+            int i = 1;
+            foreach (var preVillain in preGameVillains)
+            {
+                games.Add(GenerateVillainFight($"Pre-Game {i++}", config, preVillain));
+            }
+
+            games.Add(GenerateVillainFight("Main Game", config, villain));
 
             return games.ToArray();
         }
 
-        private GameSetup[] GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain)
+        private GameSetup GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain)
         {
             var candidateLocations = _data
                 .Locations
@@ -153,10 +150,7 @@ namespace UnitedGenerator.Engine
             
             var randomOrderLocations = locations.TakeRandom(6);
 
-            return new[]
-            {
-                new GameSetup(title, heroes, villain, randomOrderLocations, challenge)
-            };
+            return new GameSetup(title, heroes, villain, randomOrderLocations, challenge);
         }
     }
 }
