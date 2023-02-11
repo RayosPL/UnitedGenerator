@@ -80,36 +80,50 @@
 
     private GameSetup[] games = new GameSetup[0];
     private int playerCount = 4;
-    private int teamPercent = 2;
-    private int challengePercent = 20;
 
     private void GenerateGame()
     {
-        games = random.Generate(playerCount, teamPercent, challengePercent);
+        games = random.Generate(new GenerationConfiguration(playerCount));
     }
 
     private void GenerateMultiVillainGame()
     {
-        games = random.Generate(playerCount, teamPercent, challengePercent, onlyMultiVillains: true);
+        games = random.Generate(new GenerationConfiguration(playerCount)
+            {
+                OnlyVillainTeams = true
+            });
     }
 
     private void GeneratePreGameVillainGame()
     {
-        games = random.Generate(playerCount, teamPercent, challengePercent, onlyPreGameVillains: true);
+        games = random.Generate(new GenerationConfiguration(playerCount)
+            {
+                OnlyVillainsWithPreGames = true
+
+            });
     }
 
     private void GenerateAntiHeroGame()
     {
-        games = random.Generate(playerCount, teamPercent, challengePercent, onlyAntiHeroes: true);
+        games = random.Generate(new GenerationConfiguration(playerCount)
+            {
+                OnlyUseAntiHeroes = true
+            });
     }
 
     private void GenerateGameWithHazardousChallenge()
     {
-        games = random.Generate(playerCount, teamPercent, challengePercent, hazardousChallenge: true);
+        games = random.Generate(new GenerationConfiguration(playerCount)
+            {
+                ForceHazardousLocationsChallenge = true
+            });
     }
 
     private void GenerateGameWithHeroTeam()
     {
-        games = random.Generate(playerCount, 100, challengePercent);
+        games = random.Generate(new GenerationConfiguration(playerCount)
+            {
+                SelectTeamProbability = 100
+            });
     }
 }

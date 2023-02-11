@@ -13,30 +13,23 @@ namespace UnitedGenerator.Engine
     {
         private DataService _data = new DataService();
 
-        public GameSetup[] Generate(
-            int playerCount,
-            int teamPercent,
-            int challengePercent,
-            bool onlyMultiVillains = false, 
-            bool onlyPreGameVillains = false,
-            bool onlyAntiHeroes = false,
-            bool hazardousChallenge = false)
+        public GameSetup[] Generate(GenerationConfiguration config)
         {
             var games = new List<GameSetup>();
 
             var candidateVillains = _data.Villains.Where(x => x.IncludeInRandomVillainSelection).ToArray();
 
-            if (onlyMultiVillains)
+            if (config.OnlyVillainTeams)
             {
                 candidateVillains = candidateVillains.Where(x => x.IsMultiVillain).ToArray();
             }
 
-            if (onlyPreGameVillains)
+            if (config.OnlyVillainsWithPreGames)
             {
                 candidateVillains = candidateVillains.Where(x => x.PreGamesCount > 0).ToArray();
             }
 
-            if (onlyAntiHeroes)
+            if (config.OnlyUseAntiHeroes)
             {
                 candidateVillains = candidateVillains.Where(x => x.IsAntiHero).ToArray();
             }
@@ -59,23 +52,16 @@ namespace UnitedGenerator.Engine
                 int i = 1;
                 foreach (var preVillain in preGameVillains)
                 {
-                    games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, teamPercent, challengePercent, preVillain, onlyAntiHeroes, hazardousChallenge));
+                    games.AddRange(GenerateVillainFight($"Pre-Game {i++}", config, preVillain));
                 }
 
-                games.AddRange(GenerateVillainFight(mainTitle, playerCount, teamPercent, challengePercent, villain, onlyAntiHeroes, hazardousChallenge));
+                games.AddRange(GenerateVillainFight(mainTitle, config, villain));
             }
 
             return games.ToArray();
         }
 
-        private GameSetup[] GenerateVillainFight(
-            string title, 
-            int playerCount, 
-            int teamPercent,
-            int challengePercent,
-            IVillain villain, 
-            bool onlyAntiHeroes, 
-            bool hazardousChallenge)
+        private GameSetup[] GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain)
         {
             var candidateLocations = _data
                 .Locations
@@ -95,14 +81,14 @@ namespace UnitedGenerator.Engine
 
             var candidateTeams = _data.HeroTeams;
 
-            if (onlyAntiHeroes)
+            if (config.OnlyUseAntiHeroes)
             {
                 candidateHeroes = candidateHeroes.Where(x => x.IsAntiHero).ToArray();
             }
 
             var heroGroups = new List<KeyValuePair<string, int>>()
             {
-                new KeyValuePair<string, int>("Heroes", playerCount)
+                new KeyValuePair<string, int>("Heroes", config.PlayerCount)
             };
 
             if (villain.AssignedLocations.Any())
@@ -113,10 +99,10 @@ namespace UnitedGenerator.Engine
 
             foreach (var group in villain.AdditionalHeroGroups)
             {
-                heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(playerCount)));
+                heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(config.PlayerCount)));
             }
 
-            var team = candidateTeams.RandomOrDefaultByChance(teamPercent);
+            var team = candidateTeams.RandomOrDefaultByChance(config.SelectTeamProbability);
             var additionalHeroes = new IHero[0];
 
             if (team != null)
@@ -146,10 +132,10 @@ namespace UnitedGenerator.Engine
             IChallenge? challenge = null;
             if (!villain.DisableChallenges)
             {
-                challenge = candidateChallenges.RandomOrDefaultByChance(challengePercent);
+                challenge = candidateChallenges.RandomOrDefaultByChance(config.SelectChanceProbability);
             }
 
-            if (hazardousChallenge)
+            if (config.ForceHazardousLocationsChallenge)
             {
                 challenge = candidateChallenges.Where(x => x.HazardousLocationsCount > 0).RandomOrDefault();
             }
