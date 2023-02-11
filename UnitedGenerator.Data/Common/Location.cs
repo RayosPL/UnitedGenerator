@@ -13,6 +13,8 @@ namespace UnitedGenerator.Data.Common
             ExcludeFromRandomSelection = false;
         }
 
+        public bool Hazardous { get; init; }
+
         public bool ExcludeFromRandomSelection { get; init; }
 
         public bool IncludeInRandomSelection => !ExcludeFromRandomSelection;

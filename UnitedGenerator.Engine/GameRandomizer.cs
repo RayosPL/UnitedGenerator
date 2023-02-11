@@ -17,7 +17,8 @@ namespace UnitedGenerator.Engine
             int playerCount, 
             bool onlyMultiVillains = false, 
             bool onlyPreGameVillains = false,
-            bool onlyAntiHeroes = false)
+            bool onlyAntiHeroes = false,
+            bool hazardousChallenge = false)
         {
             var games = new List<GameSetup>();
 
@@ -53,15 +54,15 @@ namespace UnitedGenerator.Engine
             int i = 1;
             foreach(var preVillain in preGameVillains)
             {
-                games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, preVillain, onlyAntiHeroes));
+                games.AddRange(GenerateVillainFight($"Pre-Game {i++}", playerCount, preVillain, onlyAntiHeroes, hazardousChallenge));
             }
 
-            games.AddRange(GenerateVillainFight(mainTitle, playerCount, villain, onlyAntiHeroes));
+            games.AddRange(GenerateVillainFight(mainTitle, playerCount, villain, onlyAntiHeroes, hazardousChallenge));
 
             return games.ToArray();
         }
 
-        private GameSetup[] GenerateVillainFight(string title, int playerCount, IVillain villain, bool onlyAntiHeroes)
+        private GameSetup[] GenerateVillainFight(string title, int playerCount, IVillain villain, bool onlyAntiHeroes, bool hazardousChallenge)
         {
             var candidateLocations = _data.Locations.Where(x => x.IncludeInRandomSelection).ToArray();
             var candidateHeroes = _data.Heroes.Where(x => x.Id != villain.Id).ToArray();
@@ -100,6 +101,11 @@ namespace UnitedGenerator.Engine
             if (!villain.DisableChallenges)
             {
                 challenge = SelectRandomOnPercent(candidateChallenges, 20);
+            }
+
+            if (hazardousChallenge)
+            {
+                challenge = SelectRandomOnPercent(candidateChallenges.Where(x => x.HazardousLocationsCount > 0), 100);
             }
 
             return new[]

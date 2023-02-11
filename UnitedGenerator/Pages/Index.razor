@@ -146,10 +146,16 @@
                 {
                     <li>
                         @location.Name
+                        <ul>
                         @if (!location.IncludeInRandomSelection)
                         {
-                            <ul><li>Exclude from random selection!</li></ul>
+                            <li>Exclude from random selection!</li>
                         }
+                        @if (location.Hazardous)
+                        {
+                            <li>Hazardous!</li>
+                        }
+                        </ul>
                     </li>
                 }
             </ul>

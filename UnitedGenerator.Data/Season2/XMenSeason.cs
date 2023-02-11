@@ -16,11 +16,13 @@ namespace UnitedGenerator.Data.Season2
         {
             CoreBox,
             Deadpool,
-            FirstClass
+            FirstClass,
+            XForce
         };
 
         public XMenCoreBox CoreBox => new XMenCoreBox(this);
         public DeadpoolBox Deadpool => new DeadpoolBox(this);
         public FirstClassBox FirstClass => new FirstClassBox(this);
+        public XForceBox XForce => new XForceBox(this);
     }
 }

@@ -8,6 +8,7 @@
 <button class="btn btn-primary" @onclick="GenerateMultiVillainGame">Generate Multi Villain Game</button>
 <button class="btn btn-primary" @onclick="GeneratePreGameVillainGame">Generate Pre-Game Villain Game</button>
 <button class="btn btn-primary" @onclick="GenerateAntiHeroGame">Generate Anti-Hero Only Game</button>
+<button class="btn btn-primary" @onclick="GenerateGameWithHazardousChallenge">Generate Game with Hazardous Challenge</button>
 
 @foreach(var game in games)
 {
@@ -56,7 +57,7 @@
     <ol>
         @foreach (var location in game.Locations)
         {
-            <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+            <li>@location.Name @(location.Hazardous ? "[Hazardous]" : "") (@location.Box.Name - Season @location.Season.Number)</li>
         }
     </ol>
 }
@@ -85,5 +86,10 @@
     private void GenerateAntiHeroGame()
     {
         games = random.Generate(playerCount, onlyAntiHeroes: true);
+    }
+
+    private void GenerateGameWithHazardousChallenge()
+    {
+        games = random.Generate(playerCount, hazardousChallenge: true);
     }
 }

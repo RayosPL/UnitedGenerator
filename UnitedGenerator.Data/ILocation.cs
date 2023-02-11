@@ -9,5 +9,6 @@ namespace UnitedGenerator.Data
     public interface ILocation : IBoxItem
     {
         bool IncludeInRandomSelection { get; }
+        bool Hazardous { get; }
     }
 }
