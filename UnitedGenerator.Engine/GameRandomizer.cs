@@ -60,15 +60,7 @@ namespace UnitedGenerator.Engine
 
         private GameSetup GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain)
         {
-            var heroGroups = new List<KeyValuePair<string, int>>()
-            {
-                new KeyValuePair<string, int>("Heroes", config.PlayerCount)
-            };
-
-            foreach (var group in villain.AdditionalHeroGroups)
-            {
-                heroGroups.Add(new KeyValuePair<string, int>(group.GroupName, group.GroupSize(config.PlayerCount)));
-            }
+            List<HeroGroupDefinition> heroGroups = GenerateHeroGroupDefinitions(config, villain);
 
             IHeroTeam? team = SelectTeam(config);
 
@@ -79,6 +71,21 @@ namespace UnitedGenerator.Engine
             ILocation[] locations = SelectLocations(villain, challenge);
 
             return new GameSetup(title, heroes, villain, locations, challenge);
+        }
+
+        private static List<HeroGroupDefinition> GenerateHeroGroupDefinitions(GenerationConfiguration config, IVillain villain)
+        {
+            var heroGroups = new List<HeroGroupDefinition>()
+            {
+                new HeroGroupDefinition("Heroes", config.PlayerCount)
+            };
+
+            foreach (var group in villain.AdditionalHeroGroups)
+            {
+                heroGroups.Add(new HeroGroupDefinition(group.GroupName, group.GroupSize(config.PlayerCount)));
+            }
+
+            return heroGroups;
         }
 
         private IHeroTeam? SelectTeam(GenerationConfiguration config)
@@ -135,39 +142,41 @@ namespace UnitedGenerator.Engine
             return new ILocation[0];
         }
 
-        private List<HeroGroup> GenerateHeroGroups(List<KeyValuePair<string, int>> heroGroups, IHeroTeam? team, IVillain villain, GenerationConfiguration config)
+        private List<HeroGroup> GenerateHeroGroups(List<HeroGroupDefinition> heroGroupsDefinitions, IHeroTeam? team, IVillain villain, GenerationConfiguration config)
         {
             var candidateHeroes = _data
                 .Heroes
                 .Filter(villain, config);
 
-            var heroes = new List<HeroGroup>();
-            var used = new List<IHero>();
+            var heroeGroups = new List<HeroGroup>();
+            var usedHeroes = new List<IHero>();
 
-            foreach (var group in heroGroups)
+            foreach (var groupDefinition in heroGroupsDefinitions)
             {
                 IHero[] selected;
 
                 if (team != null)
                 {
+                    var backup = candidateHeroes.Except(usedHeroes);
+
                     selected = team
                         .TeamMembers
-                        .Except(used)
-                        .TakeRandomWithBackup(group.Value, candidateHeroes.Except(used));
+                        .Except(usedHeroes)
+                        .TakeRandomWithBackup(groupDefinition.HeroCount, backup);
                 }
                 else
                 {
                     selected = candidateHeroes
-                        .Except(used)
-                        .TakeRandom(group.Value);
+                        .Except(usedHeroes)
+                        .TakeRandom(groupDefinition.HeroCount);
                 }
 
-                used.AddRange(selected);
+                usedHeroes.AddRange(selected);
 
-                heroes.Add(new HeroGroup(group.Key, team, selected));
+                heroeGroups.Add(new HeroGroup(groupDefinition.Name, team, selected));
             }
 
-            return heroes;
+            return heroeGroups;
         }
     }
 }
