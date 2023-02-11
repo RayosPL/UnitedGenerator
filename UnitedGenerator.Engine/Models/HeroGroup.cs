@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitedGenerator.Data;
 
-namespace UnitedGenerator.Engine
+namespace UnitedGenerator.Engine.Models
 {
     public class HeroGroup
     {

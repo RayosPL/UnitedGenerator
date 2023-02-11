@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitedGenerator.Data;
 
-namespace UnitedGenerator.Engine
+namespace UnitedGenerator.Engine.Models
 {
     public class GameSetup
     {
         internal GameSetup(string title, IEnumerable<HeroGroup> heroGroups, IVillain villain, IEnumerable<ILocation> locations, IChallenge? challenge)
         {
             Title = title;
-            HeroGroups = heroGroups.ToArray();   
+            HeroGroups = heroGroups.ToArray();
             Villain = villain;
             Locations = locations.ToArray();
             Challenge = challenge;
