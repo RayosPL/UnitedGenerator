@@ -83,6 +83,10 @@ namespace UnitedGenerator.Data.Season2
             {
                 new AssignedLocation(ApocalypsesPyramid, 1),
                 new AssignedLocation(StarlightCitadel, 4)
+            },
+            DataComments = new[]
+            {
+                "Even though the basic Challenges from the core boxes are supported, all Challenges are disabled as it was not worth the effort to support them here."
             }
         };
 

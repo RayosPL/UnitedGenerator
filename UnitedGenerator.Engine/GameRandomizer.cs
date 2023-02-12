@@ -62,7 +62,10 @@ namespace UnitedGenerator.Engine
                 }
             }
 
-            games.Add(GenerateVillainFight($"Game {i}", config, villain, heroes));
+            if (!villain.OnlyPlayPreGames)
+            {
+                games.Add(GenerateVillainFight($"Game {i}", config, villain, heroes));
+            }
 
             return games.ToArray();
         }

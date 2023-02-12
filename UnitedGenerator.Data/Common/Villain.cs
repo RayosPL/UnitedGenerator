@@ -36,6 +36,8 @@ namespace UnitedGenerator.Data.Common
         
         public int PreGamesCount { get; init; }
 
+        public bool OnlyPlayPreGames { get; init; }
+
         public bool ReuseHeroesFromFirstPreGame { get; init; }
 
         public bool DisableChallenges { get; init; }

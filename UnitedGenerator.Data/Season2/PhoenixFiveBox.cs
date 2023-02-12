@@ -57,6 +57,7 @@ namespace UnitedGenerator.Data.Season2
         {
             HasCustomRules = true,
             PreGamesCount = 5,
+            OnlyPlayPreGames = true,
             PreGameCandidateVillains = new[]
             {
                 Cyclops,
@@ -67,7 +68,6 @@ namespace UnitedGenerator.Data.Season2
             }
 
             // Exclude Heroes
-            // Exclude this 'villain'
         };
     }
 }

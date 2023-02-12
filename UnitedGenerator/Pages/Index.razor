@@ -63,6 +63,11 @@
                             <li>Re-use Heroes across all games</li>
                         }
 
+                        @if (villain.OnlyPlayPreGames)
+                        {
+                            <li>Only play the pre-games (This record is not an actual villain!)</li>
+                        }
+
                         @if (villain.PreGameCandidateVillains.Any())
                         {
                             <li>
@@ -178,6 +183,11 @@
                             @if (villain.ReuseHeroesFromFirstPreGame)
                             {
                                 <li>Re-use Heroes across all games</li>
+                            }
+
+                            @if (villain.OnlyPlayPreGames)
+                            {
+                                <li>Only play the pre-games (This record is not an actual villain!)</li>
                             }
 
                             @if (villain.PreGameCandidateVillains.Any())
