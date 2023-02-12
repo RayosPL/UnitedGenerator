@@ -67,7 +67,10 @@ namespace UnitedGenerator.Data.Season2
         public IVillain Juggernaut => new Villain(this, "Juggernaut");
 
         public IAntiHero Magneto => new AntiHero(this, "Magneto");
-        public IAntiHero Mystique => new AntiHero(this, "Mystique");
+        public IAntiHero Mystique => new AntiHero(this, "Mystique")
+        {
+            CanBeUsedInTeamVsTeamMode = false
+        };
 
         public ILocation XavierInstituteForHigherLearning => new Location(this, "Xavier Institute for Higher Learning");
         public ILocation HangarBay => new Location(this, "Hangar Bay");

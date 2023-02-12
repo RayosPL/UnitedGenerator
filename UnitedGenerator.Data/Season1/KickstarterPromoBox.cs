@@ -39,7 +39,6 @@ namespace UnitedGenerator.Data.Season1
             ShangChi,
             Daredevil,
             DoctorStrange,
-            Dormammu,
             DraxTheDestroyer,
             Elektra,
             Falcon,
@@ -64,7 +63,8 @@ namespace UnitedGenerator.Data.Season1
             Bullseye,
             Carnage,
             CorvusGlave,
-            Hela
+            Hela,
+            Dormammu
         };
 
         public IHero SpiderMan2099 => new Hero(this, "Spider-Man 2099");
@@ -89,7 +89,6 @@ namespace UnitedGenerator.Data.Season1
         public IHero ShangChi => new Hero(this, "Shang Chi");
         public IHero Daredevil => new Hero(this, "Daredevil");
         public IHero DoctorStrange => new Hero(this, "Doctor Strange");
-        public IHero Dormammu => new Hero(this, "Dormammu");
         public IHero DraxTheDestroyer => new Hero(this, "Drax The Destroyer");
         public IHero Elektra => new Hero(this, "Elektra");
         public IHero Falcon => new Hero(this, "Falcon");
@@ -111,6 +110,13 @@ namespace UnitedGenerator.Data.Season1
         public IVillain Bullseye => new Villain(this, "Bullseye");
         public IVillain Carnage => new Villain(this, "Carnage");
         public IVillain CorvusGlave => new Villain(this, "Corvus Glave");
-        public IVillain Hela => new Villain(this, "Hela");
+        public IVillain Hela => new Villain(this, "Hela")
+        {
+            CanBeUsedInTeamVsTeamMode = false
+        };
+        public IVillain Dormammu => new Villain(this, "Dormammu")
+        {
+            CanBeUsedInTeamVsTeamMode = false
+        };
     }
 }

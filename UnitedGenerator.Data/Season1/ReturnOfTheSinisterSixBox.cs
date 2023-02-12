@@ -36,6 +36,7 @@ namespace UnitedGenerator.Data.Season1
         public IVillain SinisterSix => new Villain(this, "Sinister Six")
         {
             HasCustomRules = true,
+            CanBeUsedInTeamVsTeamMode = false,
             SubVillains = new IVillain[]
             {
                 DoctorOctopus,
