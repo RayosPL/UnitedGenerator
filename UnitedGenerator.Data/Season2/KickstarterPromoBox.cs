@@ -42,7 +42,6 @@ namespace UnitedGenerator.Data.Season2
             Gwenpool,
             Hawok,
             KittyPryde,
-            Lockhead,
             Longshot,
             Magik,
             Mirage,
@@ -116,7 +115,6 @@ namespace UnitedGenerator.Data.Season2
         public IHero Gwenpool => new Hero(this, "Gwenpool");
         public IHero Hawok => new Hero(this, "Hawok");
         public IHero KittyPryde => new Hero(this, "Kitty Pryde");
-        public IHero Lockhead => new Hero(this, "Lockhead");
         public IHero Longshot => new Hero(this, "Longshot");
         public IHero Magik => new Hero(this, "Magik");
         public IHero Mirage => new Hero(this, "Mirage");
