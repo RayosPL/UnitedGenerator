@@ -62,9 +62,7 @@ namespace UnitedGenerator.Engine
         {
             List<HeroGroupDefinition> heroGroups = GenerateHeroGroupDefinitions(config, villain);
 
-            IHeroTeam? team = SelectTeam(config);
-
-            List<HeroGroup> heroes = GenerateHeroGroups(heroGroups, team, villain, config);
+            List<HeroGroup> heroes = GenerateHeroGroups(heroGroups, villain, config);
 
             IChallenge? challenge = SelectChallenge(config, villain);
 
@@ -73,16 +71,20 @@ namespace UnitedGenerator.Engine
             return new GameSetup(title, heroes, villain, locations, challenge);
         }
 
-        private static List<HeroGroupDefinition> GenerateHeroGroupDefinitions(GenerationConfiguration config, IVillain villain)
+        private List<HeroGroupDefinition> GenerateHeroGroupDefinitions(GenerationConfiguration config, IVillain villain)
         {
+            IHeroTeam? team = SelectTeam(config);
+
             var heroGroups = new List<HeroGroupDefinition>()
             {
-                new HeroGroupDefinition("Heroes", config.PlayerCount)
+                new HeroGroupDefinition("Heroes", config.PlayerCount, team)
             };
 
             foreach (var group in villain.AdditionalHeroGroups)
             {
-                heroGroups.Add(new HeroGroupDefinition(group.GroupName, group.GroupSize(config.PlayerCount)));
+                int size = group.GroupSize(config.PlayerCount);
+
+                heroGroups.Add(new HeroGroupDefinition(group.GroupName, size, team));
             }
 
             return heroGroups;
@@ -142,7 +144,7 @@ namespace UnitedGenerator.Engine
             return new ILocation[0];
         }
 
-        private List<HeroGroup> GenerateHeroGroups(List<HeroGroupDefinition> heroGroupsDefinitions, IHeroTeam? team, IVillain villain, GenerationConfiguration config)
+        private List<HeroGroup> GenerateHeroGroups(List<HeroGroupDefinition> heroGroupsDefinitions, IVillain villain, GenerationConfiguration config)
         {
             var candidateHeroes = _data
                 .Heroes
@@ -155,11 +157,12 @@ namespace UnitedGenerator.Engine
             {
                 IHero[] selected;
 
-                if (team != null)
+                if (groupDefinition.Team != null)
                 {
                     var backup = candidateHeroes.Except(usedHeroes);
 
-                    selected = team
+                    selected = groupDefinition
+                        .Team
                         .TeamMembers
                         .Except(usedHeroes)
                         .TakeRandomWithBackup(groupDefinition.HeroCount, backup);
@@ -173,7 +176,7 @@ namespace UnitedGenerator.Engine
 
                 usedHeroes.AddRange(selected);
 
-                heroeGroups.Add(new HeroGroup(groupDefinition.Name, team, selected));
+                heroeGroups.Add(new HeroGroup(groupDefinition.Name, groupDefinition.Team, selected));
             }
 
             return heroeGroups;
