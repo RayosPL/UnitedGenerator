@@ -24,7 +24,8 @@ namespace UnitedGenerator.Data.Season2
             BlueTeam,
             KickstarterBonus,
             KickstarterPromos,
-            TheHorsemenOfApocalypse
+            TheHorsemenOfApocalypse,
+            PhoenixFive
         };
 
         public XMenCoreBox CoreBox => new XMenCoreBox(this);
@@ -38,5 +39,6 @@ namespace UnitedGenerator.Data.Season2
         public KickstarterBonusBox KickstarterBonus => new KickstarterBonusBox(this);
         public KickstarterPromoBox KickstarterPromos => new KickstarterPromoBox(this);
         public TheHorsemenOfApocalypseBox TheHorsemenOfApocalypse => new TheHorsemenOfApocalypseBox(this);
+        public PhoenixFiveBox PhoenixFive => new PhoenixFiveBox(this);
     }
 }
