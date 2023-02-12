@@ -55,6 +55,9 @@ namespace UnitedGenerator.Data.Season2
         public ILocation Limbo => new Location(this, "Limbo");
         public ILocation HellfireClubBuilding => new Location(this, "Hellfire Club Building");
 
-        public IChallenge AccleratedVillainChallenge => new Challenge(this, "Acclerated Villain Challenge");
+        public IChallenge AccleratedVillainChallenge => new Challenge(this, "Acclerated Villain Challenge")
+        {
+            RequiresTeamvsTeamMode = true
+        };
     }
 }

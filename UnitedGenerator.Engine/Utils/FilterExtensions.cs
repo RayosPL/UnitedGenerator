@@ -49,6 +49,10 @@ namespace UnitedGenerator.Engine.Utils
             {
                 result = result.Where(x => x.CanBeUsedInTeamVsTeamMode);
             }
+            else
+            {
+                result = result.Where(x => !x.RequiresTeamvsTeamMode);
+            }
 
             var arr = result.ToArray();
             return arr;
