@@ -5,3 +5,4 @@
 - Lady Deathstrike
 - Legion
 
+Mark special rules for Villains in Team vs Team mode
