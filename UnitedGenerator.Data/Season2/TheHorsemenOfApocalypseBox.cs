@@ -74,7 +74,7 @@ namespace UnitedGenerator.Data.Season2
             DisableChallenges = true,
             CanBeVillainInTeamVsTeamMode = false,
             PreGamesCount = 1,
-            // Reuse Heroes
+            ReuseHeroesFromFirstPreGame = true,
             // Location placement
             PreGameCandidateVillains = new[]
             {

@@ -12,6 +12,7 @@ namespace UnitedGenerator.Data
         bool HasCustomRules { get; }
         bool IsVillainTeam { get; }
         int PreGamesCount { get; }
+        bool ReuseHeroesFromFirstPreGame { get; }
         bool DisableChallenges { get; }
         bool IncludeInRandomVillainSelection { get; }
         bool CanBeVillainInTeamVsTeamMode { get; }

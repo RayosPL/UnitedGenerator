@@ -58,6 +58,11 @@
                             <li>Number of pre-games: @villain.PreGamesCount</li>
                         }
 
+                        @if (villain.ReuseHeroesFromFirstPreGame)
+                        {
+                            <li>Re-use Heroes across all games</li>
+                        }
+
                         @if (villain.PreGameCandidateVillains.Any())
                         {
                             <li>
@@ -164,6 +169,11 @@
                             @if (villain.PreGamesCount > 0)
                             {
                                 <li>Number of pre-games: @villain.PreGamesCount</li>
+                            }
+
+                            @if (villain.ReuseHeroesFromFirstPreGame)
+                            {
+                                <li>Re-use Heroes across all games</li>
                             }
 
                             @if (villain.PreGameCandidateVillains.Any())

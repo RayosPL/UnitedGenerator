@@ -47,22 +47,34 @@ namespace UnitedGenerator.Engine
                         .WhereIsContainedIn(villain.PreGameCandidateVillains)
                         .TakeRandom(villain.PreGamesCount);
 
+            HeroGroup[] heroes = null;
+
             int i = 1;
             foreach (var preVillain in preGameVillains)
             {
-                games.Add(GenerateVillainFight($"Pre-Game {i++}", config, preVillain));
+                var fight = GenerateVillainFight($"Game {i++}", config, preVillain, heroes);
+
+                games.Add(fight);
+
+                if (villain.ReuseHeroesFromFirstPreGame)
+                {
+                    heroes = fight.HeroGroups;
+                }
             }
 
-            games.Add(GenerateVillainFight("Main Game", config, villain));
+            games.Add(GenerateVillainFight($"Game {i}", config, villain, heroes));
 
             return games.ToArray();
         }
 
-        private GameSetup GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain)
+        private GameSetup GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain, HeroGroup[]? heroes = null)
         {
-            List<HeroGroupDefinition> heroGroups = GenerateHeroGroupDefinitions(config, villain);
+            if (heroes == null)
+            {
+                List<HeroGroupDefinition> heroGroups = GenerateHeroGroupDefinitions(config, villain);
 
-            List<HeroGroup> heroes = GenerateHeroGroups(heroGroups, villain, config);
+                heroes = GenerateHeroGroups(heroGroups, villain, config);
+            }
 
             IChallenge? challenge = SelectChallenge(config, villain);
 
@@ -156,7 +168,7 @@ namespace UnitedGenerator.Engine
             return new ILocation[0];
         }
 
-        private List<HeroGroup> GenerateHeroGroups(List<HeroGroupDefinition> heroGroupsDefinitions, IVillain villain, GenerationConfiguration config)
+        private HeroGroup[] GenerateHeroGroups(List<HeroGroupDefinition> heroGroupsDefinitions, IVillain villain, GenerationConfiguration config)
         {
             var candidateHeroes = _data
                 .Heroes
@@ -191,7 +203,7 @@ namespace UnitedGenerator.Engine
                 heroeGroups.Add(new HeroGroup(groupDefinition.Name, groupDefinition.Team, selected));
             }
 
-            return heroeGroups;
+            return heroeGroups.ToArray();
         }
     }
 }

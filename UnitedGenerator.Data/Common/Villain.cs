@@ -16,6 +16,7 @@ namespace UnitedGenerator.Data.Common
             IsAntiHero = false;
             ExcludeFromRandomSelection = false;
             CanBeVillainInTeamVsTeamMode = true;
+            ReuseHeroesFromFirstPreGame = false;
             SubVillains = new IVillain[0];
             AssignedLocations = new ILocation[0];
             AdditionalHeroGroups = new IHeroGroupDefinition[0];
@@ -34,6 +35,8 @@ namespace UnitedGenerator.Data.Common
         public bool HasCustomRules { get; init; }
         
         public int PreGamesCount { get; init; }
+
+        public bool ReuseHeroesFromFirstPreGame { get; init; }
 
         public bool DisableChallenges { get; init; }
 
