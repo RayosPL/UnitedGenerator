@@ -19,7 +19,8 @@ namespace UnitedGenerator.Data.Season2
             FirstClass,
             XForce,
             FantasticFour,
-            DaysOfFuturePast
+            DaysOfFuturePast,
+            GoldTeam
         };
 
         public XMenCoreBox CoreBox => new XMenCoreBox(this);
@@ -28,5 +29,6 @@ namespace UnitedGenerator.Data.Season2
         public XForceBox XForce => new XForceBox(this);
         public FantasticFourBox FantasticFour => new FantasticFourBox(this);
         public DaysOfFuturePastBox DaysOfFuturePast => new DaysOfFuturePastBox(this);
+        public GoldTeamBox GoldTeam => new GoldTeamBox(this);
     }
 }
