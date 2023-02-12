@@ -58,6 +58,11 @@ namespace UnitedGenerator.Engine.Utils
         {
             var result = items.Where(x => x.IncludeInRandomVillainSelection);
 
+            if (config.TeamVsTeamMode)
+            {
+                result = result.Where(x => x.CanBeUsedInTeamVsTeamMode);
+            }
+
             if (config.OnlyVillainTeams)
             {
                 result = result.Where(x => x.IsVillainTeam);

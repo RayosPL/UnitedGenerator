@@ -15,6 +15,7 @@ namespace UnitedGenerator.Data.Common
             DisableChallenges = false;
             IsAntiHero = false;
             ExcludeFromRandomSelection = false;
+            CanBeUsedInTeamVsTeamMode = true;
             SubVillains = new IVillain[0];
             AssignedLocations = new ILocation[0];
             AdditionalHeroGroups = new IHeroGroupDefinition[0];
@@ -22,6 +23,8 @@ namespace UnitedGenerator.Data.Common
         }
 
         public bool ExcludeFromRandomSelection { get; init; }
+
+        public bool CanBeUsedInTeamVsTeamMode { get; init; }
 
         public bool IncludeInRandomVillainSelection => !ExcludeFromRandomSelection;
 

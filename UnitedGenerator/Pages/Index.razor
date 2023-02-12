@@ -38,6 +38,11 @@
                             <li>Has Custom Rules!</li>
                         }
 
+                        @if (!villain.CanBeUsedInTeamVsTeamMode)
+                        {
+                            <li>Can NOT be used in Team vs Team games</li>
+                        }
+
                         @if (villain.DisableChallenges)
                         {
                             <li>No Challenges Allowed!</li>
@@ -94,6 +99,11 @@
                             @if (villain.HasCustomRules)
                             {
                                 <li>Has Custom Rules!</li>
+                            }
+
+                            @if (!villain.CanBeUsedInTeamVsTeamMode)
+                            {
+                                <li>Can NOT be used in Team vs Team games</li>
                             }
 
                             @if (villain.DisableChallenges)
