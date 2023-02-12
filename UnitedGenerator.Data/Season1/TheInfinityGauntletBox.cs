@@ -67,6 +67,12 @@ namespace UnitedGenerator.Data.Season1
                 BlackDwarf,
                 ProximaMidnight,
                 DataFactory.Season1.KickstarterPromo.CorvusGlave
+            },
+            DataComments = new[]
+            {
+                "Even though you can play a standalone game vs Thanos in Team vs Team mode, this data represents the full campain. So Thanos is left out of Team vs Team games",
+                "Corvus Glave is included as a possible Child of Thanos, both for thematic reasons and a bit of variaty.",
+                "Challenges are excluded when playing Thanos, as he is already quite hard to beat."
             }
         };
 

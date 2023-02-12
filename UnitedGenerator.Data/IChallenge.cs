@@ -11,5 +11,6 @@ namespace UnitedGenerator.Data
         int HazardousLocationsCount { get; }
         IVillain[] IncompatibleVillains { get; }
         bool CanBeUsedInTeamVsTeamMode { get; }
+        string[] DataComments { get; }
     }
 }

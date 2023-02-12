@@ -18,6 +18,7 @@ namespace UnitedGenerator.Data
         IVillain[] SubVillains { get; }
         IVillain[] PreGameCandidateVillains { get; }
         ILocation[] AssignedLocations { get; }
-        IHeroGroupDefinition[] AdditionalHeroGroups { get; } 
+        IHeroGroupDefinition[] AdditionalHeroGroups { get; }
+        string[] DataComments { get; }
     }
 }

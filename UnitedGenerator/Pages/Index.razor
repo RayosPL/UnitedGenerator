@@ -78,6 +78,19 @@
                             <li>Assigned Location: @location.Name (@location.Box.Name - Season @location.Season.Number)</li>
                         }
 
+                        @if(villain.DataComments.Any())
+                        {
+                            <li>
+                                Comments
+                                <ul>
+                                @foreach(var comment in villain.DataComments)
+                                {
+                                     <li>@comment</li>   
+                                }
+                                </ul>
+                            </li>
+                        }
+
                         </ul>
 
                     </li>
@@ -139,6 +152,19 @@
                             @foreach (var location in villain.AssignedLocations)
                             {
                                 <li>Assigned Location: @location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+                            }
+
+                            @if(villain.DataComments.Any())
+                            {
+                                <li>
+                                    Comments
+                                    <ul>
+                                    @foreach(var comment in villain.DataComments)
+                                    {
+                                         <li>@comment</li>   
+                                    }
+                                    </ul>
+                                </li>
                             }
 
                         </ul>
@@ -230,6 +256,19 @@
                                     {
                                         <li>@villain.Name (@villain.Box.Name - Season @villain.Season.Number)</li>
                                     }
+                                </ul>
+                            </li>
+                        }
+
+                        @if (challenge.DataComments.Any())
+                        {
+                            <li>
+                                Comments
+                                <ul>
+                                @foreach(var comment in challenge.DataComments)
+                                {
+                                     <li>@comment</li>   
+                                }
                                 </ul>
                             </li>
                         }

@@ -13,10 +13,12 @@ namespace UnitedGenerator.Data.Common
             HazardousLocationsCount = 0;
             IncompatibleVillains = new IVillain[0];
             CanBeUsedInTeamVsTeamMode = true;
+            DataComments = new string[0];
         }
 
         public int HazardousLocationsCount { get; init; }
         public IVillain[] IncompatibleVillains { get; init; }
         public bool CanBeUsedInTeamVsTeamMode { get; init; }
+        public string[] DataComments { get; init; }
     }
 }

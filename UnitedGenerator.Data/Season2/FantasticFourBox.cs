@@ -78,6 +78,10 @@ namespace UnitedGenerator.Data.Season2
             IncompatibleVillains = new[]
             {
                 DataFactory.Season1.CoreBox.Ultron
+            },
+            DataComments = new[]
+            {
+                "There must be more incompatible Villains than Ultron, but the rulebook does not list them (Please help!)"
             }
         };
 
