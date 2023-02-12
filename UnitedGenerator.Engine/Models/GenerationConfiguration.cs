@@ -16,6 +16,7 @@ namespace UnitedGenerator.Engine.Models
         }
 
         public int PlayerCount { get; }
+        public bool TeamVsTeamMode { get; init; }
         public int SelectTeamProbability { get; init; }
         public int SelectChallengeProbability { get; init; }
         public bool OnlyVillainTeams { get; init; }

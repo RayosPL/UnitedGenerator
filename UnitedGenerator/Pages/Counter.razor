@@ -5,7 +5,8 @@
 
 <PageTitle>Counter</PageTitle>
 
-<button class="btn btn-primary" @onclick="GenerateGame">Generate Game</button>
+<button class="btn btn-primary" @onclick="GenerateGame">Generate Normal Game</button>
+<button class="btn btn-primary" @onclick="GenerateTeamVsTeamGame">Generate Team vs Team Game</button>
 <button class="btn btn-primary" @onclick="GenerateMultiVillainGame">Generate Multi Villain Game</button>
 <button class="btn btn-primary" @onclick="GeneratePreGameVillainGame">Generate Pre-Game Villain Game</button>
 <button class="btn btn-primary" @onclick="GenerateAntiHeroGame">Generate Anti-Hero Only Game</button>
@@ -84,6 +85,14 @@
     private void GenerateGame()
     {
         games = random.Generate(new GenerationConfiguration(playerCount));
+    }
+
+    private void GenerateTeamVsTeamGame()
+    {
+        games = random.Generate(new GenerationConfiguration(6)
+            {
+                TeamVsTeamMode = true
+            });
     }
 
     private void GenerateMultiVillainGame()
