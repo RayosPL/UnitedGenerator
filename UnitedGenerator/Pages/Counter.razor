@@ -23,7 +23,7 @@
     
     @if (game.Villain.HasCustomRules)
     {
-        <div>Note: Has Custom Rules!</div>
+        <div>Note: Has additional rules in rulebook</div>
     }
 
     @if (game.Villain.IsVillainTeam)
@@ -70,7 +70,7 @@
             <li>
                 @location.Name 
                 @(location.Hazardous ? "[Hazardous]" : "")
-                @(location.HasCustomRules ? "[Custom Rules]" : "")
+                @(location.HasCustomRules ? "[Custom rules in rulebook]" : "")
                 (@location.Box.Name - Season @location.Season.Number)
             </li>
         }

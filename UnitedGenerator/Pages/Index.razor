@@ -26,7 +26,7 @@
         {
             <h3>Villains</h3>
             <ul>
-                @foreach (var villain in box.Villains.OrderBy(x => x.Name))
+                @foreach (var villain in box.Villains.OrderBy(x => x.IsVillainTeam).ThenBy(x => x.Name))
                 {
                     <li>
                         @villain.Name
@@ -35,7 +35,7 @@
 
                         @if (villain.HasCustomRules)
                         {
-                            <li>Has Custom Rules!</li>
+                            <li>Has additional rules in rulebook</li>
                         }
 
                         @if (!villain.CanBeVillainInTeamVsTeamMode)
@@ -58,24 +58,56 @@
                             <li>Number of pre-games: @villain.PreGamesCount</li>
                         }
 
-                        @foreach(var sub in villain.PreGameCandidateVillains)
+                        @if (villain.PreGameCandidateVillains.Any())
                         {
-                            <li>Pre-game Candidate Villain: @sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                            <li>
+                                Pre-game Candidate Villains
+                                <ul>
+                                @foreach(var sub in villain.PreGameCandidateVillains)
+                                {
+                                    <li>@sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                                }
+                                </ul>
+                            </li>
                         }
 
-                        @foreach(var group in villain.AdditionalHeroGroups)
+                        @if(villain.AdditionalHeroGroups.Any())
                         {
-                            <li>Additional Heroes: @group.GroupName (@group.Description)</li>
+                            <li>
+                                Additional Hero Groups
+                                <ul>
+                                @foreach(var group in villain.AdditionalHeroGroups)
+                                {
+                                    <li>@group.GroupName (@group.Description)</li>
+                                }
+                                </ul>
+                             </li>
                         }
 
-                        @foreach(var sub in villain.SubVillains)
+                        @if(villain.SubVillains.Any())
                         {
-                            <li>Sub Villain: @sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                            <li>
+                                Villain team members
+                                <ul>
+                                @foreach(var sub in villain.SubVillains)
+                                {
+                                    <li>@sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                                }
+                                </ul>
+                            </li>
                         }
 
-                        @foreach(var location in villain.AssignedLocations)
+                        @if(villain.AssignedLocations.Any())
                         {
-                            <li>Assigned Location: @location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+                            <li>
+                                Assigned locations
+                                <ul>
+                                @foreach(var location in villain.AssignedLocations)
+                                {
+                                    <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+                                }
+                                </ul>
+                            </li>
                         }
 
                         @if(villain.DataComments.Any())
@@ -111,7 +143,7 @@
 
                             @if (villain.HasCustomRules)
                             {
-                                <li>Has Custom Rules!</li>
+                                <li>Has additional rules in rulebook</li>
                             }
 
                             @if (!villain.CanBeVillainInTeamVsTeamMode)
@@ -134,24 +166,56 @@
                                 <li>Number of pre-games: @villain.PreGamesCount</li>
                             }
 
-                            @foreach (var sub in villain.PreGameCandidateVillains)
+                            @if (villain.PreGameCandidateVillains.Any())
                             {
-                                <li>Pre-game Candidate Villain: @sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                                <li>
+                                    Pre-game Candidate Villains
+                                    <ul>
+                                        @foreach (var sub in villain.PreGameCandidateVillains)
+                                        {
+                                            <li>@sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                                        }
+                                    </ul>
+                                </li>
                             }
 
-                            @foreach (var group in villain.AdditionalHeroGroups)
+                            @if (villain.AdditionalHeroGroups.Any())
                             {
-                                <li>Additional Heroes: @group.GroupName (@group.Description)</li>
+                                <li>
+                                    Additional Hero Groups
+                                    <ul>
+                                        @foreach (var group in villain.AdditionalHeroGroups)
+                                        {
+                                            <li>@group.GroupName (@group.Description)</li>
+                                        }
+                                    </ul>
+                                </li>
                             }
 
-                            @foreach (var sub in villain.SubVillains)
+                            @if (villain.SubVillains.Any())
                             {
-                                <li>Sub Villain: @sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                                <li>
+                                    Villain team members
+                                    <ul>
+                                        @foreach (var sub in villain.SubVillains)
+                                        {
+                                            <li>@sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                                        }
+                                    </ul>
+                                </li>
                             }
 
-                            @foreach (var location in villain.AssignedLocations)
+                            @if (villain.AssignedLocations.Any())
                             {
-                                <li>Assigned Location: @location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+                                <li>
+                                    Assigned locations
+                                    <ul>
+                                        @foreach (var location in villain.AssignedLocations)
+                                        {
+                                            <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+                                        }
+                                    </ul>
+                                </li>
                             }
 
                             @if(villain.DataComments.Any())
@@ -214,7 +278,7 @@
 
                         @if (location.HasCustomRules)
                         {
-                            <li>Has Custom Rules!</li>
+                            <li>Has additional rules in rulebook</li>
                         }
 
                         @if (location.Hazardous)
