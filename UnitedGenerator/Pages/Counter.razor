@@ -12,6 +12,7 @@
 <button class="btn btn-primary" @onclick="GenerateAntiHeroGame">Generate Anti-Hero Only Game</button>
 <button class="btn btn-primary" @onclick="GenerateGameWithHazardousChallenge">Generate Game with Hazardous Challenge</button>
 <button class="btn btn-primary" @onclick="GenerateGameWithHeroTeam">Generate Game with Hero Team</button>
+<button class="btn btn-primary" @onclick="GenerateTeamVsTeamWithHeroTeamsGame">Generate Team vs Team with Hero Teams Game</button>
 
 @foreach(var game in games)
 {
@@ -92,6 +93,15 @@
         games = random.Generate(new GenerationConfiguration(6)
             {
                 TeamVsTeamMode = true
+            });
+    }
+
+    private void GenerateTeamVsTeamWithHeroTeamsGame()
+    {
+        games = random.Generate(new GenerationConfiguration(6)
+            {
+                TeamVsTeamMode = true,
+                SelectTeamProbability = 100
             });
     }
 

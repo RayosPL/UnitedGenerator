@@ -73,27 +73,39 @@ namespace UnitedGenerator.Engine
 
         private List<HeroGroupDefinition> GenerateHeroGroupDefinitions(GenerationConfiguration config, IVillain villain)
         {
-            IHeroTeam? team = SelectTeam(config);
+            var heroGroups = new List<HeroGroupDefinition>();
 
-            var heroGroups = new List<HeroGroupDefinition>()
+            if (config.TeamVsTeamMode)
             {
-                new HeroGroupDefinition("Heroes", config.PlayerCount, team)
-            };
+                IHeroTeam? team1 = SelectTeam(config);
+                int size1 = config.PlayerCount / 2;
+                heroGroups.Add(new HeroGroupDefinition("Blue Team", size1, team1));
 
-            foreach (var group in villain.AdditionalHeroGroups)
+                IHeroTeam? team2 = SelectTeam(config, team1);
+                int size2 = config.PlayerCount - size1;
+                heroGroups.Add(new HeroGroupDefinition("Gold Team", size2, team2));
+            }
+            else
             {
-                int size = group.GroupSize(config.PlayerCount);
+                IHeroTeam? team = SelectTeam(config);
+                heroGroups.Add(new HeroGroupDefinition("Heroes", config.PlayerCount, team));
 
-                heroGroups.Add(new HeroGroupDefinition(group.GroupName, size, team));
+                foreach (var group in villain.AdditionalHeroGroups)
+                {
+                    int size = group.GroupSize(config.PlayerCount);
+
+                    heroGroups.Add(new HeroGroupDefinition(group.GroupName, size, team));
+                }
             }
 
             return heroGroups;
         }
 
-        private IHeroTeam? SelectTeam(GenerationConfiguration config)
+        private IHeroTeam? SelectTeam(GenerationConfiguration config, IHeroTeam? excludedTeam = null)
         {
             return _data
                 .HeroTeams
+                .Where(x => x.Id != excludedTeam?.Id)
                 .RandomOrDefaultByChance(config.SelectTeamProbability);
         }
 
