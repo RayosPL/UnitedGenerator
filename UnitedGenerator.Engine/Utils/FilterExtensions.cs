@@ -45,7 +45,13 @@ namespace UnitedGenerator.Engine.Utils
                 result = result.Where(x => x.HazardousLocationsCount > 0);
             }
 
-            return result.ToArray();
+            if (config.TeamVsTeamMode)
+            {
+                result = result.Where(x => x.CanBeUsedInTeamVsTeamMode);
+            }
+
+            var arr = result.ToArray();
+            return arr;
         }
 
         public static IVillain[] Filter(this IVillain[] items, GenerationConfiguration config)

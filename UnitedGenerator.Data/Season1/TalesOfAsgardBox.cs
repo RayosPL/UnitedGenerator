@@ -57,6 +57,9 @@ namespace UnitedGenerator.Data.Season1
         public ILocation ThroneRoom => new Location(this, "Throne Room");
         public ILocation Valhalla => new Location(this, "Valhalla");
 
-        public IChallenge TraitorChallenge => new Challenge(this, "Traitor Challenge");
+        public IChallenge TraitorChallenge => new Challenge(this, "Traitor Challenge")
+        {
+            CanBeUsedInTeamVsTeamMode = false
+        };
     }
 }

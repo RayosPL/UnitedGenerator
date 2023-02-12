@@ -205,6 +205,11 @@
                                 <li>Hazardous Locations: @challenge.HazardousLocationsCount</li>
                             }
 
+                            @if(!challenge.CanBeUsedInTeamVsTeamMode)
+                            {
+                                <li>Can NOT be used in Team vs Team games</li>
+                            }
+
                         @if (challenge.IncompatibleVillains.Any())
                         {
                             <li>

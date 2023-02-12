@@ -58,6 +58,9 @@ namespace UnitedGenerator.Data.Season1
         public ILocation CollectorsMuseum => new Location(this, "Collector's Museum");
         public ILocation Kyln => new Location(this, "Kyln");
 
-        public IChallenge PlanBChallenge => new Challenge(this, "Plan B Challenge");
+        public IChallenge PlanBChallenge => new Challenge(this, "Plan B Challenge")
+        {
+            CanBeUsedInTeamVsTeamMode = false
+        };
     }
 }
