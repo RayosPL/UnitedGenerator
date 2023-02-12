@@ -9,7 +9,6 @@ namespace UnitedGenerator.Data
     public interface IVillain : IBoxItem
     {
         bool IsAntiHero { get; }
-        bool HasCustomRules { get; }
         bool IsVillainTeam { get; }
         int PreGamesCount { get; }
         bool OnlyPlayPreGames { get; }

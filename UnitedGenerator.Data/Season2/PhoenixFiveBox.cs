@@ -35,38 +35,32 @@ namespace UnitedGenerator.Data.Season2
 
         public IVillain Cyclops => new Villain(this, "Cyclops")
         {
-            HasCustomRules = true,
             ExcludeHeroes = ExcludedHeroes,
             DataComments = DataComment
         };
         public IVillain EmmaFrost => new Villain(this, "Emma Frost")
         {
-            HasCustomRules = true,
             ExcludeHeroes = ExcludedHeroes,
             DataComments = DataComment
         };
         public IVillain Colossus => new Villain(this, "Colossus")
         {
-            HasCustomRules = true,
             ExcludeHeroes = ExcludedHeroes,
             DataComments = DataComment
         };
         public IVillain Magik => new Villain(this, "Magik")
         {
-            HasCustomRules = true,
             ExcludeHeroes = ExcludedHeroes,
             DataComments = DataComment
         };
         public IVillain Namor => new Villain(this, "Namor")
         {
-            HasCustomRules = true,
             ExcludeHeroes = ExcludedHeroes,
             DataComments = DataComment
         };
 
         public IVillain PhoenixFive => new Villain(this, "Phoenix Five")
         {
-            HasCustomRules = true,
             PreGamesCount = 5,
             OnlyPlayPreGames = true,
             PreGameCandidateVillains = new[]

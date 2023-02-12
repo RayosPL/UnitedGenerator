@@ -33,11 +33,6 @@
 
                         <ul>
 
-                        @if (villain.HasCustomRules)
-                        {
-                            <li>Has additional rules in rulebook</li>
-                        }
-
                         @if (!villain.CanBeVillainInTeamVsTeamMode)
                         {
                             <li>Can NOT be villian in Team vs Team games</li>
@@ -167,11 +162,6 @@
                         @villain.Name
 
                         <ul>
-
-                            @if (villain.HasCustomRules)
-                            {
-                                <li>Has additional rules in rulebook</li>
-                            }
 
                             @if (!villain.CanBeVillainInTeamVsTeamMode)
                             {

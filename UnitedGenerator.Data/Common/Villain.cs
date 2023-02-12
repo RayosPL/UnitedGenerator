@@ -10,7 +10,6 @@ namespace UnitedGenerator.Data.Common
     {
         public Villain(IBox box, string name) : base(box, name)
         {
-            HasCustomRules = false;
             PreGamesCount = 0;
             DisableChallenges = false;
             IsAntiHero = false;
@@ -32,8 +31,6 @@ namespace UnitedGenerator.Data.Common
         public bool IncludeInRandomVillainSelection => !ExcludeFromRandomSelection;
 
         public virtual bool IsAntiHero { get; protected set; }
-
-        public bool HasCustomRules { get; init; }
         
         public int PreGamesCount { get; init; }
 

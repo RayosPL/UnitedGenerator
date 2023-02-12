@@ -36,7 +36,6 @@ namespace UnitedGenerator.Data.Season2
 
         public IVillain Nimrod => new Villain(this, "Nimrod")
         {
-            HasCustomRules = true,
             CanBeVillainInTeamVsTeamMode = false
         };
 

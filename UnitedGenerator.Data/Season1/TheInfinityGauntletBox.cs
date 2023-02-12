@@ -45,7 +45,6 @@ namespace UnitedGenerator.Data.Season1
         public IVillain Thanos => new Villain(this, "Thanos")
         {
             PreGamesCount = 3,
-            HasCustomRules = true,
             CanBeVillainInTeamVsTeamMode = false,
             DisableChallenges = true,
             AssignedLocations = new[]

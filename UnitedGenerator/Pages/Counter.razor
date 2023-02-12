@@ -21,11 +21,6 @@
     <h2>Villain</h2>
     <div>@game.Villain.Name @(game.Villain.IsAntiHero ? "[Anti-Hero]" : "") (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
     
-    @if (game.Villain.HasCustomRules)
-    {
-        <div>Note: Has additional rules in rulebook</div>
-    }
-
     @if (game.Villain.IsVillainTeam)
     {
         <ul>
