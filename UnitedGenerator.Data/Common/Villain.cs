@@ -18,7 +18,7 @@ namespace UnitedGenerator.Data.Common
             CanBeVillainInTeamVsTeamMode = true;
             ReuseHeroesFromFirstPreGame = false;
             SubVillains = new IVillain[0];
-            AssignedLocations = new ILocation[0];
+            AssignedLocations = new AssignedLocation[0];
             AdditionalHeroGroups = new IHeroGroupDefinition[0];
             PreGameCandidateVillains = new IVillain[0];
             DataComments = new string[0];
@@ -46,7 +46,7 @@ namespace UnitedGenerator.Data.Common
 
         public IVillain[] PreGameCandidateVillains { get; init; }
 
-        public ILocation[] AssignedLocations { get; init; }
+        public AssignedLocation[] AssignedLocations { get; init; }
 
         public IHeroGroupDefinition[] AdditionalHeroGroups { get; init; }
 

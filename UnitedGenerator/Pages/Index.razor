@@ -107,9 +107,13 @@
                             <li>
                                 Assigned locations
                                 <ul>
-                                @foreach(var location in villain.AssignedLocations)
+                                @foreach(var assigned in villain.AssignedLocations)
                                 {
-                                    <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+                                    <li>
+                                        @assigned.Location.Name 
+                                        @(assigned.Placement.HasValue ? $"[Placement {assigned.Placement}]" : "[Anywhere]")
+                                        (@assigned.Location.Box.Name - Season @assigned.Location.Season.Number)
+                                    </li>
                                 }
                                 </ul>
                             </li>
@@ -220,9 +224,13 @@
                                 <li>
                                     Assigned locations
                                     <ul>
-                                        @foreach (var location in villain.AssignedLocations)
+                                        @foreach (var assigned in villain.AssignedLocations)
                                         {
-                                            <li>@location.Name (@location.Box.Name - Season @location.Season.Number)</li>
+                                            <li>
+                                                @assigned.Location.Name
+                                                @(assigned.Placement.HasValue ? $"[Placement {assigned.Placement}]" : "[Anywhere]")
+                                                (@assigned.Location.Box.Name - Season @assigned.Location.Season.Number)
+                                            </li>
                                         }
                                     </ul>
                                 </li>

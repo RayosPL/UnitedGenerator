@@ -50,12 +50,12 @@ namespace UnitedGenerator.Data.Season1
             DisableChallenges = true,
             AssignedLocations = new[]
             {
-                WakandaFields,
-                Sanctuary,
-                ThanosPalace,
-                QuantumTunnel,
-                Titan,
-                AvengersMansion
+                new AssignedLocation(WakandaFields),
+                new AssignedLocation(Sanctuary),
+                new AssignedLocation(ThanosPalace),
+                new AssignedLocation(QuantumTunnel),
+                new AssignedLocation(Titan),
+                new AssignedLocation(AvengersMansion)
             },
             AdditionalHeroGroups = new[]
             {

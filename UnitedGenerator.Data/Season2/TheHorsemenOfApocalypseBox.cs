@@ -75,15 +75,14 @@ namespace UnitedGenerator.Data.Season2
             CanBeVillainInTeamVsTeamMode = false,
             PreGamesCount = 1,
             ReuseHeroesFromFirstPreGame = true,
-            // Location placement
             PreGameCandidateVillains = new[]
             {
                 TheHorsemenOfApocalypse
             },
             AssignedLocations = new[]
             {
-                StarlightCitadel,
-                ApocalypsesPyramid
+                new AssignedLocation(ApocalypsesPyramid, 1),
+                new AssignedLocation(StarlightCitadel, 4)
             }
         };
 

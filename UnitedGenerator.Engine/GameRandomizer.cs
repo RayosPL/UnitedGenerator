@@ -47,7 +47,7 @@ namespace UnitedGenerator.Engine
                         .WhereIsContainedIn(villain.PreGameCandidateVillains)
                         .TakeRandom(villain.PreGamesCount);
 
-            HeroGroup[] heroes = null;
+            HeroGroup[]? heroes = null;
 
             int i = 1;
             foreach (var preVillain in preGameVillains)
@@ -135,7 +135,7 @@ namespace UnitedGenerator.Engine
                 .Locations
                 .Filter();
 
-            var villainLocations = villain.AssignedLocations;
+            var villainLocations = villain.AssignedLocations.Select(x => x.Location);
 
             var challengeLocations = GetChallengeLocations(candidateLocations.Except(villainLocations), challenge, villainLocations);
 
@@ -146,13 +146,35 @@ namespace UnitedGenerator.Engine
                 .Except(challengeLocations)
                 .TakeRandom(missing);
 
-            return villainLocations
+            var locations = villainLocations
                 .Concat(challengeLocations)
                 .Concat(remainingLocations)
                 .Randomize();
+
+            foreach(var assignment in villain.AssignedLocations)
+            {
+                locations = EnsurePlacement(locations, assignment);
+            }
+
+            return locations;
         }
 
-        private ILocation[] GetChallengeLocations(IEnumerable<ILocation> candidateLocations, IChallenge? challenge, ILocation[] existingLocations)
+        private ILocation[] EnsurePlacement(ILocation[] locations, AssignedLocation assignment)
+        {
+            if (assignment.Placement.HasValue)
+            {
+                var targetIndex = assignment.Placement.Value - 1;
+                var currentIndex = locations.ToList().IndexOf(assignment.Location);
+
+                var tmp = locations[targetIndex];
+                locations[targetIndex] = locations[currentIndex];
+                locations[currentIndex] = tmp;
+            }
+
+            return locations;
+        }
+
+        private ILocation[] GetChallengeLocations(IEnumerable<ILocation> candidateLocations, IChallenge? challenge, IEnumerable<ILocation> existingLocations)
         {
             if (challenge != null && challenge.HazardousLocationsCount > 0)
             {
