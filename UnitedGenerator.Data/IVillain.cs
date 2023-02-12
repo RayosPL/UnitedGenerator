@@ -14,7 +14,7 @@ namespace UnitedGenerator.Data
         int PreGamesCount { get; }
         bool DisableChallenges { get; }
         bool IncludeInRandomVillainSelection { get; }
-        bool CanBeUsedInTeamVsTeamMode { get; }
+        bool CanBeVillainInTeamVsTeamMode { get; }
         IVillain[] SubVillains { get; }
         IVillain[] PreGameCandidateVillains { get; }
         ILocation[] AssignedLocations { get; }

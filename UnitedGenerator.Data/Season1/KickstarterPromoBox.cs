@@ -112,11 +112,11 @@ namespace UnitedGenerator.Data.Season1
         public IVillain CorvusGlave => new Villain(this, "Corvus Glave");
         public IVillain Hela => new Villain(this, "Hela")
         {
-            CanBeUsedInTeamVsTeamMode = false
+            CanBeVillainInTeamVsTeamMode = false
         };
         public IVillain Dormammu => new Villain(this, "Dormammu")
         {
-            CanBeUsedInTeamVsTeamMode = false
+            CanBeVillainInTeamVsTeamMode = false
         };
     }
 }

@@ -64,7 +64,7 @@ namespace UnitedGenerator.Engine.Utils
 
             if (config.TeamVsTeamMode)
             {
-                result = result.Where(x => x.CanBeUsedInTeamVsTeamMode);
+                result = result.Where(x => x.CanBeVillainInTeamVsTeamMode);
             }
 
             if (config.OnlyVillainTeams)

@@ -46,7 +46,7 @@ namespace UnitedGenerator.Data.Season1
         {
             PreGamesCount = 3,
             HasCustomRules = true,
-            CanBeUsedInTeamVsTeamMode = false,
+            CanBeVillainInTeamVsTeamMode = false,
             DisableChallenges = true,
             AssignedLocations = new[]
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using UnitedGenerator.Data.Common;
@@ -54,6 +55,37 @@ namespace UnitedGenerator.Data.Season2
             Dazzler
         };
 
+        public override IAntiHero[] AntiHeroes => new[]
+        {
+            Spiral,
+            Legion,
+            Marrow,
+            Namor,
+            EmmaFrost
+        };
+
+        public override IVillain[] Villains => new[]
+        {
+            OmegaRed,
+            Onslaugth,
+            Pyro,
+            Sauron,
+            ShadowKing,
+            SilverSamurai,
+            Mastermind,
+            Mojo,
+            Blob,
+            BroodQueen,
+            Callisto,
+            DarkPhoenix,
+            LadyDeathstrike,
+            Deathbird,
+            Arcade,
+            Avalance,
+            Toad,
+            ToadPyroAndBlob
+        };
+
         public override IHeroTeam[] Teams => new[]
         {
             AlphaFlight,
@@ -98,5 +130,56 @@ namespace UnitedGenerator.Data.Season2
 
         public IHeroTeam AlphaFlight => new CardSynergyTeam(this, "Alpha Flight", Guardian, Puck, Northstar, Snowbird, Sasquatch);
         public IHeroTeam CloakAndDagger => new CardSynergyTeam(this, "Cloak & Dagger", Cloak, Dagger);
+
+        public IAntiHero Spiral => new AntiHero(this, "Spiral");
+        public IAntiHero Legion => new AntiHero(this, "Legion")
+        {
+            CanBeVillainInTeamVsTeamMode = false
+        };
+        public IAntiHero Marrow => new AntiHero(this, "Marrow");
+        public IAntiHero Namor => new AntiHero(this, "Namor");
+        public IAntiHero EmmaFrost => new AntiHero(this, "Emma Frost");
+
+        public IVillain OmegaRed => new Villain(this, "Omega Red");
+        public IVillain Onslaugth => new Villain(this, "Onslaugth");
+        public IVillain Pyro => new Villain(this, "Pyro")
+        {
+            ExcludeFromRandomSelection = true,
+        };
+        public IVillain Sauron => new Villain(this, "Sauron");
+        public IVillain ShadowKing => new Villain(this, "Shadow King");
+        public IVillain SilverSamurai => new Villain(this, "Silver Samurai");
+        public IVillain Mastermind => new Villain(this, "Mastermind");
+        public IVillain Mojo => new Villain(this, "Mojo");
+        public IVillain Blob => new Villain(this, "Blob")
+        {
+            ExcludeFromRandomSelection = true,
+        };
+        public IVillain BroodQueen => new Villain(this, "Brood Queen");
+        public IVillain Callisto => new Villain(this, "Callisto");
+        public IVillain DarkPhoenix => new Villain(this, "Dark Phoenix")
+        {
+            CanBeVillainInTeamVsTeamMode = false
+        };
+        public IVillain LadyDeathstrike => new Villain(this, "Lady Deathstrike")
+        {
+            CanBeVillainInTeamVsTeamMode = false
+        };
+        public IVillain Deathbird => new Villain(this, "Deathbird");
+        public IVillain Arcade => new Villain(this, "Arcade");
+        public IVillain Avalance => new Villain(this, "Avalance");
+        public IVillain Toad => new Villain(this, "Toad")
+        {
+            ExcludeFromRandomSelection = true,
+        };
+        public IVillain ToadPyroAndBlob => new Villain(this, "Toad, Pyro & Blob")
+        {
+            SubVillains = new[]
+            {
+                Toad,
+                Pyro,
+                Blob
+            }
+        };
     }
 }

@@ -69,7 +69,7 @@ namespace UnitedGenerator.Data.Season2
         public IAntiHero Magneto => new AntiHero(this, "Magneto");
         public IAntiHero Mystique => new AntiHero(this, "Mystique")
         {
-            CanBeUsedInTeamVsTeamMode = false
+            CanBeVillainInTeamVsTeamMode = false
         };
 
         public ILocation XavierInstituteForHigherLearning => new Location(this, "Xavier Institute for Higher Learning");
