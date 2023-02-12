@@ -3,6 +3,10 @@
 
 <PageTitle>Data Review</PageTitle>
 
+<div class="alert alert-primary" role="alert">
+    This page is only intended for those who wants to know (or review) what data goes into the generation. Please report any errors you might find!
+</div>
+
 @foreach (var season in DataFactory.Seasons.OrderBy(x => x.Number))
 {
     <h1>Season @season.Number - @season.Name</h1>
