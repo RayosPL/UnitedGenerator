@@ -19,6 +19,7 @@ namespace UnitedGenerator.Data
         bool CanBeVillainInTeamVsTeamMode { get; }
         IVillain[] SubVillains { get; }
         IVillain[] PreGameCandidateVillains { get; }
+        IHero[] ExcludeHeroes { get; }
         AssignedLocation[] AssignedLocations { get; }
         IHeroGroupDefinition[] AdditionalHeroGroups { get; }
         string[] DataComments { get; }

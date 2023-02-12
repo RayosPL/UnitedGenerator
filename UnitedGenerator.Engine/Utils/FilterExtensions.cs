@@ -12,7 +12,9 @@ namespace UnitedGenerator.Engine.Utils
     {
         public static IHero[] Filter(this IEnumerable<IHero> items, IVillain villain, GenerationConfiguration config)
         {
-            var result = items.Where(x => x.Id != villain.Id);
+            var result = items
+                .Where(x => x.Id != villain.Id)
+                .Where(x => !villain.ExcludeHeroes.Contains(x));
 
             if (config.OnlyUseAntiHeroes)
             {

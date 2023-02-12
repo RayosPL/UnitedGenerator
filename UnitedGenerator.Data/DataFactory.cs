@@ -12,11 +12,11 @@ namespace UnitedGenerator.Data
     {
         public static ISeason[] Seasons => new ISeason[]
         {
-            Season1,
-            Season2
+            MarvelUnited,
+            XMen
         };
 
-        internal static MarvelUnitedSeason Season1 => new MarvelUnitedSeason();
-        internal static XMenSeason Season2 => new XMenSeason();
+        internal static MarvelUnitedSeason MarvelUnited => new MarvelUnitedSeason();
+        internal static XMenSeason XMen => new XMenSeason();
     }
 }

@@ -66,7 +66,7 @@ namespace UnitedGenerator.Data.Season1
                 EbonyMaw,
                 BlackDwarf,
                 ProximaMidnight,
-                DataFactory.Season1.KickstarterPromo.CorvusGlave
+                DataFactory.MarvelUnited.KickstarterPromo.CorvusGlave
             },
             DataComments = new[]
             {

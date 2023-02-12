@@ -21,6 +21,7 @@ namespace UnitedGenerator.Data.Common
             AssignedLocations = new AssignedLocation[0];
             AdditionalHeroGroups = new IHeroGroupDefinition[0];
             PreGameCandidateVillains = new IVillain[0];
+            ExcludeHeroes = new IHero[0];
             DataComments = new string[0];
         }
 
@@ -51,6 +52,8 @@ namespace UnitedGenerator.Data.Common
         public AssignedLocation[] AssignedLocations { get; init; }
 
         public IHeroGroupDefinition[] AdditionalHeroGroups { get; init; }
+
+        public IHero[] ExcludeHeroes { get; init; }
 
         public string[] DataComments { get; init; }
     }

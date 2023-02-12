@@ -77,7 +77,7 @@ namespace UnitedGenerator.Data.Season2
         {
             IncompatibleVillains = new[]
             {
-                DataFactory.Season1.CoreBox.Ultron
+                DataFactory.MarvelUnited.CoreBox.Ultron
             },
             DataComments = new[]
             {

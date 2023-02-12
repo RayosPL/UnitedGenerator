@@ -124,6 +124,19 @@
                             </li>
                         }
 
+                        @if (villain.ExcludeHeroes.Any())
+                        {
+                            <li>
+                                Excluded Heroes
+                                <ul>
+                                    @foreach (var sub in villain.ExcludeHeroes)
+                                    {
+                                        <li>@sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+
                         @if(villain.DataComments.Any())
                         {
                             <li>
@@ -241,6 +254,19 @@
                                                 @(assigned.Placement.HasValue ? $"[Placement {assigned.Placement}]" : "[Anywhere]")
                                                 (@assigned.Location.Box.Name - Season @assigned.Location.Season.Number)
                                             </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+
+                            @if (villain.ExcludeHeroes.Any())
+                            {
+                                <li>
+                                    Excluded Heroes
+                                    <ul>
+                                        @foreach (var sub in villain.ExcludeHeroes)
+                                        {
+                                            <li>@sub.Name (@sub.Box.Name - Season @sub.Season.Number)</li>
                                         }
                                     </ul>
                                 </li>
