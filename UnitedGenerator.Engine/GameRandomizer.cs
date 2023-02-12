@@ -30,7 +30,7 @@ namespace UnitedGenerator.Engine
                 {
                     return new[]
                     {
-                        GenerateVillainFight("Single Game", config, villain)
+                        GenerateVillainFight("Game", config, villain)
                     };
                 }
             }
