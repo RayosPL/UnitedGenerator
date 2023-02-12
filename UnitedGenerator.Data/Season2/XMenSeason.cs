@@ -22,7 +22,8 @@ namespace UnitedGenerator.Data.Season2
             DaysOfFuturePast,
             GoldTeam,
             BlueTeam,
-            KickstarterBonus
+            KickstarterBonus,
+            KickstarterPromos
         };
 
         public XMenCoreBox CoreBox => new XMenCoreBox(this);
@@ -34,5 +35,6 @@ namespace UnitedGenerator.Data.Season2
         public GoldTeamBox GoldTeam => new GoldTeamBox(this);
         public BlueTeamBox BlueTeam => new BlueTeamBox(this);
         public KickstarterBonusBox KickstarterBonus => new KickstarterBonusBox(this);
+        public KickstarterPromoBox KickstarterPromos => new KickstarterPromoBox(this);
     }
 }
