@@ -1,10 +1,12 @@
 ﻿<div class="form-check form-switch">
-    <input class="form-check-input" @bind="Value" type="checkbox" id="input-control" />
-    <label class="form-check-label" for="input-control">@Text</label>
+    <input class="form-check-input" @bind="Value" type="checkbox" id="@id" />
+    <label class="form-check-label" for="@id">@Text</label>
 </div>
 
 @code {
     private bool _value;
+
+    private string id = Guid.NewGuid().ToString();
 
     [Parameter]
     public string? Text { get; set; }

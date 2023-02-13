@@ -1,8 +1,8 @@
 ﻿<div class="row mb-3">
-    <label class="col-6 col-form-label" for="percentage-input">@Text</label>
+    <label class="col-6 col-form-label" for="@id">@Text</label>
     <div class="col-6">
         <div class="input-group">
-            <input min="0" max="100" type="number" class="form-control" style="text-align:right;" @bind="Value" id="percentage-input" />
+            <input min="0" max="100" type="number" class="form-control" style="text-align:right;" @bind="Value" id="@id" />
             <div class="input-group-append">
                 <span class="input-group-text">%</span>
             </div>
@@ -12,6 +12,8 @@
 
 @code {
     private int _value;
+
+    private string id = Guid.NewGuid().ToString();
 
     [Parameter]
     public string? Text { get; set; }
