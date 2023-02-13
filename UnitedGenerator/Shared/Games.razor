@@ -5,65 +5,52 @@
     <h1>@game.Title</h1>
 
     <h2>Villain</h2>
-    <div>@game.Villain.Name @(game.Villain.IsAntiHero ? "[Anti-Hero]" : "") (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
+    <div class="row">
 
-    @if (game.Villain.IsVillainTeam)
-    {
-        <ul>
+        @if (game.Villain.IsVillainTeam)
+        {
+            <BoxItemCard Item="game.Villain" Type="Villain Team" />
+
             @foreach (var villain in game.Villain.SubVillains)
             {
-                <li>@villain.Name @(villain.IsAntiHero ? "[Anti-Hero]" : "") (@villain.Box.Name - Season @villain.Season.Number)</li>
+                <BoxItemCard Item="villain" Type="Villain Team Member" />
             }
-        </ul>
-    }
+        }
+        else
+        {
+            <BoxItemCard Item="game.Villain" Type="Villain" />
+        }
 
-    <h3>Challenge</h3>
-    @if (game.Challenge != null)
-    {
-        <div>@game.Challenge.Name (@game.Challenge.Box.Name - Season @game.Challenge.Season.Number)</div>
-    }
-    else
-    {
-        <div>(None)</div>
-    }
+        @if (game.Challenge != null)
+        {
+            <BoxItemCard Item="game.Challenge" Type="Challenge" />
+        }
+    </div>
 
     @foreach (var group in game.HeroGroups)
     {
         <h2>@group.Name</h2>
 
-        @if (group.Team != null)
-        {
-            <div>Team: @group.Team.Name (@group.Team.TeamType)</div>
-        }
-
         <div class="row">
+            @if (group.Team != null)
+            {
+                <BoxItemCard Item="group.Team" Type="@group.Team.TeamType" />
+            }
+
             @foreach (var hero in group.Heroes)
             {
-                <div class="col-12 col-md-6 col-lg-4 col-xl-2">
-                    <div class="card text-white bg-primary m-1">
-                        <div class="card-body">
-                            <h5 class="card-title">@hero.Name</h5>
-                            <h6 class="card-subtitle mb-2">@hero.Box.Name</h6>
-                            @(hero.IsAntiHero ? "[Anti-Hero]" : "")
-                        </div>
-                    </div>
-                </div>
+                <BoxItemCard Item="hero" Type="Hero" />
             }
         </div>
     }
 
     <h2>Locations</h2>
-    <ol>
+    <div class="row">
         @foreach (var location in game.Locations)
         {
-            <li>
-                @location.Name
-                @(location.Hazardous ? "[Hazardous]" : "")
-                @(location.HasCustomRules ? "[Custom rules in rulebook]" : "")
-                (@location.Box.Name - Season @location.Season.Number)
-            </li>
+            <BoxItemCard Item="location" Type="Location" />
         }
-    </ol>
+    </div>
 }
 
 @code {

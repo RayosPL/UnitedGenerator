@@ -15,7 +15,6 @@ namespace UnitedGenerator.Data.Common
         }
 
         public bool Hazardous { get; init; }
-        public bool HasCustomRules { get; init; }
 
         public bool ExcludeFromRandomSelection { get; init; }
 

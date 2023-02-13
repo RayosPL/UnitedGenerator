@@ -10,6 +10,5 @@ namespace UnitedGenerator.Data
     {
         bool IncludeInRandomSelection { get; }
         bool Hazardous { get; }
-        bool HasCustomRules { get; }
     }
 }
