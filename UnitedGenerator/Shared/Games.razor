@@ -9,21 +9,21 @@
 
         @if (game.Villain.IsVillainTeam)
         {
-            <BoxItemCard Item="game.Villain" Type="Villain Team" CardClass="bg-dark text-white" />
+            <BoxItemCard Item="game.Villain"/>
 
             @foreach (var villain in game.Villain.SubVillains)
             {
-                <BoxItemCard Item="villain" Type="Villain Team Member" CardClass="bg-danger text-white" />
+                <BoxItemCard Item="villain" />
             }
         }
         else
         {
-            <BoxItemCard Item="game.Villain" Type="Villain" CardClass="bg-danger text-white" />
+            <BoxItemCard Item="game.Villain" />
         }
 
         @if (game.Challenge != null)
         {
-            <BoxItemCard Item="game.Challenge" Type="Challenge" CardClass="bg-warning" />
+            <BoxItemCard Item="game.Challenge" />
         }
     </div>
 
@@ -34,14 +34,12 @@
         <div class="row">
             @if (group.Team != null)
             {
-                <BoxItemCard Item="group.Team" Type="Team" CardClass="bg-info text-white">
-                    <div><span class="oi oi-info" aria-hidden="true"></span> @group.Team.TeamType</div>
-                </BoxItemCard>
+                <BoxItemCard Item="group.Team" />
             }
 
             @foreach (var hero in group.Heroes)
             {
-                <BoxItemCard Item="hero" Type="Hero" CardClass="bg-primary text-white" />
+                <BoxItemCard Item="hero" />
             }
         </div>
     }
@@ -50,7 +48,7 @@
     <div class="row">
         @foreach (var location in game.Locations)
         {
-            <BoxItemCard Item="location" Type="Location" CardClass="bg-light">
+            <BoxItemCard Item="location" >
                 @if(location.Hazardous)
                 {
                     <div><span class="oi oi-warning" aria-hidden="true"></span> Hazardous Location</div>

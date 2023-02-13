@@ -8,3 +8,24 @@
     This is not completed yet, please come back later!<br />
     For now everything from Season 1 & 2 is included!
 </div>
+
+@foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
+{
+    @foreach(var box in season.Boxes.OrderBy(x => x.Name))
+    {
+        <h1>Season @season.Number: @box.Name</h1>
+        <div class="row mb-5">
+
+            @foreach(var item in box.AllItems)
+            {
+                <BoxItemCard Item="item" ShowBoxInfo="false">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked disabled>
+                        <label class="form-check-label" for="inlineCheckbox1">Include in games</label>
+                    </div>
+                </BoxItemCard>
+            }
+
+        </div>
+    }
+}

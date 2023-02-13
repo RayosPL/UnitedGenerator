@@ -16,5 +16,7 @@ namespace UnitedGenerator.Data
         ILocation[] Locations { get; }
         IChallenge[] Challenges { get; }
         IHeroTeam[] Teams { get; }
+
+        IBoxItem[] AllItems { get; }
     }
 }

@@ -23,5 +23,22 @@ namespace UnitedGenerator.Data.Common
         public virtual ILocation[] Locations => new ILocation[0];
         public virtual IChallenge[] Challenges => new IChallenge[0];
         public virtual IHeroTeam[] Teams => new IHeroTeam[0];
+
+        public IBoxItem[] AllItems
+        {
+            get
+            {
+                var items = new List<IBoxItem>();
+
+                items.AddRange(Teams.OrderBy(x => x.Name));
+                items.AddRange(Heroes.OrderBy(x => x.Name));
+                items.AddRange(AntiHeroes.OrderBy(x => x.Name));
+                items.AddRange(Villains.OrderBy(x => !x.IsVillainTeam).ThenBy(x => x.Name));
+                items.AddRange(Challenges.OrderBy(x => x.Name));
+                items.AddRange(Locations.OrderBy(x => x.Name));
+
+                return items.ToArray();
+            }
+        }
     }
 }

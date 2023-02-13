@@ -2,26 +2,83 @@
 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
     <div class="card m-1 @CardClass">
         <div class="card-header">
-            @Type
+            @header
         </div>
         <div class="card-body">
             <h5 class="card-title">@Item?.Name</h5>
-            <h6 class="card-subtitle mb-2">@Item?.Box.Name, Season @Item?.Season.Number</h6>
+            @if (ShowBoxInfo)
+            {
+                <h6 class="card-subtitle mb-2">@Item?.Box.Name, Season @Item?.Season.Number</h6>
+            }
             @ChildContent
         </div>
     </div>
 </div>
 
-@code {
-    [Parameter]
-    public IBoxItem? Item { get; set; }
+@code 
+{
+    private IBoxItem? _item;
+
+    private string? header;
+
+    private string? CardClass { get; set; }
 
     [Parameter]
-    public string? Type { get; set; }
-
-    [Parameter]
-    public string? CardClass { get; set; }
+    public bool ShowBoxInfo { get; set; } = true;
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public IBoxItem? Item
+    {
+        get { return _item; }
+        set
+        {
+            _item = value;
+
+            if (value is IAntiHero)
+            {
+                header = "Anti Hero";
+                CardClass = "bg-success text-white";
+            }
+            else if(value is IHero)
+            {
+                header = "Hero";
+                CardClass = "bg-primary text-white";
+            }
+            else if (value is IVillain)
+            {
+                var villain = (IVillain)value;
+
+                if (villain.IsVillainTeam)
+                {
+                    header = "Villain Team";
+                    CardClass = "bg-dark text-white";
+                }
+                else
+                {
+                    header = "Villain";
+                    CardClass = "bg-danger text-white";
+                }
+            }
+            else if (value is ILocation)
+            {
+                header = "Location";
+                CardClass = "bg-light";
+            }
+            else if(value is IHeroTeam)
+            {
+                var team = (IHeroTeam)value;
+
+                header = $"Team ({team.TeamType})";
+                CardClass = "bg-info text-white";
+            }
+            else if (value is IChallenge)
+            {
+                header = "Challenge";
+                CardClass = "bg-warning";
+            }
+        }
+    }
 }
