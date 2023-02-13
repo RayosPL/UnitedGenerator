@@ -9,10 +9,12 @@
     This is a work-in-progress system, no effort has been put into the UI only into the data and generation logic.
 </div>
 
+<h4>Setup</h4>
 Number of Heroes: 
 <input @bind="playerCount" min="2" max="6" type="number" style="text-align:right;" />
-<br />
 
+
+<h4>Preferences</h4>
 Select Team Probability:
 <input @bind="selectTeamProbability" min="0" max="100" type="number" style="text-align:right;" />
 %
@@ -23,12 +25,29 @@ Select Challenge Probability:
 %
 <br />
 
-<button class="btn btn-primary" @onclick="GenerateGame">Generate Normal Game</button>
-<button class="btn btn-primary" @onclick="GenerateTeamVsTeamGame">Generate Team vs Team Game</button>
-<button class="btn btn-primary" @onclick="GenerateMultiVillainGame">Generate Multi Villain Game</button>
-<button class="btn btn-primary" @onclick="GeneratePreGameVillainGame">Generate Pre-Game Villain Game</button>
-<button class="btn btn-primary" @onclick="GenerateAntiHeroGame">Generate Anti-Hero Only Game</button>
-<button class="btn btn-primary" @onclick="GenerateGameWithHazardousChallenge">Generate Game with Hazardous Challenge</button>
+<fieldset>
+    <legend>Demo/Test Settings</legend>
+    
+    <input @bind="onlyUseTeamVillains" type="checkbox" id="teamVillains" />
+    <label for="teamVillains">Only include team villains</label>
+
+    <input @bind="onlyUsePreGameVillains" type="checkbox" id="preGameVillains" />
+    <label for="preGameVillains">Only include villains with multiple games</label>
+
+    <input @bind="onlyUseAntiHeroes" type="checkbox" id="onlyAntiheroes" />
+    <label for="onlyAntiheroes">Only include Anti Heroes</label>
+    
+    <input @bind="onlyUseHazardousChallenge" type="checkbox" id="onlyUseHazardousChallenge" />
+    <label for="onlyUseHazardousChallenge">Only use Hazardous Location Challenge</label>
+</fieldset>
+
+<button class="btn btn-primary" @onclick="() => GenerateGame(false)">Generate Normal Game</button>
+<button class="btn btn-primary" @onclick="() => GenerateGame(true)">Generate Team vs Team Game</button>
+
+@if(games.Length == 0 && generated)
+{
+    <div>No Data!</div>
+}
 
 @foreach(var game in games)
 {
@@ -92,56 +111,29 @@ Select Challenge Probability:
     private readonly GameRandomizer random = new GameRandomizer();
 
     private GameSetup[] games = new GameSetup[0];
+
     private int playerCount = 4;
     private int selectTeamProbability = 5;
     private int selectChallengeProbability = 20;
+    private bool onlyUseTeamVillains = false;
+    private bool onlyUsePreGameVillains = false;
+    private bool onlyUseAntiHeroes = false;
+    private bool onlyUseHazardousChallenge = false;
+    private bool generated = false;
 
-    private void GenerateGame()
+    private void GenerateGame(bool teamMode)
     {
         games = random.Generate(new GenerationConfiguration(playerCount)
             {
+                TeamVsTeamMode = teamMode,
                 SelectTeamProbability = selectTeamProbability,
-                SelectChallengeProbability = selectChallengeProbability
+                SelectChallengeProbability = selectChallengeProbability,
+                OnlyVillainTeams = onlyUseTeamVillains,
+                OnlyVillainsWithPreGames = onlyUsePreGameVillains,
+                OnlyUseAntiHeroes = onlyUseAntiHeroes,
+                OnlyHazardousLocationsChallenge = onlyUseHazardousChallenge
             });
-    }
 
-    private void GenerateTeamVsTeamGame()
-    {
-        games = random.Generate(new GenerationConfiguration(playerCount)
-            {
-                TeamVsTeamMode = true
-            });
-    }
-
-    private void GenerateMultiVillainGame()
-    {
-        games = random.Generate(new GenerationConfiguration(playerCount)
-            {
-                OnlyVillainTeams = true
-            });
-    }
-
-    private void GeneratePreGameVillainGame()
-    {
-        games = random.Generate(new GenerationConfiguration(playerCount)
-            {
-                OnlyVillainsWithPreGames = true
-            });
-    }
-
-    private void GenerateAntiHeroGame()
-    {
-        games = random.Generate(new GenerationConfiguration(playerCount)
-            {
-                OnlyUseAntiHeroes = true
-            });
-    }
-
-    private void GenerateGameWithHazardousChallenge()
-    {
-        games = random.Generate(new GenerationConfiguration(playerCount)
-            {
-                OnlyHazardousLocationsChallenge = true
-            });
+        generated = true;
     }
 }
