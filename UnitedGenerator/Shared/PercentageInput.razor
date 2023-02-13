@@ -1,8 +1,12 @@
-﻿<label for="percentage-input">@Text</label>
-<div class="input-group mb-3">
-    <input min="0" max="100" type="number" class="form-control" style="text-align:right;" @bind="Value" id="percentage-input" />
-    <div class="input-group-append">
-        <span class="input-group-text">%</span>
+﻿<div class="row mb-3">
+    <label class="col-6 col-form-label" for="percentage-input">@Text</label>
+    <div class="col-6">
+        <div class="input-group">
+            <input min="0" max="100" type="number" class="form-control" style="text-align:right;" @bind="Value" id="percentage-input" />
+            <div class="input-group-append">
+                <span class="input-group-text">%</span>
+            </div>
+        </div>
     </div>
 </div>
 
