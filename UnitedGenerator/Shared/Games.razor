@@ -1,0 +1,64 @@
+﻿@using UnitedGenerator.Engine.Models;
+
+@foreach (var game in CurrentGames)
+{
+    <h1>@game.Title</h1>
+
+    <h2>Villain</h2>
+    <div>@game.Villain.Name @(game.Villain.IsAntiHero ? "[Anti-Hero]" : "") (@game.Villain.Box.Name - Season @game.Villain.Season.Number)</div>
+
+    @if (game.Villain.IsVillainTeam)
+    {
+        <ul>
+            @foreach (var villain in game.Villain.SubVillains)
+            {
+                <li>@villain.Name @(villain.IsAntiHero ? "[Anti-Hero]" : "") (@villain.Box.Name - Season @villain.Season.Number)</li>
+            }
+        </ul>
+    }
+
+    <h3>Challenge</h3>
+    @if (game.Challenge != null)
+    {
+        <div>@game.Challenge.Name (@game.Challenge.Box.Name - Season @game.Challenge.Season.Number)</div>
+    }
+    else
+    {
+        <div>(None)</div>
+    }
+
+    @foreach (var group in game.HeroGroups)
+    {
+        <h2>@group.Name</h2>
+
+        @if (group.Team != null)
+        {
+            <div>Team: @group.Team.Name (@group.Team.TeamType)</div>
+        }
+
+        <ol>
+            @foreach (var hero in group.Heroes)
+            {
+                <li>@hero.Name @(hero.IsAntiHero ? "[Anti-Hero]" : "") (@hero.Box.Name - Season @hero.Season.Number)</li>
+            }
+        </ol>
+    }
+
+    <h2>Locations</h2>
+    <ol>
+        @foreach (var location in game.Locations)
+        {
+            <li>
+                @location.Name
+                @(location.Hazardous ? "[Hazardous]" : "")
+                @(location.HasCustomRules ? "[Custom rules in rulebook]" : "")
+                (@location.Box.Name - Season @location.Season.Number)
+            </li>
+        }
+    </ol>
+}
+
+@code {
+    [Parameter]
+    public GameSetup[] CurrentGames { get; set; } = new GameSetup[0];
+}
