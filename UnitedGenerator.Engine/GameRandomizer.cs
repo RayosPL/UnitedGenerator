@@ -94,11 +94,11 @@ namespace UnitedGenerator.Engine
             {
                 IHeroTeam? team1 = SelectTeam(config);
                 int size1 = config.PlayerCount / 2;
-                heroGroups.Add(new HeroGroupDefinition("Blue Team", size1, team1));
+                heroGroups.Add(new HeroGroupDefinition("Gold Team", size1, team1));
 
                 IHeroTeam? team2 = SelectTeam(config, team1);
                 int size2 = config.PlayerCount - size1;
-                heroGroups.Add(new HeroGroupDefinition("Gold Team", size2, team2));
+                heroGroups.Add(new HeroGroupDefinition("Blue Team", size2, team2));
             }
             else
             {
