@@ -19,25 +19,8 @@ Number of Heroes:
             <h5 class="card-title">Preferences</h5>
             <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different features to appear.</h6>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Select a Team Probability</span>
-                </div>
-                <input @bind="selectTeamProbability" min="0" max="100" type="number" class="form-control" style="text-align:right;" />
-                <div class="input-group-append">
-                    <span class="input-group-text">%</span>
-                </div>
-            </div>
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Select a Challenge Probability</span>
-                </div>
-                <input @bind="selectChallengeProbability" min="0" max="100" type="number" class="form-control" style="text-align:right;" />
-                <div class="input-group-append">
-                    <span class="input-group-text">%</span>
-                </div>
-            </div>
+            <PercentageInput Text="Select a Team Probability" @bind-Value="selectTeamProbability" />
+            <PercentageInput Text="Select a Challenge Probability" @bind-Value="selectChallengeProbability" />
         </div>
     </div>
 
