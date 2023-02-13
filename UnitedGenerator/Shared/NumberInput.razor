@@ -1,0 +1,42 @@
+﻿<div class="row mb-3">
+    <label class="col-6 col-form-label" for="number-input">@Text</label>
+    <div class="col-6">
+        <input min="@Min" max="@Max" type="number" class="form-control" style="text-align:right;" @bind="Value" id="number-input" />
+    </div>
+</div>
+
+@code {
+    private int _value;
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    public int Max { get; set; }
+
+    [Parameter]
+    public int Min { get; set; }
+
+    [Parameter]
+    public int Value 
+    { 
+        get
+        {
+            return _value;
+        }
+        set
+        {
+            value = Math.Min(value, Max);
+            value = Math.Max(value, Min);
+
+            if (_value == value)
+                return;
+
+            _value = value;
+            ValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<int> ValueChanged { get; set; }
+}

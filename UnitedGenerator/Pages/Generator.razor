@@ -10,44 +10,48 @@
     Effort han mainly been put into the data and generation logic.
 </div>
 
-<h4>Setup</h4>
-Number of Heroes: 
-<input @bind="playerCount" min="2" max="6" type="number" style="text-align:right;" />
+@if (!generated)
+{
+    <div class ="col-12 col-xl-6">
+        <h4>Setup</h4>
+        <NumberInput Text="Number of Heroes" Min="2" Max="6" @bind-Value="playerCount" />
+    </div>
 
-<div class="row">
-    <div class="card col-12 col-xl-6">
-        <div class="card-body">
-            <h5 class="card-title">Preferences</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different events to happen.</h6>
+    <div class="row">
+        <div class="mb-2">
+            <div class="card col-12 col-xl-6">
+                <div class="card-body">
+                    <h5 class="card-title">Preferences</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different events to happen.</h6>
 
-            <PercentageInput Text="Select a Hero Team" @bind-Value="selectTeamProbability" />
-            <PercentageInput Text="Select a Challenge" @bind-Value="selectChallengeProbability" />
+                    <PercentageInput Text="Select a Hero Team" @bind-Value="selectTeamProbability" />
+                    <PercentageInput Text="Select a Challenge" @bind-Value="selectChallengeProbability" />
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <div class="card col-12 col-xl-6">
+                <div class="card-body">
+                    <h5 class="card-title">Demo/Test Settings</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
+
+                    <BooleanInput Text="Only include Villain Teams" @bind-Value="onlyUseTeamVillains" />
+                    <BooleanInput Text="Only include Villains with multiple games" @bind-Value="onlyUsePreGameVillains" />
+                    <BooleanInput Text="Only include Anti Heroes" @bind-Value="onlyUseAntiHeroes" />
+                    <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="onlyUseHazardousChallenge" />
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="card col-12 col-xl-6">
-        <div class="card-body">
-            <h5 class="card-title">Demo/Test Settings</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
-
-            <BooleanInput Text="Only include Villain Teams" @bind-Value="onlyUseTeamVillains" />
-            <BooleanInput Text="Only include Villains with multiple games" @bind-Value="onlyUsePreGameVillains" />
-            <BooleanInput Text="Only include Anti Heroes" @bind-Value="onlyUseAntiHeroes" />
-            <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="onlyUseHazardousChallenge" />
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button class="btn btn-primary" @onclick="() => GenerateGame(false)">Generate Normal Game</button>
-        <button class="btn btn-primary" @onclick="() => GenerateGame(true)">Generate Team vs Team Game</button>
-    </div>
-</div>
+    <button class="btn btn-primary m-2" @onclick="() => GenerateGame(false)">Generate Normal Game</button>
+    <button class="btn btn-primary m-2" @onclick="() => GenerateGame(true)">Generate Team vs Team Game</button>
+}
 
 @if(games.Length == 0 && generated)
 {
-    <div>No Data!</div>
+    <div>No possible game, please change your options and try again!</div>
 }
 
 @foreach(var game in games)
@@ -108,6 +112,11 @@ Number of Heroes:
     </ol>
 }
 
+@if(generated)
+{
+    <button class="btn btn-primary m-2" @onclick="Reset">Generate New Game</button>
+}
+
 @code {
     private readonly GameRandomizer random = new GameRandomizer();
 
@@ -136,5 +145,11 @@ Number of Heroes:
             });
 
         generated = true;
+    }
+
+    private void Reset()
+    {
+        games = new GameSetup[0];
+        generated = false;
     }
 }
