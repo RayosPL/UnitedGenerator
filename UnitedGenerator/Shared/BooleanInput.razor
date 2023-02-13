@@ -1,0 +1,31 @@
+﻿<div class="form-check form-switch">
+    <input class="form-check-input" @bind="Value" type="checkbox" id="input-control" />
+    <label class="form-check-label" for="input-control">@Text</label>
+</div>
+
+@code {
+    private bool _value;
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    public bool Value 
+    { 
+        get
+        {
+            return _value;
+        }
+        set
+        {
+            if (_value == value)
+                return;
+
+            _value = value;
+            ValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<bool> ValueChanged { get; set; }
+}

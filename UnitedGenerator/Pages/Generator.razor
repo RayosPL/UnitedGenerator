@@ -30,25 +30,10 @@ Number of Heroes:
             <h5 class="card-title">Demo/Test Settings</h5>
             <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
 
-            <div class="form-check form-switch">
-                <input class="form-check-input" @bind="onlyUseTeamVillains" type="checkbox" id="teamVillains" />
-                <label class="form-check-label" for="teamVillains">Only include team villains</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" @bind="onlyUsePreGameVillains" type="checkbox" id="preGameVillains" />
-                <label class="form-check-label" for="preGameVillains">Only include villains with multiple games</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" @bind="onlyUseAntiHeroes" type="checkbox" id="onlyAntiheroes" />
-                <label class="form-check-label" for="onlyAntiheroes">Only include Anti Heroes</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" @bind="onlyUseHazardousChallenge" type="checkbox" id="onlyUseHazardousChallenge" />
-                <label class="form-check-label" for="onlyUseHazardousChallenge">Only use Hazardous Location Challenge</label>
-            </div>
+            <BooleanInput Text="Only include Villain Teams" @bind-Value="onlyUseTeamVillains" />
+            <BooleanInput Text="Only include Villains with multiple games" @bind-Value="onlyUsePreGameVillains" />
+            <BooleanInput Text="Only include Anti Heroes" @bind-Value="onlyUseAntiHeroes" />
+            <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="onlyUseHazardousChallenge" />
         </div>
     </div>
 </div>
