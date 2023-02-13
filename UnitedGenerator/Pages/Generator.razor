@@ -13,57 +13,68 @@
 Number of Heroes: 
 <input @bind="playerCount" min="2" max="6" type="number" style="text-align:right;" />
 
-<div class="card col-6">
-    <div class="card-body">
-        <h5 class="card-title">Preferences</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different features to appear.</h6>
+<div class="row">
+    <div class="card col-12 col-xl-6">
+        <div class="card-body">
+            <h5 class="card-title">Preferences</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different features to appear.</h6>
 
-        <form>
-          <div class="form-group row">
-                <label for="selectTeamProbability" class="col-sm-8 col-form-label">Select Team Probability (%)</label>
-                <div class="col-sm-4">
-                    <input @bind="selectTeamProbability" class="form-control" min="0" max="100" type="number" style="text-align:right;" id="selectTeamProbability" />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Select a Team Probability</span>
                 </div>
+                <input @bind="selectTeamProbability" min="0" max="100" type="number" class="form-control" style="text-align:right;" />
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
 
-                <label for="selectChallengeProbability" class="col-sm-8 col-form-label">Select Challenge Probability (%)</label>
-                <div class="col-sm-4 align-content-end">
-                    <input @bind="selectChallengeProbability" class="form-control" min="0" max="100" type="number" style="text-align:right;" id="selectChallengeProbability" />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Select a Challenge Probability</span>
                 </div>
-           </div>
-        </form>
+                <input @bind="selectChallengeProbability" min="0" max="100" type="number" class="form-control" style="text-align:right;" />
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-12 col-xl-6">
+        <div class="card-body">
+            <h5 class="card-title">Demo/Test Settings</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" @bind="onlyUseTeamVillains" type="checkbox" id="teamVillains" />
+                <label class="form-check-label" for="teamVillains">Only include team villains</label>
+            </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" @bind="onlyUsePreGameVillains" type="checkbox" id="preGameVillains" />
+                <label class="form-check-label" for="preGameVillains">Only include villains with multiple games</label>
+            </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" @bind="onlyUseAntiHeroes" type="checkbox" id="onlyAntiheroes" />
+                <label class="form-check-label" for="onlyAntiheroes">Only include Anti Heroes</label>
+            </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" @bind="onlyUseHazardousChallenge" type="checkbox" id="onlyUseHazardousChallenge" />
+                <label class="form-check-label" for="onlyUseHazardousChallenge">Only use Hazardous Location Challenge</label>
+            </div>
+        </div>
     </div>
 </div>
 
-
-<div class="card col-6">
-    <div class="card-body">
-        <h5 class="card-title">Demo/Test Settings</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" @bind="onlyUseTeamVillains" type="checkbox" id="teamVillains" />
-            <label class="form-check-label" for="teamVillains">Only include team villains</label>
-        </div>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" @bind="onlyUsePreGameVillains" type="checkbox" id="preGameVillains" />
-            <label class="form-check-label" for="preGameVillains">Only include villains with multiple games</label>
-        </div>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" @bind="onlyUseAntiHeroes" type="checkbox" id="onlyAntiheroes" />
-            <label class="form-check-label" for="onlyAntiheroes">Only include Anti Heroes</label>
-        </div>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" @bind="onlyUseHazardousChallenge" type="checkbox" id="onlyUseHazardousChallenge" />
-            <label class="form-check-label" for="onlyUseHazardousChallenge">Only use Hazardous Location Challenge</label>
-        </div>
+<div class="row">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button class="btn btn-primary" @onclick="() => GenerateGame(false)">Generate Normal Game</button>
+        <button class="btn btn-primary" @onclick="() => GenerateGame(true)">Generate Team vs Team Game</button>
     </div>
 </div>
-
-<button class="btn btn-primary" @onclick="() => GenerateGame(false)">Generate Normal Game</button>
-<button class="btn btn-primary" @onclick="() => GenerateGame(true)">Generate Team vs Team Game</button>
 
 @if(games.Length == 0 && generated)
 {
