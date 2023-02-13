@@ -36,12 +36,20 @@
             <div>Team: @group.Team.Name (@group.Team.TeamType)</div>
         }
 
-        <ol>
+        <div class="row">
             @foreach (var hero in group.Heroes)
             {
-                <li>@hero.Name @(hero.IsAntiHero ? "[Anti-Hero]" : "") (@hero.Box.Name - Season @hero.Season.Number)</li>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+                    <div class="card text-white bg-primary m-1">
+                        <div class="card-body">
+                            <h5 class="card-title">@hero.Name</h5>
+                            <h6 class="card-subtitle mb-2">@hero.Box.Name</h6>
+                            @(hero.IsAntiHero ? "[Anti-Hero]" : "")
+                        </div>
+                    </div>
+                </div>
             }
-        </ol>
+        </div>
     }
 
     <h2>Locations</h2>
