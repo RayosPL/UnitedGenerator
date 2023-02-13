@@ -1,11 +1,6 @@
-﻿<div class="input-group mb-3">
-
-    <div class="input-group-prepend">
-        <span class="input-group-text">@Text</span>
-    </div>
-
-    <input min="0" max="100" type="number" class="form-control" style="text-align:right;" @bind="Value" />
-    
+﻿<label for="percentage-input">@Text</label>
+<div class="input-group mb-3">
+    <input min="0" max="100" type="number" class="form-control" style="text-align:right;" @bind="Value" id="percentage-input" />
     <div class="input-group-append">
         <span class="input-group-text">%</span>
     </div>
