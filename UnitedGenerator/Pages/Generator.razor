@@ -13,17 +13,27 @@
 Number of Heroes: 
 <input @bind="playerCount" min="2" max="6" type="number" style="text-align:right;" />
 
+<div class="card col-6">
+    <div class="card-body">
+        <h5 class="card-title">Preferences</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different features to appear.</h6>
 
-<h4>Preferences</h4>
-Select Team Probability:
-<input @bind="selectTeamProbability" min="0" max="100" type="number" style="text-align:right;" />
-%
-<br />
+        <form>
+          <div class="form-group row">
+                <label for="selectTeamProbability" class="col-sm-8 col-form-label">Select Team Probability (%)</label>
+                <div class="col-sm-4">
+                    <input @bind="selectTeamProbability" class="form-control" min="0" max="100" type="number" style="text-align:right;" id="selectTeamProbability" />
+                </div>
 
-Select Challenge Probability:
-<input @bind="selectChallengeProbability" min="0" max="100" type="number" style="text-align:right;" />
-%
-<br />
+                <label for="selectChallengeProbability" class="col-sm-8 col-form-label">Select Challenge Probability (%)</label>
+                <div class="col-sm-4 align-content-end">
+                    <input @bind="selectChallengeProbability" class="form-control" min="0" max="100" type="number" style="text-align:right;" id="selectChallengeProbability" />
+                </div>
+           </div>
+        </form>
+    </div>
+</div>
+
 
 <div class="card col-6">
     <div class="card-body">
