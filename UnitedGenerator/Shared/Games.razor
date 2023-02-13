@@ -9,21 +9,21 @@
 
         @if (game.Villain.IsVillainTeam)
         {
-            <BoxItemCard Item="game.Villain" Type="Villain Team" />
+            <BoxItemCard Item="game.Villain" Type="Villain Team" CardClass="bg-dark text-white" />
 
             @foreach (var villain in game.Villain.SubVillains)
             {
-                <BoxItemCard Item="villain" Type="Villain Team Member" />
+                <BoxItemCard Item="villain" Type="Villain Team Member" CardClass="bg-danger text-white" />
             }
         }
         else
         {
-            <BoxItemCard Item="game.Villain" Type="Villain" />
+            <BoxItemCard Item="game.Villain" Type="Villain" CardClass="bg-danger text-white" />
         }
 
         @if (game.Challenge != null)
         {
-            <BoxItemCard Item="game.Challenge" Type="Challenge" />
+            <BoxItemCard Item="game.Challenge" Type="Challenge" CardClass="bg-warning" />
         }
     </div>
 
@@ -34,12 +34,14 @@
         <div class="row">
             @if (group.Team != null)
             {
-                <BoxItemCard Item="group.Team" Type="@group.Team.TeamType" />
+                <BoxItemCard Item="group.Team" Type="Team" CardClass="bg-info text-white">
+                    <div><span class="oi oi-info" aria-hidden="true"></span> @group.Team.TeamType</div>
+                </BoxItemCard>
             }
 
             @foreach (var hero in group.Heroes)
             {
-                <BoxItemCard Item="hero" Type="Hero" />
+                <BoxItemCard Item="hero" Type="Hero" CardClass="bg-primary text-white" />
             }
         </div>
     }
@@ -48,7 +50,12 @@
     <div class="row">
         @foreach (var location in game.Locations)
         {
-            <BoxItemCard Item="location" Type="Location" />
+            <BoxItemCard Item="location" Type="Location" CardClass="bg-light">
+                @if(location.Hazardous)
+                {
+                    <div><span class="oi oi-warning" aria-hidden="true"></span> Hazardous Location</div>
+                }
+            </BoxItemCard>
         }
     </div>
 }
