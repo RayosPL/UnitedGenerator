@@ -18,12 +18,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: UpdateVersion
-        uses: datamonsters/replace-action@v2
-        id: sub
-        with: enter code here
-          files: 'UnitedGenerator/wwwroot/service-worker.published.js'
-          replacements: '%%CACHE_VERSION%%=${{ github.run_id }}'
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
