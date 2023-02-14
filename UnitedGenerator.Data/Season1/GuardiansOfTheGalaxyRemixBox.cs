@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using UnitedGenerator.Common;
 using UnitedGenerator.Data.Common;
 
 namespace UnitedGenerator.Data.Season1

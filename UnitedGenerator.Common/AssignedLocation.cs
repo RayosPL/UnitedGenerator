@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitedGenerator.Data
+namespace UnitedGenerator.Common
 {
     public class AssignedLocation
     {
         public AssignedLocation(ILocation location, int placement)
         {
             Location = location;
-            Placement = placement;  
+            Placement = placement;
         }
 
         public AssignedLocation(ILocation location)

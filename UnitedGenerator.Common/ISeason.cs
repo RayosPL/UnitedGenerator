@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitedGenerator.Data
+namespace UnitedGenerator.Common
 {
-    public interface ISeason 
+    public interface ISeason
     {
         int Number { get; }
         string Name { get; }
