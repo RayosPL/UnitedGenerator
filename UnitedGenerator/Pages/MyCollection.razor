@@ -1,5 +1,6 @@
 ﻿@page "/collection"
 @using UnitedGenerator.Data;
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 <PageTitle>My Collection</PageTitle>
 
@@ -29,4 +30,9 @@
 
 @code
 {
+    //protected override async Task OnInitializedAsync()
+    //{
+        //await localStorage.SetItemAsync("name", "John Smith");
+        //var name = await localStorage.GetItemAsync<string>("name");
+    //}
 }
