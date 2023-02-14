@@ -1,28 +1,46 @@
 ﻿@page "/collection"
 @using UnitedGenerator.Data;
+@using UnitedGenerator.Common;
+@inject MyCollectionService myCollection;
 
 <PageTitle>My Collection</PageTitle>
 
-<div class="alert alert-danger" role="alert">
-    This is where you can select what components you have or want to include in the generation.<br />
-    This is not completed yet, please come back later!<br />
-    For now everything from Season 1 & 2 is included!
+<div class="row">
+
+    <div class="alert alert-primary" role="alert">
+        This is where you can select what components you have or want to include in the game generation.
+    </div>
+
+    @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
+    {
+        @foreach(var box in season.Boxes.OrderBy(x => x.Name))
+        {
+            <h1>Season @season.Number: @box.Name</h1>
+
+            <div class="btn-group btn-group-lg mb-2 col-auto" role="group" aria-label="Basic example">
+                <button class="btn btn-success" @onclick="() => SetState(box, true)">Include entire box</button>
+                <button class="btn btn-danger" @onclick="() => SetState(box, false)">Exclude entire box</button>
+            </div>
+
+            <div class="row mb-5">
+
+                @foreach(var item in box.AllItems)
+                {
+                    <BoxItemCard Item="item" ShowBoxInfo="false">
+                        <MyCollectionBoxItem Item="item" />
+                    </BoxItemCard>
+                }
+
+            </div>
+        }
+    }
+
 </div>
 
-@foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
+@code
 {
-    @foreach(var box in season.Boxes.OrderBy(x => x.Name))
+    private void SetState(IBox box, bool include)
     {
-        <h1>Season @season.Number: @box.Name</h1>
-        <div class="row mb-5">
-
-            @foreach(var item in box.AllItems)
-            {
-                <BoxItemCard Item="item" ShowBoxInfo="false">
-                    <MyCollectionBoxItem Item="item" />
-                </BoxItemCard>
-            }
-
-        </div>
+        myCollection.SetAll(box, include);
     }
 }

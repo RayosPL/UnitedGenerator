@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using System;
 using System.Collections.Generic;
 using UnitedGenerator.Common;
 using UnitedGenerator.Engine;
@@ -14,9 +15,24 @@ namespace UnitedGenerator
             _storage = storage;
         }
 
+        public void SetAll(IBox box, bool included)
+        {
+            foreach (var item in box.AllItems)
+            {
+                SetIncluded(item, included);
+            }
+        }
+
         public void SetIncluded(IBoxItem item, bool included)
         {
-            _storage.SetItem(item.Id, included);
+            if (included)
+            {
+                _storage.RemoveItem(item.Id);
+            }
+            else
+            {
+                _storage.SetItem(item.Id, included);
+            }
         }
 
         public bool IsIncluded(IBoxItem item)

@@ -9,11 +9,16 @@
 
     private bool included;
 
-    protected override void OnInitialized()
+    protected override void OnAfterRender(bool firstRender)
     {
         if (Item != null)
         {
-            included = myCollection.IsIncluded(Item);
+            var value = myCollection.IsIncluded(Item);
+            if(value != included)
+            {
+                included = value;
+                StateHasChanged();
+            }
         }
     }
 
