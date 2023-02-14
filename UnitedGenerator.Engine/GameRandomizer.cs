@@ -11,7 +11,12 @@ namespace UnitedGenerator.Engine
 {
     public class GameRandomizer
     {
-        private DataService _data = new DataService();
+        private DataService _data;
+
+        public GameRandomizer(ISeason[] seasons)
+        {
+            _data = new DataService(seasons);
+        }
 
         public GameSetup[] Generate(GenerationConfiguration config)
         {

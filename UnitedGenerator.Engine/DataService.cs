@@ -9,7 +9,12 @@ namespace UnitedGenerator.Engine
 {
     internal class DataService
     {
-        public ISeason[] Seasons => DataFactory.Seasons;
+        public DataService(ISeason[] seasons) 
+        {
+            Seasons = seasons;
+        }
+
+        public ISeason[] Seasons { get; }
 
         public IBox[] Boxes => Seasons.SelectMany(x => x.Boxes).ToArray();
 

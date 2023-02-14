@@ -62,7 +62,7 @@
 }
 
 @code {
-    private readonly GameRandomizer random = new GameRandomizer();
+    private readonly GameRandomizer random = new GameRandomizer(DataFactory.Seasons);
 
     private GameSetup[] games = new GameSetup[0];
 
