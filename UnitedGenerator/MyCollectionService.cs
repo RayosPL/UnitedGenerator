@@ -7,28 +7,26 @@ namespace UnitedGenerator
 {
     public class MyCollectionService : IBoxItemFilter
     {
-        private static Dictionary<string, bool> state = new Dictionary<string, bool>();
+        private readonly ISyncLocalStorageService _storage;
 
         public MyCollectionService(ISyncLocalStorageService storage)
         {
+            _storage = storage;
         }
 
         public void SetIncluded(IBoxItem item, bool included)
         {
-            state[item.Id] = included;
+            _storage.SetItem(item.Id, included);
         }
 
         public bool IsIncluded(IBoxItem item)
         {
-            bool included;
-
-            if(!state.TryGetValue(item.Id, out included))
+            if (_storage.ContainKey(item.Id))
             {
-                included = true;
-                state[item.Id] = included;
+                return _storage.GetItem<bool>(item.Id);
             }
 
-            return included;
+            return true;
         }
     }
 }
