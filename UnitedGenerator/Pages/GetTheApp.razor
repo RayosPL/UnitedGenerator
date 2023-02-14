@@ -1,4 +1,6 @@
 ﻿@page "/app"
+@using System.Reflection;
+@using System.IO;
 @using UnitedGenerator.Data;
 
 <PageTitle>Get the App</PageTitle>
@@ -16,7 +18,7 @@
     <p>When using desktop Chromium-based browsers, such as Edge or Chrome, an Add button appears within the URL bar. 
     After you click the Add button, you will receive a confirmation dialog:</p>
 
-    <img src="/images/site/chromeinstall.jpg" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
+    <img src="@imageDataURL" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
     
     <h3>IOS</h3>
     <p>On iOS, you can install the PWA using Safari's Share button and its Add to Homescreen option.</p> 
@@ -29,3 +31,20 @@
     <img src="/images/site/androidinstall.jpg" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
 
 </div>
+
+@code{
+    private string imageDataURL
+    {
+        get 
+        {
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            using Stream? myStream = myAssembly.GetManifestResourceStream("UnitedGenerator.wwwroot.images.site.ChromeInstall.jpg");
+
+            using MemoryStream r = new MemoryStream();
+            myStream.CopyTo(r);
+
+            string imagesrc = Convert.ToBase64String(r.ToArray());
+            return string.Format("data:image/jpeg;base64,{0}", imagesrc);
+        }
+    }
+}

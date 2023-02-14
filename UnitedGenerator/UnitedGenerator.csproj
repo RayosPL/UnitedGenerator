@@ -10,6 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\site\ChromeInstall.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\images\site\ChromeInstall.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.13" PrivateAssets="all" />
   </ItemGroup>
@@ -25,9 +35,6 @@
 
   <ItemGroup>
     <Content Update="wwwroot\images\site\AndroidInstall.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\images\site\ChromeInstall.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\images\site\IosInstall.jpg">
