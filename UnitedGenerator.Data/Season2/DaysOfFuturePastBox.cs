@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class DaysOfFuturePastBox : BoxBase
     {
-        public DaysOfFuturePastBox(ISeason season) : base(season)
+        public DaysOfFuturePastBox(ISeason season) : base(season, "DaysOfFuturePast")
         {
         }
 

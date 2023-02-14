@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class XForceBox : BoxBase
     {
-        public XForceBox(ISeason season) : base(season)
+        public XForceBox(ISeason season) : base(season, "XForce")
         {
         }
 

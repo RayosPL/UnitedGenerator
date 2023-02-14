@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season1
 {
     internal class TheInfinityGauntletBox : BoxBase
     {
-        public TheInfinityGauntletBox(ISeason season) : base(season)
+        public TheInfinityGauntletBox(ISeason season) : base(season, "InfinityGauntlet")
         {
         }
 

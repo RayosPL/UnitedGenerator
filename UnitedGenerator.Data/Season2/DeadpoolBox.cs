@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class DeadpoolBox : BoxBase
     {
-        public DeadpoolBox(ISeason season) : base(season)
+        public DeadpoolBox(ISeason season) : base(season, "Deadpool")
         {
         }
 

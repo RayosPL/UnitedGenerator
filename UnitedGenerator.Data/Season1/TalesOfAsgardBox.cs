@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season1
 {
     internal class TalesOfAsgardBox : BoxBase
     {
-        public TalesOfAsgardBox(ISeason season) : base(season)
+        public TalesOfAsgardBox(ISeason season) : base(season, "Asgard")
         {
         }
 

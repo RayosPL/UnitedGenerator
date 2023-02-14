@@ -11,7 +11,7 @@ namespace UnitedGenerator.Data.Season1
 {
     internal class GuardiansOfTheGalaxyRemixBox : BoxBase
     {
-        public GuardiansOfTheGalaxyRemixBox(ISeason season) : base(season)
+        public GuardiansOfTheGalaxyRemixBox(ISeason season) : base(season, "Guardians")
         {
         }
 

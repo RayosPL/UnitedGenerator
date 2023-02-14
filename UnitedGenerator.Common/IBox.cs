@@ -9,6 +9,7 @@ namespace UnitedGenerator.Common
     public interface IBox
     {
         string Name { get; }
+        string Id { get; }
         ISeason Season { get; }
         IHero[] Heroes { get; }
         IVillain[] Villains { get; }

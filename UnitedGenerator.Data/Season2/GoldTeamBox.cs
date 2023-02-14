@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class GoldTeamBox : BoxBase
     {
-        public GoldTeamBox(ISeason season) : base(season)
+        public GoldTeamBox(ISeason season) : base(season, "GoldTeam")
         {
         }
 

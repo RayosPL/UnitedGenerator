@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season1
 {
     internal class EnterTheSpiderVerseBox : BoxBase
     {
-        public EnterTheSpiderVerseBox(ISeason season) : base(season)
+        public EnterTheSpiderVerseBox(ISeason season) : base(season, "SpiderVerse")
         {
         }
 

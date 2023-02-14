@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class XMenCoreBox : BoxBase
     {
-        public XMenCoreBox(ISeason season) : base(season)
+        public XMenCoreBox(ISeason season) : base(season, "XMenCore")
         {
         }
 

@@ -11,7 +11,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class PhoenixFiveBox : BoxBase
     {
-        public PhoenixFiveBox(ISeason season) : base(season)
+        public PhoenixFiveBox(ISeason season) : base(season, "PhoenixFive")
         {
         }
 

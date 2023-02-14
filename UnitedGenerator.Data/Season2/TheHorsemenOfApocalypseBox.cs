@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class TheHorsemenOfApocalypseBox : BoxBase
     {
-        public TheHorsemenOfApocalypseBox(ISeason season) : base(season)
+        public TheHorsemenOfApocalypseBox(ISeason season) : base(season, "Apocalypse")
         {
         }
 

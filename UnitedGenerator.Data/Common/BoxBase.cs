@@ -9,12 +9,15 @@ namespace UnitedGenerator.Data.Common
 {
     internal abstract class BoxBase : IBox
     {
-        protected BoxBase(ISeason season)
+        protected BoxBase(ISeason season, string code)
         {
             Season = season;
+            Id = $"S{season.Number}.{code}";
         }
 
         public abstract string Name { get; }
+
+        public string Id { get; }
 
         public ISeason Season { get; }
 

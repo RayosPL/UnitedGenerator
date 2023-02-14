@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class FantasticFourBox : BoxBase
     {
-        public FantasticFourBox(ISeason season) : base(season)
+        public FantasticFourBox(ISeason season) : base(season, "FantasticFour")
         {
         }
 

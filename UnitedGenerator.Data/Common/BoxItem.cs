@@ -13,15 +13,16 @@ namespace UnitedGenerator.Data.Common
         {
             Name = name;
             Box = box;
+            Id = $"{Box.Id}.{TextOnly(Name)}";
         }
 
         public string Name { get; }
 
         public IBox Box { get; }
 
-        public ISeason Season => Box.Season;
+        public string Id { get; }
 
-        public string Id => $"{Season.Name}.{Box.Name}.{Name}";
+        public ISeason Season => Box.Season;
 
         public override bool Equals(object? obj)
         {
@@ -40,6 +41,11 @@ namespace UnitedGenerator.Data.Common
         public override string ToString()
         {
             return Id;
+        }
+
+        private string TextOnly(string text)
+        {
+            return new string(text.Where(x => char.IsLetterOrDigit(x)).ToArray());
         }
     }
 }

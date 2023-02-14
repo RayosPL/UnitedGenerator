@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season1
 {
     internal class RiseOfTheBlackPantherBox : BoxBase
     {
-        public RiseOfTheBlackPantherBox(ISeason season) : base(season)
+        public RiseOfTheBlackPantherBox(ISeason season) : base(season, "BlackPanther")
         {
         }
 

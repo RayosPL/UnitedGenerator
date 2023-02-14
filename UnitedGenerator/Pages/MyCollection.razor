@@ -19,7 +19,7 @@
             @foreach(var item in box.AllItems)
             {
                 <BoxItemCard Item="item" ShowBoxInfo="false">
-                    @*<BooleanInput Text="Include in Games" />*@
+                    <MyCollectionBoxItem Item="item" />
                 </BoxItemCard>
             }
 

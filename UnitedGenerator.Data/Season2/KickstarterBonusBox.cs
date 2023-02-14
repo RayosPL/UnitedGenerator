@@ -10,7 +10,7 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class KickstarterBonusBox : BoxBase
     {
-        public KickstarterBonusBox(ISeason season) : base(season)
+        public KickstarterBonusBox(ISeason season) : base(season, "PledgeBonus")
         {
         }
 
