@@ -12,9 +12,17 @@
     </div>
 
     <div class="btn-group btn-group-lg mb-2 col-auto" role="group" aria-label="Basic example">
-        <button class="btn btn-success" @onclick="() => SetGlobalState(true)">Include all boxes</button>
-        <button class="btn btn-danger" @onclick="() => SetGlobalState(false)">Exclude all boxes</button>
+        <button class="btn btn-success" @onclick="() => SetGlobalState(true)">Include EVERYTHING</button>
+        <button class="btn btn-danger" @onclick="() => SetGlobalState(false)">Exclude EVERYTHING</button>
     </div>
+
+    @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
+    {
+        <div class="btn-group btn-group-lg mb-2 col-auto" role="group" aria-label="Basic example">
+            <button class="btn btn-success" @onclick="() => SetState(season, true)">Include all of Season @season.Number</button>
+            <button class="btn btn-danger" @onclick="() => SetState(season, false)">Exclude all of Season @season.Number</button>
+        </div>
+    }
 
     @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
     {
@@ -49,14 +57,19 @@
         myCollection.SetIncluded(box, include);
     }
 
+    private void SetState(ISeason season, bool include)
+    {
+        foreach (var box in season.Boxes.OrderBy(x => x.Name))
+        {
+            SetState(box, include);
+        }
+    }
+
     private void SetGlobalState(bool include)
     {
         foreach (var season in DataFactory.Seasons.OrderBy(x => x.Number))
         {
-            foreach (var box in season.Boxes.OrderBy(x => x.Name))
-            {
-                myCollection.SetIncluded(box, include);
-            }
+            SetState(season, include);
         }
     }
 }
