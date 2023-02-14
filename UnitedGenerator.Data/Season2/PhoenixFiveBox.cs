@@ -51,7 +51,11 @@ namespace UnitedGenerator.Data.Season2
         public IVillain Magik => new Villain(this, "Magik")
         {
             ExcludeHeroes = ExcludedHeroes,
-            DataComments = DataComment
+            DataComments = DataComment,
+            AdditionalHeroGroups = new[] 
+            { 
+                new BackupHeroes() 
+            }
         };
         public IVillain Namor => new Villain(this, "Namor")
         {
@@ -87,5 +91,17 @@ namespace UnitedGenerator.Data.Season2
         {
             "For simplicity all of the Phoenix Five hero versions, are always excluded."
         };
+
+        private class BackupHeroes : IHeroGroupDefinition
+        {
+            public string GroupName => "Backup Heroes";
+
+            public string Description => "Always 3 heroes";
+
+            public int GroupSize(int playerCount)
+            {
+                return 3;
+            }
+        }
     }
 }
