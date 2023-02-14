@@ -11,18 +11,20 @@
         This is where you can select what components you have or want to include in the game generation.
     </div>
 
-    <div class="btn-group btn-group-lg mb-2 col-auto" role="group" aria-label="Basic example">
-        <button class="btn btn-success" @onclick="() => SetGlobalState(true)">Include EVERYTHING</button>
-        <button class="btn btn-danger" @onclick="() => SetGlobalState(false)">Exclude EVERYTHING</button>
-    </div>
-
-    @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
-    {
-        <div class="btn-group btn-group-lg mb-2 col-auto" role="group" aria-label="Basic example">
-            <button class="btn btn-success" @onclick="() => SetState(season, true)">Include all of Season @season.Number</button>
-            <button class="btn btn-danger" @onclick="() => SetState(season, false)">Exclude all of Season @season.Number</button>
+    <div class="btn-toolbar m-3" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group btn-group-lg m-1" role="group" aria-label="Basic example">
+            <button class="btn btn-success" @onclick="() => SetGlobalState(true)">Include EVERYTHING</button>
+            <button class="btn btn-danger" @onclick="() => SetGlobalState(false)">Exclude EVERYTHING</button>
         </div>
-    }
+
+        @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
+        {
+            <div class="btn-group btn-group-lg m-1" role="group" aria-label="Basic example">
+                <button class="btn btn-success" @onclick="() => SetState(season, true)">Include all of Season @season.Number</button>
+                <button class="btn btn-danger" @onclick="() => SetState(season, false)">Exclude all of Season @season.Number</button>
+            </div>
+        }
+    </div>
 
     @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
     {
