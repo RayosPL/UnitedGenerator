@@ -2,6 +2,7 @@
 @using UnitedGenerator.Data;
 @using UnitedGenerator.Engine;
 @using UnitedGenerator.Engine.Models;
+@inject MyCollectionService myCollection;
 
 <PageTitle>United Generator</PageTitle>
 
@@ -62,8 +63,7 @@
 }
 
 @code {
-    private readonly GameRandomizer random = new GameRandomizer(DataFactory.Seasons);
-
+    private GameRandomizer? random;
     private GameSetup[] games = new GameSetup[0];
 
     private int playerCount = 4;
@@ -75,20 +75,28 @@
     private bool onlyUseHazardousChallenge = false;
     private bool generated = false;
 
+    protected override void OnInitialized()
+    {
+        random = new GameRandomizer(DataFactory.Seasons, myCollection);
+    }
+
     private void GenerateGame(bool teamMode)
     {
-        games = random.Generate(new GenerationConfiguration(playerCount)
-            {
-                TeamVsTeamMode = teamMode,
-                SelectTeamProbability = selectTeamProbability,
-                SelectChallengeProbability = selectChallengeProbability,
-                OnlyVillainTeams = onlyUseTeamVillains,
-                OnlyVillainsWithPreGames = onlyUsePreGameVillains,
-                OnlyUseAntiHeroes = onlyUseAntiHeroes,
-                OnlyHazardousLocationsChallenge = onlyUseHazardousChallenge
-            });
+        if (random != null)
+        {
+            games = random.Generate(new GenerationConfiguration(playerCount)
+                {
+                    TeamVsTeamMode = teamMode,
+                    SelectTeamProbability = selectTeamProbability,
+                    SelectChallengeProbability = selectChallengeProbability,
+                    OnlyVillainTeams = onlyUseTeamVillains,
+                    OnlyVillainsWithPreGames = onlyUsePreGameVillains,
+                    OnlyUseAntiHeroes = onlyUseAntiHeroes,
+                    OnlyHazardousLocationsChallenge = onlyUseHazardousChallenge
+                });
 
-        generated = true;
+            generated = true;
+        }
     }
 
     private void Reset()

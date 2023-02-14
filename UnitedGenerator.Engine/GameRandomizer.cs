@@ -13,9 +13,9 @@ namespace UnitedGenerator.Engine
     {
         private DataService _data;
 
-        public GameRandomizer(ISeason[] seasons)
+        public GameRandomizer(ISeason[] seasons, IBoxItemFilter filter)
         {
-            _data = new DataService(seasons);
+            _data = new DataService(seasons, filter);
         }
 
         public GameSetup[] Generate(GenerationConfiguration config)
