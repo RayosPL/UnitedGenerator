@@ -17,7 +17,7 @@ namespace UnitedGenerator.Engine.Utils
             int missing = count - result.Count();
 
             result = result
-                .Concat(backupItems.TakeRandom(missing))
+                .Concat(backupItems.Except(result).TakeRandom(missing))
                 .ToArray();
 
             return result;
