@@ -6,15 +6,12 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 	<AssemblyVersion>0.1.*</AssemblyVersion>
-	<Deterministic>false</Deterministic>  
+	<Deterministic>false</Deterministic>
+	<NoWarn>7035</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\images\site\ChromeInstall.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="wwwroot\images\site\ChromeInstall.jpg">
+    <EmbeddedResource Include="Images\*.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
@@ -31,15 +28,6 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="wwwroot\images\site\AndroidInstall.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\images\site\IosInstall.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>
