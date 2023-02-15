@@ -1,5 +1,10 @@
 ﻿@if (Location != null)
 {
+    <p>
+        @Location.StartingCivilians Startings Civilians.<br/>
+        @Location.StartingThugs Startings Thugs.
+    </p>
+
     @if (!Location.IncludeInRandomSelection)
     {
         <p>Do not include in random selection.</p>
@@ -8,6 +13,11 @@
     @if (Location.Hazardous)
     {
         <p>Hazardous location.</p>
+    }
+
+    @if (Location.AllowsHeroesToDrawCards)
+    {
+        <p>Allows Heroes to draw cards.</p>
     }
 }
 

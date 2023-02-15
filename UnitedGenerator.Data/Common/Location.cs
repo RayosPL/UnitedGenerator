@@ -11,6 +11,10 @@ namespace UnitedGenerator.Data.Common
     {
         public Location(IBox box, string name) : base(box, name)
         {
+            StartingCivilians = 0;
+            StartingThugs = 0;
+
+            AllowsHeroesToDrawCards = false;
             ExcludeFromRandomSelection = false;
             Hazardous = false;
         }
@@ -20,5 +24,11 @@ namespace UnitedGenerator.Data.Common
         public bool ExcludeFromRandomSelection { get; init; }
 
         public bool IncludeInRandomSelection => !ExcludeFromRandomSelection;
+
+        public int StartingThugs { get; }
+
+        public int StartingCivilians { get; }
+
+        public bool AllowsHeroesToDrawCards { get; init; }
     }
 }

@@ -10,5 +10,8 @@ namespace UnitedGenerator.Common
     {
         bool IncludeInRandomSelection { get; }
         bool Hazardous { get; }
+        int StartingThugs { get; }
+        int StartingCivilians { get; }
+        bool AllowsHeroesToDrawCards { get; }
     }
 }
