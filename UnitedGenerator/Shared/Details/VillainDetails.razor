@@ -51,9 +51,57 @@
         </div>
     }
 
+    @if (Villain.ExcludeHeroes.Any())
+    {
+        <div>
+            Do not use heroes:
+            <ul>
+                @foreach (var hero in Villain.ExcludeHeroes)
+                {
+                    <li>@hero.ToItemString(Villain)</li>
+                }
+            </ul>
+        </div>
+    }
+
     @if (Villain.ReuseHeroesFromFirstPreGame)
     {
         <div>Reuse same heroes in all games.</div>
+    }
+
+    @if (Villain.AdditionalHeroGroups.Any())
+    {
+        <div>
+            Generate additional hero groups:
+            <ul>
+                @foreach (var group in Villain.AdditionalHeroGroups)
+                {
+                    <li>@group.GroupName (@group.Description)</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (Villain.AssignedLocations.Any())
+    {
+        <div>
+            Include locations:
+            <ul>
+                @foreach (var location in Villain.AssignedLocations)
+                {
+                    <li>
+                        @location.Location.ToItemString(Villain)
+                    
+                        @if (location.Placement.HasValue)
+                        {
+                            <ul>
+                                <li>Placement @location.Placement</li>
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
     }
 
     @if (Villain.DataComments.Any())
@@ -69,12 +117,6 @@
         </div>
     }
 }
-
-@*
-        IHero[] ExcludeHeroes { get; }
-        AssignedLocation[] AssignedLocations { get; }
-        IHeroGroupDefinition[] AdditionalHeroGroups { get; }
-*@
 
 @code {
     [Parameter]
