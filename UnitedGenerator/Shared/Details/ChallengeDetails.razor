@@ -2,17 +2,17 @@
 {
     @if (!Challenge.CanBeUsedInTeamVsTeamMode)
     {
-        <div>Exclude from Team vs Team games.</div>
+        <p>Exclude from Team vs Team games.</p>
     }
 
     @if (Challenge.RequiresTeamvsTeamMode)
     {
-        <div>Only use in Team vs Team games.</div>
+        <p>Only use in Team vs Team games.</p>
     }
 
     @if (Challenge.HazardousLocationsCount > 0)
     {
-        <div>Use minimum @Challenge.HazardousLocationsCount hazardous locations.</div>
+        <p>Use minimum @Challenge.HazardousLocationsCount hazardous locations.</p>
     }
 
     @if (Challenge.IncompatibleVillains.Any())

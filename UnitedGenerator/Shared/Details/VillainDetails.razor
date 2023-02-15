@@ -15,27 +15,27 @@
 
     @if (!Villain.IncludeInRandomVillainSelection)
     {
-        <div>Do not include in random selection.</div>
+        <p>Do not include in random selection.</p>
     }
 
     @if (!Villain.CanBeVillainInTeamVsTeamMode)
     {
-        <div>Exclude from Team vs Team games.</div>
+        <p>Exclude from Team vs Team games.</p>
     }
 
     @if (Villain.DisableChallenges)
     {
-        <div>Never include challenges.</div>
+        <p>Never include challenges.</p>
     }
 
     @if (Villain.PreGamesCount > 0)
     {
-        <div>Play @Villain.PreGamesCount game(s) first.</div>            
+        <p>Play @Villain.PreGamesCount game(s) first.</p>            
     }
 
     @if (Villain.OnlyPlayPreGames)
     { 
-        <div>Don not play agains this Villain.</div>
+        <p>Don not play agains this Villain.</p>
     }
 
     @if (Villain.PreGameCandidateVillains.Any())
@@ -66,7 +66,7 @@
 
     @if (Villain.ReuseHeroesFromFirstPreGame)
     {
-        <div>Reuse same heroes in all games.</div>
+        <p>Reuse same heroes in all games.</p>
     }
 
     @if (Villain.AdditionalHeroGroups.Any())
