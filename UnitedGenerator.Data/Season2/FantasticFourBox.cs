@@ -59,7 +59,13 @@ namespace UnitedGenerator.Data.Season2
         public IHero TheThing => new Hero(this, "The Thing");
         public IHero SilverSurfer => new Hero(this, "Silver Surfer");
 
-        public IAntiHero DoctorDoom => new AntiHero(this, "Doctor Doom");
+        public IAntiHero DoctorDoom => new AntiHero(this, "Doctor Doom")
+        {
+            AssignedLocations = new[]
+            {
+                new AssignedLocation(Latveria, 1)
+            }
+        };
 
         public IVillain SuperSkrull => new Villain(this, "Super-Skrull");
 
@@ -75,11 +81,15 @@ namespace UnitedGenerator.Data.Season2
         {
             IncompatibleVillains = new[]
             {
-                DataFactory.MarvelUnited.CoreBox.Ultron
+                DataFactory.MarvelUnited.CoreBox.Ultron,
+                DataFactory.XMen.KickstarterPromos.BroodQueen,
+                DataFactory.XMen.KickstarterPromos.Marrow,
+                DataFactory.XMen.TheHorsemenOfApocalypse.TheHorsemenOfApocalypse,
+
             },
             DataComments = new[]
             {
-                "There must be more incompatible Villains than Ultron, but the rulebook does not list them (Please help!)"
+                "ThThe rulebook does not list the incompatible villains, this is my best guess."
             }
         };
 

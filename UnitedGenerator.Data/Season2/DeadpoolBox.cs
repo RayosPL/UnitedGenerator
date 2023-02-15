@@ -47,10 +47,32 @@ namespace UnitedGenerator.Data.Season2
 
         public IAntiHero Bob => new AntiHero(this, "Bob, Agent of Hydra");
 
-        public IVillain DeadpoolVillain => new Villain(this, "Deadpool (Villain)");
+        public IVillain DeadpoolVillain => new Villain(this, "Deadpool (Villain)")
+        {
+            AdditionalHeroGroups = new[]
+            {
+                new BackupHeroes()
+            },
+            DataComments = new[]
+            {
+                "TODO: Do not select locations where heroes gains cards."
+            }
+        };
 
         public ILocation DeadpoolsApartment => new Location(this, "Deadpool's Apartment");
 
         public IChallenge DeadpoolChaosChallenge => new Challenge(this, "Deadpool Chaos Challenge");
+
+        private class BackupHeroes : IHeroGroupDefinition
+        {
+            public string GroupName => "Backup Heroes";
+
+            public string Description => "10 heroes";
+
+            public int GroupSize(int playerCount)
+            {
+                return 10;
+            }
+        }
     }
 }

@@ -135,7 +135,13 @@ namespace UnitedGenerator.Data.Season2
         {
             CanBeVillainInTeamVsTeamMode = false
         };
-        public IAntiHero Marrow => new AntiHero(this, "Marrow");
+        public IAntiHero Marrow => new AntiHero(this, "Marrow")
+        {
+            AssignedLocations = new[]
+            {
+                new AssignedLocation(DataFactory.XMen.XForce.MorlockTunnels, 1)
+            }
+        };
         public IAntiHero Namor => new AntiHero(this, "Namor");
         public IAntiHero EmmaFrost => new AntiHero(this, "Emma Frost");
 
@@ -149,7 +155,17 @@ namespace UnitedGenerator.Data.Season2
         public IVillain ShadowKing => new Villain(this, "Shadow King");
         public IVillain SilverSamurai => new Villain(this, "Silver Samurai");
         public IVillain Mastermind => new Villain(this, "Mastermind");
-        public IVillain Mojo => new Villain(this, "Mojo");
+        public IVillain Mojo => new Villain(this, "Mojo")
+        {
+            AssignedLocations = new[]
+            {
+                new AssignedLocation(DataFactory.XMen.BlueTeam.Mojoverse)
+            },
+            DataComments = new[]
+            {
+                "The location is not mandatory, but keept in the loop so players can select it as the starting location."
+            }
+        };
         public IVillain Blob => new Villain(this, "Blob")
         {
             ExcludeFromRandomSelection = true,
@@ -164,8 +180,24 @@ namespace UnitedGenerator.Data.Season2
         {
             CanBeVillainInTeamVsTeamMode = false
         };
-        public IVillain Deathbird => new Villain(this, "Deathbird");
-        public IVillain Arcade => new Villain(this, "Arcade");
+        public IVillain Deathbird => new Villain(this, "Deathbird")
+        {
+            DataComments = new[]
+            {
+                "TODO: Maximum of 3 locations where thugs > civilians."
+            }
+        };
+        public IVillain Arcade => new Villain(this, "Arcade")
+        {
+            AssignedLocations = new[]
+            {
+                new AssignedLocation(DataFactory.XMen.XForce.Murderworld)
+            },
+            DataComments = new[]
+            {
+                "The location is not mandatory, but keept in the loop so players can select it as the starting location."
+            }
+        };
         public IVillain Avalance => new Villain(this, "Avalance");
         public IVillain Toad => new Villain(this, "Toad")
         {
