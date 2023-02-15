@@ -1,5 +1,4 @@
-﻿@using UnitedGenerator.Common;
-@inject MyCollectionService myCollection;
+﻿@inject MyCollectionService myCollection;
 
 <input class="form-check-input" checked="@included" type="checkbox" @onchange="OnChange" id="@id" />
 <label class="form-check-label" for="@id">@(included ? "Included in generation" : "Excluded from generation")</label>
