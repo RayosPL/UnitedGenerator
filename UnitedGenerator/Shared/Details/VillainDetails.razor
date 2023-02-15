@@ -1,22 +1,80 @@
 ﻿@if (Villain != null)
 {
+    @if (Villain.SubVillains.Any())
+    {
+        <div>
+            Team members:
+            <ul>
+                @foreach (var sub in Villain.SubVillains)
+                {
+                    <li>@sub.ToItemString(Villain)</li>
+                }
+            </ul>
+        </div>
+    }
+
     @if (!Villain.IncludeInRandomVillainSelection)
     {
         <div>Do not include in random selection.</div>
     }
+
+    @if (!Villain.CanBeVillainInTeamVsTeamMode)
+    {
+        <div>Exclude from Team vs Team games.</div>
+    }
+
+    @if (Villain.DisableChallenges)
+    {
+        <div>Never include challenges.</div>
+    }
+
+    @if (Villain.PreGamesCount > 0)
+    {
+        <div>Play @Villain.PreGamesCount game(s) first.</div>            
+    }
+
+    @if (Villain.OnlyPlayPreGames)
+    { 
+        <div>Don not play agains this Villain.</div>
+    }
+
+    @if (Villain.PreGameCandidateVillains.Any())
+    {
+        <div>
+            Select villains between:
+            <ul>
+                @foreach (var sub in Villain.PreGameCandidateVillains)
+                {
+                    <li>@sub.ToItemString(Villain)</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (Villain.ReuseHeroesFromFirstPreGame)
+    {
+        <div>Reuse same heroes in all games.</div>
+    }
+
+    @if (Villain.DataComments.Any())
+    {
+        <div>
+            Comments:
+            <ul>
+            @foreach (var comment in Villain.DataComments)
+            {
+                <li>@comment</li>
+            }
+            </ul>
+        </div>
+    }
 }
 
-@*      int PreGamesCount { get; }
-        bool OnlyPlayPreGames { get; }
-        bool ReuseHeroesFromFirstPreGame { get; }
-        bool DisableChallenges { get; }
-        bool CanBeVillainInTeamVsTeamMode { get; }
-        IVillain[] SubVillains { get; }
-        IVillain[] PreGameCandidateVillains { get; }
+@*
         IHero[] ExcludeHeroes { get; }
         AssignedLocation[] AssignedLocations { get; }
         IHeroGroupDefinition[] AdditionalHeroGroups { get; }
-        string[] DataComments { get; }*@
+*@
 
 @code {
     [Parameter]
