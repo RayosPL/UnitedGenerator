@@ -59,7 +59,10 @@ namespace UnitedGenerator.Data.Season2
             }
         };
 
-        public ILocation DeadpoolsApartment => new Location(this, "Deadpool's Apartment");
+        public ILocation DeadpoolsApartment => new Location(this, "Deadpool's Apartment", 0, 0)
+        {
+            AllowsHeroesToDrawCards = true
+        };
 
         public IChallenge DeadpoolChaosChallenge => new Challenge(this, "Deadpool Chaos Challenge");
 

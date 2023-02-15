@@ -51,10 +51,10 @@ namespace UnitedGenerator.Data.Season2
 
         public IVillain SebastianShaw => new Villain(this, "Sebastian Shaw");
 
-        public ILocation Krakoa => new Location(this, "Krakoa");
-        public ILocation Chandrilar => new Location(this, "Chandrilar (Shi'ar Empire)");
-        public ILocation Limbo => new Location(this, "Limbo");
-        public ILocation HellfireClubBuilding => new Location(this, "Hellfire Club Building");
+        public ILocation Krakoa => new Location(this, "Krakoa", 2, 0);
+        public ILocation Chandrilar => new Location(this, "Chandrilar (Shi'ar Empire)", 1, 2);
+        public ILocation Limbo => new Location(this, "Limbo", 1, 1);
+        public ILocation HellfireClubBuilding => new Location(this, "Hellfire Club Building", 0, 2);
 
         public IChallenge AccleratedVillainChallenge => new Challenge(this, "Acclerated Villain Challenge")
         {

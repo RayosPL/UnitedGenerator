@@ -51,12 +51,15 @@ namespace UnitedGenerator.Data.Season1
 
         public IVillain GreenGoblin => new Villain(this, "Green Goblin");
 
-        public ILocation BrooklynBridge => new Location(this, "Brooklyn Bridge");
-        public ILocation DailyBugle => new Location(this, "Daily Bugle");
-        public ILocation OsbornLaboratories => new Location(this, "Osborn Laboratories");
-        public ILocation OscorpTower => new Location(this, "Oscorp Tower");
-        public ILocation Queens => new Location(this, "Queens");
-        public ILocation MidtownHighSchool => new Location(this, "Midtown High School");
+        public ILocation BrooklynBridge => new Location(this, "Brooklyn Bridge", 1, 1);
+        public ILocation DailyBugle => new Location(this, "Daily Bugle", 2, 0);
+        public ILocation OsbornLaboratories => new Location(this, "Osborn Laboratories", 0, 1);
+        public ILocation OscorpTower => new Location(this, "Oscorp Tower", 1, 1);
+        public ILocation Queens => new Location(this, "Queens", 2, 0)
+        {
+            AllowsHeroesToDrawCards = true
+        };
+        public ILocation MidtownHighSchool => new Location(this, "Midtown High School", 1, 1);
 
         public IChallenge SecretIdentityChallenge => new Challenge(this, "Secret Identity Challenge");
     }

@@ -14,7 +14,7 @@ namespace UnitedGenerator.Data.Season1
         {
         }
 
-        public override string Name => "Kickstarter Promos";
+        public override string Name => "Season 1 Kickstarter Promos";
 
         public override IHero[] Heroes => new IHero[]
         {

@@ -14,7 +14,7 @@ namespace UnitedGenerator.Data.Season1
         {
         }
 
-        public override string Name => "Marvel United: Core Box";
+        public override string Name => "Marvel United";
 
         public override IHero[] Heroes => new IHero[]
         {
@@ -65,14 +65,17 @@ namespace UnitedGenerator.Data.Season1
         public IVillain Taskmaster => new Villain(this, "Taskmaster");
         public IVillain Ultron => new Villain(this, "Ultron");
 
-        public ILocation StarkLabs => new Location(this, "Stark Labs");
-        public ILocation AvengersMansion => new Location(this, "Avengers Mansion");
-        public ILocation NewYorkPoliceHeadquarters => new Location(this, "New York Police Headquarters");
-        public ILocation TimesSquare => new Location(this, "Times Square");
-        public ILocation CentralPark => new Location(this, "Central Park");
-        public ILocation AvengersTower => new Location(this, "Avengers Tower");
-        public ILocation ShieldHelicarrier => new Location(this, "S.H.I.E.L.D. Helicarrier");
-        public ILocation ShieldHeadquarters => new Location(this, "S.H.I.E.L.D. Headquarters");
+        public ILocation StarkLabs => new Location(this, "Stark Labs", 1, 2);
+        public ILocation AvengersMansion => new Location(this, "Avengers Mansion", 1, 0)
+        {
+            AllowsHeroesToDrawCards = true
+        };
+        public ILocation NewYorkPoliceHeadquarters => new Location(this, "New York Police Headquarters", 2, 1);
+        public ILocation TimesSquare => new Location(this, "Times Square", 2, 1);
+        public ILocation CentralPark => new Location(this, "Central Park", 2, 2);
+        public ILocation AvengersTower => new Location(this, "Avengers Tower", 1, 0);
+        public ILocation ShieldHelicarrier => new Location(this, "S.H.I.E.L.D. Helicarrier", 1, 2);
+        public ILocation ShieldHeadquarters => new Location(this, "S.H.I.E.L.D. Headquarters", 1, 1);
 
         public IChallenge ModerateChallenge => new Challenge(this, "Moderate Challenge");
         public IChallenge HardChallenge => new Challenge(this, "Hard Challenge");

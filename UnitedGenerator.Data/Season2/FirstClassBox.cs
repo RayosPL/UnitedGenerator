@@ -67,9 +67,9 @@ namespace UnitedGenerator.Data.Season2
             }
         };
 
-        public ILocation CapeCitadel => new Location(this, "Cape Citadel");
-        public ILocation IslandM => new Location(this, "Island M");
-        public ILocation XaviersSchool => new Location(this, "Xavier's School for Gifted Youngsters");
+        public ILocation CapeCitadel => new Location(this, "Cape Citadel", 1, 1);
+        public ILocation IslandM => new Location(this, "Island M", 0, 2);
+        public ILocation XaviersSchool => new Location(this, "Xavier's School for Gifted Youngsters", 2, 0);
 
         public IChallenge DangerRoomChallenge => new Challenge(this, "Danger Room Challenge");
     }

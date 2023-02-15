@@ -69,10 +69,13 @@ namespace UnitedGenerator.Data.Season2
 
         public IVillain SuperSkrull => new Villain(this, "Super-Skrull");
 
-        public ILocation YancyStreet => new Location(this, "4 Yancy Street");
-        public ILocation BaxterBuilding => new Location(this, "Baxter Building");
-        public ILocation MountWundagore => new Location(this, "Mount Wundagore");
-        public ILocation Latveria => new Location(this, "Latveria")
+        public ILocation YancyStreet => new Location(this, "4 Yancy Street", 1,  0);
+        public ILocation BaxterBuilding => new Location(this, "Baxter Building", 2, 0)
+        {
+            AllowsHeroesToDrawCards = true,
+        };
+        public ILocation MountWundagore => new Location(this, "Mount Wundagore", 1, 1);
+        public ILocation Latveria => new Location(this, "Latveria", 0, 3)
         {
             Hazardous = true
         };

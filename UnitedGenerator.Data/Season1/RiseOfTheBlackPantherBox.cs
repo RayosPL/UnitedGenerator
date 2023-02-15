@@ -49,12 +49,15 @@ namespace UnitedGenerator.Data.Season1
 
         public IVillain Killmonger => new Villain(this, "Killmonger");
 
-        public ILocation GoldenCity => new Location(this, "Golden City");
-        public ILocation RoyalPalace => new Location(this, "Royal Palace");
-        public ILocation GreatMound => new Location(this, "Great Mound");
-        public ILocation ShurisLab => new Location(this, "Shuri's Lab");
-        public ILocation WarriorFalls => new Location(this, "Warrior Falls");
-        public ILocation JabariVillage => new Location(this, "Jabari Village");
+        public ILocation GoldenCity => new Location(this, "Golden City", 1, 1);
+        public ILocation RoyalPalace => new Location(this, "Royal Palace", 2, 0);
+        public ILocation GreatMound => new Location(this, "Great Mound", 1, 1);
+        public ILocation ShurisLab => new Location(this, "Shuri's Lab", 1, 0)
+        {
+            AllowsHeroesToDrawCards = true
+        };
+        public ILocation WarriorFalls => new Location(this, "Warrior Falls", 1, 2);
+        public ILocation JabariVillage => new Location(this, "Jabari Village", 1, 1);
 
         public IChallenge EndangeredLocationsChallenge => new Challenge(this, "Endangered Locations Challenge");
     }

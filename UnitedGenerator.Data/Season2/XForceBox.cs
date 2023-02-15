@@ -49,16 +49,16 @@ namespace UnitedGenerator.Data.Season2
 
         public IVillain Stryfe => new Villain(this, "Stryfe");
 
-        public ILocation AdirondackMountains => new Location(this, "Adirondack Mountains");
-        public ILocation MorlockTunnels => new Location(this, "Morlock Tunnels")
+        public ILocation AdirondackMountains => new Location(this, "Adirondack Mountains", 1, 0);
+        public ILocation MorlockTunnels => new Location(this, "Morlock Tunnels", 1, 2)
         {
             Hazardous = true
         };
-        public ILocation Murderworld => new Location(this, "Murderworld")
+        public ILocation Murderworld => new Location(this, "Murderworld", 2, 0)
         {
             Hazardous = true
         };
-        public ILocation StryfesSecretBase => new Location(this, "Stryfe's Secret Base")
+        public ILocation StryfesSecretBase => new Location(this, "Stryfe's Secret Base", 0, 1)
         {
             Hazardous = true
         };

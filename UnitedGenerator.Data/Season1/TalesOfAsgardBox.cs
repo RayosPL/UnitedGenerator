@@ -51,12 +51,15 @@ namespace UnitedGenerator.Data.Season1
 
         public IVillain Loki => new Villain(this, "Loki");
 
-        public ILocation HeimdallsObservatory => new Location(this, "Heimdall's Observatory");
-        public ILocation OdinsVault => new Location(this, "Odin's Vault");
-        public ILocation BifrostBridge => new Location(this, "Bifrost Bridge");
-        public ILocation AsgardianPalace => new Location(this, "Asgardian Palace");
-        public ILocation ThroneRoom => new Location(this, "Throne Room");
-        public ILocation Valhalla => new Location(this, "Valhalla");
+        public ILocation HeimdallsObservatory => new Location(this, "Heimdall's Observatory", 1, 0);
+        public ILocation OdinsVault => new Location(this, "Odin's Vault", 0, 0);
+        public ILocation BifrostBridge => new Location(this, "Bifrost Bridge", 0, 1);
+        public ILocation AsgardianPalace => new Location(this, "Asgardian Palace", 1, 1);
+        public ILocation ThroneRoom => new Location(this, "Throne Room", 1, 1);
+        public ILocation Valhalla => new Location(this, "Valhalla", 1, 1) 
+        { 
+            AllowsHeroesToDrawCards = true 
+        };
 
         public IChallenge TraitorChallenge => new Challenge(this, "Traitor Challenge")
         {

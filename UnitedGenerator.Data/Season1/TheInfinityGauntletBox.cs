@@ -76,36 +76,43 @@ namespace UnitedGenerator.Data.Season1
             }
         };
 
-        public ILocation Hala => new Location(this, "Hala");
-        public ILocation Asgard => new Location(this, "Asgard");
-        public ILocation Vormir => new Location(this, "Vormir");
-        public ILocation Nidavellir => new Location(this, "Nidavellir");
-        public ILocation SanctumSanctorum => new Location(this, "Sanctum Sanctorum");
-        public ILocation NewYork => new Location(this, "New York");
+        public ILocation Hala => new Location(this, "Hala", 1, 1);
+        public ILocation Asgard => new Location(this, "Asgard", 0, 0)
+        {
+            AllowsHeroesToDrawCards = true,
+        };
+        public ILocation Vormir => new Location(this, "Vormir", 0, 2);
+        public ILocation Nidavellir => new Location(this, "Nidavellir", 1, 0);
+        public ILocation SanctumSanctorum => new Location(this, "Sanctum Sanctorum", 1, 0);
+        public ILocation NewYork => new Location(this, "New York", 1, 1)
+        {
+            AllowsHeroesToDrawCards = true,
+        };
 
-        public ILocation WakandaFields => new Location(this, "Wakanda Fields")
+        public ILocation WakandaFields => new Location(this, "Wakanda Fields", 5, 0)
         {
             ExcludeFromRandomSelection = true,
         };
-        public ILocation Sanctuary => new Location(this, "Sanctuary")
+        public ILocation Sanctuary => new Location(this, "Sanctuary", 3, 0)
         {
             ExcludeFromRandomSelection = true,
         };
-        public ILocation ThanosPalace => new Location(this, "Thanos' Palace")
+        public ILocation ThanosPalace => new Location(this, "Thanos' Palace", 4, 0)
         {
             ExcludeFromRandomSelection = true,
         };
-        public ILocation QuantumTunnel => new Location(this, "Quantum Tunnel")
+        public ILocation QuantumTunnel => new Location(this, "Quantum Tunnel", 4, 0)
         {
             ExcludeFromRandomSelection = true,
         };
-        public ILocation Titan => new Location(this, "Titan")
+        public ILocation Titan => new Location(this, "Titan", 5, 0)
         {
             ExcludeFromRandomSelection = true,
         };
-        public ILocation AvengersMansion => new Location(this, "Avengers Mansion")
+        public ILocation AvengersMansion => new Location(this, "Avengers Mansion", 3, 0)
         {
             ExcludeFromRandomSelection = true,
+            AllowsHeroesToDrawCards = true
         };
 
         private class BackupHeroes : IHeroGroupDefinition

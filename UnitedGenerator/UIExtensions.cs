@@ -12,7 +12,7 @@ namespace UnitedGenerator
             }
             else
             {
-                return $"{item.Name} ({item.Box.Name}, Season {item.Season.Number})";
+                return $"{item.Name} ({item.Box.Name})";
             }
         }
     }

@@ -51,10 +51,13 @@ namespace UnitedGenerator.Data.Season2
 
         public IVillain MisterSinister => new Villain(this, "Mister Sinister");
 
-        public ILocation ExcaliburLighthouse => new Location(this, "Excalibur Lighthouse");
-        public ILocation TheSavageLand => new Location(this, "The Savage Land");
-        public ILocation Madripoor => new Location(this, "Madripoor");
-        public ILocation Mojoverse => new Location(this, "Mojoverse");
+        public ILocation ExcaliburLighthouse => new Location(this, "Excalibur Lighthouse", 0, 2);
+        public ILocation TheSavageLand => new Location(this, "The Savage Land", 1, 2);
+        public ILocation Madripoor => new Location(this, "Madripoor", 2, 1)
+        {
+            AllowsHeroesToDrawCards = true,
+        };
+        public ILocation Mojoverse => new Location(this, "Mojoverse", 1, 1);
 
         public IChallenge AccleratedVillainChallenge => new Challenge(this, "Acclerated Villain Challenge")
         {

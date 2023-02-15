@@ -14,7 +14,7 @@ namespace UnitedGenerator.Data.Season2
         {
         }
 
-        public override string Name => "X-Men: Core Box";
+        public override string Name => "X-Men";
 
         public override IHero[] Heroes => new IHero[]
         {
@@ -73,14 +73,20 @@ namespace UnitedGenerator.Data.Season2
             CanBeVillainInTeamVsTeamMode = false
         };
 
-        public ILocation XavierInstituteForHigherLearning => new Location(this, "Xavier Institute for Higher Learning");
-        public ILocation HangarBay => new Location(this, "Hangar Bay");
-        public ILocation XJet => new Location(this, "X-Jet");
-        public ILocation AsteroidM => new Location(this, "Asteroid M");
-        public ILocation Genosha => new Location(this, "Genosha");
-        public ILocation MuirIsland => new Location(this, "Muir Island (Mutant Research Facility)");
-        public ILocation WeaponXFacility => new Location(this, "Weapon X Facility");
-        public ILocation SentinelSpaceStation => new Location(this, "Sentinel Space Station");
+        public ILocation XavierInstituteForHigherLearning => new Location(this, "Xavier Institute for Higher Learning", 2, 1)
+        {
+            AllowsHeroesToDrawCards = true,
+        };
+        public ILocation HangarBay => new Location(this, "Hangar Bay", 1, 1);
+        public ILocation XJet => new Location(this, "X-Jet", 1, 0);
+        public ILocation AsteroidM => new Location(this, "Asteroid M", 1, 1);
+        public ILocation Genosha => new Location(this, "Genosha", 2, 1);
+        public ILocation MuirIsland => new Location(this, "Muir Island (Mutant Research Facility)", 1, 0)
+        {
+            AllowsHeroesToDrawCards = true
+        };
+        public ILocation WeaponXFacility => new Location(this, "Weapon X Facility", 0, 2);
+        public ILocation SentinelSpaceStation => new Location(this, "Sentinel Space Station", 0, 1);
 
         public IChallenge ModerateChallenge => new Challenge(this, "Moderate Challenge");
         public IChallenge HardChallenge => new Challenge(this, "Hard Challenge");

@@ -92,8 +92,8 @@ namespace UnitedGenerator.Data.Season2
         };
 
 
-        public ILocation StarlightCitadel => new Location(this, "Starlight Citadel");
-        public ILocation ApocalypsesPyramid => new Location(this, "Apocalypse's Pyramid")
+        public ILocation StarlightCitadel => new Location(this, "Starlight Citadel", 0, 0);
+        public ILocation ApocalypsesPyramid => new Location(this, "Apocalypse's Pyramid", 1, 1)
         {
             Hazardous = true
         };

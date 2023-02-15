@@ -9,10 +9,10 @@ namespace UnitedGenerator.Data.Common
 {
     internal class Location : BoxItem, ILocation
     {
-        public Location(IBox box, string name) : base(box, name)
+        public Location(IBox box, string name, int startingCivilians, int startingThugs) : base(box, name)
         {
-            StartingCivilians = 0;
-            StartingThugs = 0;
+            StartingCivilians = startingCivilians;
+            StartingThugs = startingThugs;
 
             AllowsHeroesToDrawCards = false;
             ExcludeFromRandomSelection = false;

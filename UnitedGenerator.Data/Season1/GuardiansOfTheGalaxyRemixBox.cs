@@ -52,12 +52,18 @@ namespace UnitedGenerator.Data.Season1
 
         public IVillain Ronan => new Villain(this, "Ronan");
 
-        public ILocation TheMilano => new Location(this, "The Milano");
-        public ILocation Knowhere => new Location(this, "Knowhere");
-        public ILocation Xandar => new Location(this, "Xandar");
-        public ILocation Morag => new Location(this, "Morag");
-        public ILocation CollectorsMuseum => new Location(this, "Collector's Museum");
-        public ILocation Kyln => new Location(this, "Kyln");
+        public ILocation TheMilano => new Location(this, "The Milano", 0, 0);
+        public ILocation Knowhere => new Location(this, "Knowhere", 1, 2);
+        public ILocation Xandar => new Location(this, "Xandar", 2, 0)
+        { 
+            AllowsHeroesToDrawCards = true
+        };
+        public ILocation Morag => new Location(this, "Morag", 1, 1);
+        public ILocation CollectorsMuseum => new Location(this, "Collector's Museum", 0, 1)
+        {
+            AllowsHeroesToDrawCards = true
+        };
+        public ILocation Kyln => new Location(this, "Kyln", 1, 1);
 
         public IChallenge PlanBChallenge => new Challenge(this, "Plan B Challenge")
         {
