@@ -84,6 +84,11 @@ namespace UnitedGenerator.Engine.Utils
                 result = result.Where(x => x.IsAntiHero);
             }
 
+            if (config.OnlyVillainsWithLocations)
+            {
+                result = result.Where(x => x.AssignedLocations.Any());
+            }
+
             return result.ToArray();
         }
 

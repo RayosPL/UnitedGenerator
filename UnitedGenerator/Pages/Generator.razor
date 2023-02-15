@@ -36,6 +36,7 @@
                     <BooleanInput Text="Only include Villains with multiple games" @bind-Value="onlyUsePreGameVillains" />
                     <BooleanInput Text="Only include Anti Heroes" @bind-Value="onlyUseAntiHeroes" />
                     <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="onlyUseHazardousChallenge" />
+                    <BooleanInput Text="Only include Villains with Locations" @bind-Value="onlyVillainsWithLocations" />
                 </div>
             </div>
         </div>
@@ -68,6 +69,8 @@
     private bool onlyUsePreGameVillains = false;
     private bool onlyUseAntiHeroes = false;
     private bool onlyUseHazardousChallenge = false;
+    private bool onlyVillainsWithLocations = false;
+    private bool teamMode = false;
     private bool generated = false;
 
     protected override void OnInitialized()
@@ -75,19 +78,27 @@
         random = new GameRandomizer(DataFactory.Seasons, myCollection);
     }
 
-    private void GenerateGame(bool teamMode)
+    private void GenerateGame(bool isTeamMode)
+    {
+        teamMode = isTeamMode;
+        GenerateGame();
+    }
+
+    private void GenerateGame()
     {
         if (random != null)
         {
-            games = random.Generate(new GenerationConfiguration(playerCount)
+            games = random.Generate(new GenerationConfiguration()
                 {
+                    PlayerCount = playerCount,
                     TeamVsTeamMode = teamMode,
                     SelectTeamProbability = selectTeamProbability,
                     SelectChallengeProbability = selectChallengeProbability,
                     OnlyVillainTeams = onlyUseTeamVillains,
                     OnlyVillainsWithPreGames = onlyUsePreGameVillains,
                     OnlyUseAntiHeroes = onlyUseAntiHeroes,
-                    OnlyHazardousLocationsChallenge = onlyUseHazardousChallenge
+                    OnlyHazardousLocationsChallenge = onlyUseHazardousChallenge,
+                    OnlyVillainsWithLocations = onlyVillainsWithLocations
                 });
 
             generated = true;

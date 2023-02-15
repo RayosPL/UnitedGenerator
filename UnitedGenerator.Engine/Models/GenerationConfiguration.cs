@@ -8,19 +8,22 @@ namespace UnitedGenerator.Engine.Models
 {
     public class GenerationConfiguration
     {
-        public GenerationConfiguration(int playerCount) 
+        public GenerationConfiguration() 
         { 
-            PlayerCount = playerCount;
+            PlayerCount = 4;
             SelectTeamProbability = 5;
             SelectChallengeProbability = 20;
         }
 
-        public int PlayerCount { get; }
+        public int PlayerCount { get; init; }
         public bool TeamVsTeamMode { get; init; }
         public int SelectTeamProbability { get; init; }
         public int SelectChallengeProbability { get; init; }
+
+
         public bool OnlyVillainTeams { get; init; }
         public bool OnlyVillainsWithPreGames { get; init; }
+        public bool OnlyVillainsWithLocations { get; init; }
         public bool OnlyUseAntiHeroes { get; init; }
         public bool OnlyHazardousLocationsChallenge { get; init; }
     }
