@@ -9,21 +9,21 @@
 
         @if (game.Villain.IsVillainTeam)
         {
-            <BoxItemCard Item="game.Villain"/>
+            <BoxItemCard Item="game.Villain" ShowDetails="ShowDetails" />
 
             @foreach (var villain in game.Villain.SubVillains)
             {
-                <BoxItemCard Item="villain" />
+                <BoxItemCard Item="villain" ShowDetails="ShowDetails" />
             }
         }
         else
         {
-            <BoxItemCard Item="game.Villain" />
+            <BoxItemCard Item="game.Villain" ShowDetails="ShowDetails" />
         }
 
         @if (game.Challenge != null)
         {
-            <BoxItemCard Item="game.Challenge" />
+            <BoxItemCard Item="game.Challenge" ShowDetails="ShowDetails" />
         }
     </div>
 
@@ -34,12 +34,12 @@
         <div class="row">
             @if (group.Team != null)
             {
-                <BoxItemCard Item="group.Team" />
+                <BoxItemCard Item="group.Team" ShowDetails="ShowDetails" />
             }
 
             @foreach (var hero in group.Heroes)
             {
-                <BoxItemCard Item="hero" />
+                <BoxItemCard Item="hero" ShowDetails="ShowDetails" />
             }
         </div>
     }
@@ -48,12 +48,7 @@
     <div class="row">
         @foreach (var location in game.Locations)
         {
-            <BoxItemCard Item="location" >
-                @if(location.Hazardous)
-                {
-                    <div><span class="oi oi-warning" aria-hidden="true"></span> Hazardous Location</div>
-                }
-            </BoxItemCard>
+            <BoxItemCard Item="location" ShowDetails="ShowDetails" />
         }
     </div>
 }
@@ -61,4 +56,7 @@
 @code {
     [Parameter]
     public GameSetup[] CurrentGames { get; set; } = new GameSetup[0];
+
+    [Parameter]
+    public bool ShowDetails { get; set; }
 }

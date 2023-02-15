@@ -51,12 +51,13 @@
     <div>No possible game, please change your options and try again!</div>
 }
 
-<Games CurrentGames="games" />
+<Games CurrentGames="games" ShowDetails="showDetails" />
 
 @if (generated)
 {
     <button class="btn btn-primary m-2" @onclick="GenerateGame">Generate Again</button>
     <button class="btn btn-primary m-2" @onclick="Reset">Change Setup</button>
+    <BooleanInput Text="Show generation constraints" @bind-Value="showDetails" />
 }
 
 @code {
@@ -72,7 +73,9 @@
     private bool onlyUseHazardousChallenge = false;
     private bool onlyVillainsWithLocations = false;
     private bool teamMode = false;
+
     private bool generated = false;
+    private bool showDetails = false;
 
     protected override void OnInitialized()
     {
