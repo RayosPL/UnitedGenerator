@@ -1,0 +1,17 @@
+﻿@if (Team != null)
+{
+    <div>
+        Team members:
+        <ul>
+            @foreach(var member in Team.TeamMembers)
+            {
+                <li>@member.ToItemString(Team)</li>
+            }
+        </ul>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public IHeroTeam? Team { get; set; }
+}

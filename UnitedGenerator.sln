@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitedGenerator.Data", "Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitedGenerator.Engine", "UnitedGenerator.Engine\UnitedGenerator.Engine.csproj", "{3285675F-CDD1-422E-9CCA-F60C77CB48F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitedGenerator.Common", "UnitedGenerator.Common\UnitedGenerator.Common.csproj", "{7AEBA309-483D-4F96-846B-4F96DA40FE62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitedGenerator.Common", "UnitedGenerator.Common\UnitedGenerator.Common.csproj", "{7AEBA309-483D-4F96-846B-4F96DA40FE62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

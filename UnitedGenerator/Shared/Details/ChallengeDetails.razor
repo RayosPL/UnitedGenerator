@@ -1,0 +1,48 @@
+﻿@if (Challenge != null)
+{
+    @if (!Challenge.CanBeUsedInTeamVsTeamMode)
+    {
+        <div>Exclude from Team vs Team games.</div>
+    }
+
+    @if (Challenge.RequiresTeamvsTeamMode)
+    {
+        <div>Only use in Team vs Team games.</div>
+    }
+
+    @if (Challenge.HazardousLocationsCount > 0)
+    {
+        <div>Use minimum @Challenge.HazardousLocationsCount hazardous locations.</div>
+    }
+
+    @if (Challenge.IncompatibleVillains.Any())
+    {
+        <div>
+            Cannot be used with villains:
+            <ul>
+            @foreach (var villain in Challenge.IncompatibleVillains)
+            {
+                <li>@villain.ToItemString(Challenge)</li>
+            }
+            </ul>
+        </div>
+    }
+
+    @if (Challenge.DataComments.Any())
+    {
+        <div>
+            Comments:
+            <ul>
+            @foreach (var comment in Challenge.DataComments)
+            {
+                <li>@comment</li>
+            }
+            </ul>
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public IChallenge? Challenge { get; set; }
+}

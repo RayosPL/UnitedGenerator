@@ -1,0 +1,17 @@
+﻿@if (Location != null)
+{
+    @if (!Location.IncludeInRandomSelection)
+    {
+        <div>Do not include in random selection.</div>
+    }
+
+    @if (Location.Hazardous)
+    {
+        <div>Hazardous location.</div>
+    }
+}
+
+@code {
+    [Parameter]
+    public ILocation? Location { get; set; }
+}

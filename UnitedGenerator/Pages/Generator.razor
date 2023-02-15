@@ -6,11 +6,6 @@
 
 <PageTitle>United Generator</PageTitle>
 
-<div class="alert alert-warning" role="alert">
-    This is a work-in-progress system, minimal effort has been put into the UI.<br /> 
-    Effort han mainly been put into the data and generation logic.
-</div>
-
 @if (!generated)
 {
     <div class ="col-12 col-xl-6">
@@ -57,7 +52,7 @@
 
 <Games CurrentGames="games" />
 
-@if(generated)
+@if (generated)
 {
     <button class="btn btn-primary m-2" @onclick="Reset">Generate New Game</button>
 }

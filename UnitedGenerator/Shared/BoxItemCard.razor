@@ -5,11 +5,18 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">@Item?.Name</h5>
+            
             @if (ShowBoxInfo)
             {
                 <h6 class="card-subtitle mb-2">@Item?.Box.Name, Season @Item?.Season.Number</h6>
             }
+            
             @ChildContent
+            
+            @if (ShowDetails)
+            {
+                <BoxItemDetails Item="Item" />
+            }
         </div>
     </div>
 </div>
@@ -24,6 +31,9 @@
 
     [Parameter]
     public bool ShowBoxInfo { get; set; } = true;
+
+    [Parameter]
+    public bool ShowDetails { get; set; } = false;
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
