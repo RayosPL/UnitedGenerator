@@ -1,0 +1,24 @@
+﻿@if (Villain != null)
+{
+    @if (!Villain.IncludeInRandomVillainSelection)
+    {
+        <div>Do not include in random selection.</div>
+    }
+}
+
+@*      int PreGamesCount { get; }
+        bool OnlyPlayPreGames { get; }
+        bool ReuseHeroesFromFirstPreGame { get; }
+        bool DisableChallenges { get; }
+        bool CanBeVillainInTeamVsTeamMode { get; }
+        IVillain[] SubVillains { get; }
+        IVillain[] PreGameCandidateVillains { get; }
+        IHero[] ExcludeHeroes { get; }
+        AssignedLocation[] AssignedLocations { get; }
+        IHeroGroupDefinition[] AdditionalHeroGroups { get; }
+        string[] DataComments { get; }*@
+
+@code {
+    [Parameter]
+    public IVillain? Villain { get; set; }
+}
