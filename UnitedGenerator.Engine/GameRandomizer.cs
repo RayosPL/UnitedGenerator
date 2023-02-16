@@ -143,7 +143,7 @@ namespace UnitedGenerator.Engine
                 .Locations
                 .Filter(villain);
 
-            var villainLocations = villain.AssignedLocations.Select(x => x.Location);
+            var villainLocations = villain.AssignedLocations.Select(x => x.Location).WhereIsContainedIn(candidateLocations);
 
             var challengeLocations = GetChallengeLocations(candidateLocations.Except(villainLocations), challenge, villainLocations);
 
@@ -159,7 +159,7 @@ namespace UnitedGenerator.Engine
                 .Concat(remainingLocations)
                 .Randomize();
 
-            foreach(var assignment in villain.AssignedLocations)
+            foreach(var assignment in villain.AssignedLocations.Where(x => candidateLocations.Contains(x.Location)))
             {
                 locations = EnsurePlacement(locations, assignment);
             }
