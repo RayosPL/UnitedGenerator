@@ -141,7 +141,7 @@ namespace UnitedGenerator.Engine
         {
             ILocation[] candidateLocations = _data
                 .Locations
-                .Filter();
+                .Filter(villain);
 
             var villainLocations = villain.AssignedLocations.Select(x => x.Location);
 

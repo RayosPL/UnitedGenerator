@@ -49,13 +49,14 @@ namespace UnitedGenerator.Data.Season2
 
         public IVillain DeadpoolVillain => new Villain(this, "Deadpool (Villain)")
         {
+            ExcludeLocationsWhereHeroCanDrawCards = true,
             AdditionalHeroGroups = new[]
             {
                 new BackupHeroes()
             },
             DataComments = new[]
             {
-                "TODO: Do not select locations where heroes gains cards."
+                "There should be an unlimited number of backup heroes, is 8 sufficient?"
             }
         };
 
@@ -70,11 +71,11 @@ namespace UnitedGenerator.Data.Season2
         {
             public string GroupName => "Backup Heroes";
 
-            public string Description => "10 heroes";
+            public string Description => "8 heroes";
 
             public int GroupSize(int playerCount)
             {
-                return 10;
+                return 8;
             }
         }
     }

@@ -17,6 +17,7 @@ namespace UnitedGenerator.Data.Common
             ExcludeFromRandomSelection = false;
             CanBeVillainInTeamVsTeamMode = true;
             ReuseHeroesFromFirstPreGame = false;
+            ExcludeLocationsWhereHeroCanDrawCards = false;
             SubVillains = new IVillain[0];
             AssignedLocations = new AssignedLocation[0];
             AdditionalHeroGroups = new IHeroGroupDefinition[0];
@@ -40,6 +41,8 @@ namespace UnitedGenerator.Data.Common
         public bool ReuseHeroesFromFirstPreGame { get; init; }
 
         public bool DisableChallenges { get; init; }
+
+        public bool ExcludeLocationsWhereHeroCanDrawCards { get; init; }
 
         public bool IsVillainTeam => SubVillains.Any();
 

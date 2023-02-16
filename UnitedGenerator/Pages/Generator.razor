@@ -37,6 +37,7 @@
                     <BooleanInput Text="Only include Anti Heroes" @bind-Value="onlyUseAntiHeroes" />
                     <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="onlyUseHazardousChallenge" />
                     <BooleanInput Text="Only include Villains with Locations" @bind-Value="onlyVillainsWithLocations" />
+                    <BooleanInput Text="Only include Villains with Location restrictions" @bind-Value="onlyIncludeVillainsWithLocationRestrictions" />
                 </div>
             </div>
         </div>
@@ -72,6 +73,7 @@
     private bool onlyUseAntiHeroes = false;
     private bool onlyUseHazardousChallenge = false;
     private bool onlyVillainsWithLocations = false;
+    private bool onlyIncludeVillainsWithLocationRestrictions = false;
     private bool teamMode = false;
 
     private bool generated = false;
@@ -102,7 +104,8 @@
                     OnlyVillainsWithPreGames = onlyUsePreGameVillains,
                     OnlyUseAntiHeroes = onlyUseAntiHeroes,
                     OnlyHazardousLocationsChallenge = onlyUseHazardousChallenge,
-                    OnlyVillainsWithLocations = onlyVillainsWithLocations
+                    OnlyVillainsWithLocations = onlyVillainsWithLocations,
+                    OnlyIncludeVillainsWithLocationRestrictions = onlyIncludeVillainsWithLocationRestrictions
                 });
 
             generated = true;

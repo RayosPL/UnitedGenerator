@@ -28,6 +28,11 @@
         <p>Never include challenges.</p>
     }
 
+    @if (Villain.ExcludeLocationsWhereHeroCanDrawCards)
+    {
+        <p>Exclude locations where heroes can draw cards.</p>
+    }
+
     @if (Villain.PreGamesCount > 0)
     {
         <p>Play @Villain.PreGamesCount game(s) first.</p>            

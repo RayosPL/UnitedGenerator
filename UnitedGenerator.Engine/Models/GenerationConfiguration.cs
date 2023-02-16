@@ -26,5 +26,6 @@ namespace UnitedGenerator.Engine.Models
         public bool OnlyVillainsWithLocations { get; init; }
         public bool OnlyUseAntiHeroes { get; init; }
         public bool OnlyHazardousLocationsChallenge { get; init; }
+        public bool OnlyIncludeVillainsWithLocationRestrictions { get; init; }
     }
 }

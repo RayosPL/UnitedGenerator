@@ -16,6 +16,7 @@ namespace UnitedGenerator.Common
         bool DisableChallenges { get; }
         bool IncludeInRandomVillainSelection { get; }
         bool CanBeVillainInTeamVsTeamMode { get; }
+        bool ExcludeLocationsWhereHeroCanDrawCards { get; }
         IVillain[] SubVillains { get; }
         IVillain[] PreGameCandidateVillains { get; }
         IHero[] ExcludeHeroes { get; }

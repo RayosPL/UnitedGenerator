@@ -24,11 +24,17 @@ namespace UnitedGenerator.Engine.Utils
             return result.ToArray();
         }
 
-        public static ILocation[] Filter(this ILocation[] items)
+        public static ILocation[] Filter(this ILocation[] items, IVillain villain)
         {
-            return items
-                .Where(x => x.IncludeInRandomSelection)
-                .ToArray();
+            var result = items
+                .Where(x => x.IncludeInRandomSelection);
+
+            if (villain.ExcludeLocationsWhereHeroCanDrawCards)
+            {
+                result = result.Where(x => !x.AllowsHeroesToDrawCards);
+            }
+
+            return result.ToArray();
         }
 
         public static IChallenge[] Filter(this IChallenge[] items, IVillain villain, GenerationConfiguration config)
@@ -87,6 +93,11 @@ namespace UnitedGenerator.Engine.Utils
             if (config.OnlyVillainsWithLocations)
             {
                 result = result.Where(x => x.AssignedLocations.Any());
+            }
+
+            if (config.OnlyIncludeVillainsWithLocationRestrictions)
+            {
+                result = result.Where(x => x.ExcludeLocationsWhereHeroCanDrawCards);
             }
 
             return result.ToArray();
