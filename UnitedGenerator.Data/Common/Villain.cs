@@ -44,6 +44,8 @@ namespace UnitedGenerator.Data.Common
 
         public bool ExcludeLocationsWhereHeroCanDrawCards { get; init; }
 
+        public int? MaximumLocationsWhereStartingThugsAregreatherThanCivilians { get; init; }
+
         public bool IsVillainTeam => SubVillains.Any();
 
         public IVillain[] SubVillains { get; init; }

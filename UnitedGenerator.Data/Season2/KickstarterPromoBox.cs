@@ -182,10 +182,7 @@ namespace UnitedGenerator.Data.Season2
         };
         public IVillain Deathbird => new Villain(this, "Deathbird")
         {
-            DataComments = new[]
-            {
-                "TODO: Maximum of 3 locations where thugs > civilians."
-            }
+            MaximumLocationsWhereStartingThugsAregreatherThanCivilians = 3
         };
         public IVillain Arcade => new Villain(this, "Arcade")
         {

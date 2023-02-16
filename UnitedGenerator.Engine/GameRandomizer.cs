@@ -154,6 +154,8 @@ namespace UnitedGenerator.Engine
                 .Except(challengeLocations)
                 .TakeRandom(missing);
 
+            // MaximumLocationsWhereStartingThugsAregreatherThanCivilians
+
             var locations = villainLocations
                 .Concat(challengeLocations)
                 .Concat(remainingLocations)

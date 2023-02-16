@@ -97,7 +97,7 @@ namespace UnitedGenerator.Engine.Utils
 
             if (config.OnlyIncludeVillainsWithLocationRestrictions)
             {
-                result = result.Where(x => x.ExcludeLocationsWhereHeroCanDrawCards);
+                result = result.Where(x => x.ExcludeLocationsWhereHeroCanDrawCards || x.MaximumLocationsWhereStartingThugsAregreatherThanCivilians.HasValue);
             }
 
             return result.ToArray();

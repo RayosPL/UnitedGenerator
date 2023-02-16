@@ -33,6 +33,11 @@
         <p>Exclude locations where heroes can draw cards.</p>
     }
 
+    @if (Villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians.HasValue)
+    {
+        <p>Maximum @Villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians locations where starting number of thugs are greather than civilians.</p>
+    }
+
     @if (Villain.PreGamesCount > 0)
     {
         <p>Play @Villain.PreGamesCount game(s) first.</p>            
