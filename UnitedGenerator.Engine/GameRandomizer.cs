@@ -143,30 +143,60 @@ namespace UnitedGenerator.Engine
                 .Locations
                 .Filter(villain);
 
-            var villainLocations = villain.AssignedLocations.Select(x => x.Location).WhereIsContainedIn(candidateLocations);
+            ILocation[] selectedLocations = GetAssignedVillainLocations(candidateLocations, villain);
 
-            var challengeLocations = GetChallengeLocations(candidateLocations.Except(villainLocations), challenge, villainLocations);
+            candidateLocations = candidateLocations
+                .Except(selectedLocations)
+                .ToArray();
 
-            int missing = 6 - villainLocations.Count() - challengeLocations.Count();
+            selectedLocations = AddChallengeLocations(selectedLocations, candidateLocations, challenge);
 
-            var remainingLocations = candidateLocations
-                .Except(villainLocations)
-                .Except(challengeLocations)
-                .TakeRandom(missing);
+            candidateLocations = candidateLocations
+                .Except(selectedLocations)
+                .ToArray();
 
-            // MaximumLocationsWhereStartingThugsAregreatherThanCivilians
+            selectedLocations = AddRemainingLocations(selectedLocations, candidateLocations, villain);
 
-            var locations = villainLocations
-                .Concat(challengeLocations)
-                .Concat(remainingLocations)
-                .Randomize();
-
-            foreach(var assignment in villain.AssignedLocations.Where(x => candidateLocations.Contains(x.Location)))
+            foreach (var assignment in villain.AssignedLocations)
             {
-                locations = EnsurePlacement(locations, assignment);
+                selectedLocations = EnsurePlacement(selectedLocations, assignment);
             }
 
-            return locations;
+            return selectedLocations;
+        }
+
+        private static ILocation[] GetAssignedVillainLocations(ILocation[] candidateLocations, IVillain villain)
+        {
+            return villain
+                .AssignedLocations
+                .Select(x => x.Location)
+                .WhereIsContainedIn(candidateLocations);
+        }
+
+        private ILocation[] AddRemainingLocations(ILocation[] selected, ILocation[] candidates, IVillain villain)
+        {
+            int? max = villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians;
+
+            if (max.HasValue)
+            {
+                int allowedThugs = max.Value - selected.Count(x => x.StartingThugs > x.StartingCivilians);
+
+                selected = candidates
+                    .TakeRandom(allowedThugs)
+                    .Concat(selected)
+                    .ToArray();
+
+                candidates = candidates
+                    .Where(x => x.StartingThugs <= x.StartingCivilians)
+                    .ToArray();
+            }
+            
+            int missing = 6 - selected.Length;
+
+            return candidates
+                .TakeRandom(missing)
+                .Concat(selected)
+                .ToArray();
         }
 
         private ILocation[] EnsurePlacement(ILocation[] locations, AssignedLocation assignment)
@@ -176,28 +206,33 @@ namespace UnitedGenerator.Engine
                 var targetIndex = assignment.Placement.Value - 1;
                 var currentIndex = locations.ToList().IndexOf(assignment.Location);
 
-                var tmp = locations[targetIndex];
-                locations[targetIndex] = locations[currentIndex];
-                locations[currentIndex] = tmp;
+                if (currentIndex >= 0)
+                {
+                    var tmp = locations[targetIndex];
+                    locations[targetIndex] = locations[currentIndex];
+                    locations[currentIndex] = tmp;
+                }
             }
 
             return locations;
         }
 
-        private ILocation[] GetChallengeLocations(IEnumerable<ILocation> candidateLocations, IChallenge? challenge, IEnumerable<ILocation> existingLocations)
+        private ILocation[] AddChallengeLocations(ILocation[] selectedLocations, ILocation[] candidateLocations, IChallenge? challenge)
         {
             if (challenge != null && challenge.HazardousLocationsCount > 0)
             {
-                int existing = existingLocations.Count(x => x.Hazardous);
+                int existing = selectedLocations.Count(x => x.Hazardous);
 
                 int missing = challenge.HazardousLocationsCount - existing;
 
                 return candidateLocations
                     .Where(x => x.Hazardous)
-                    .TakeRandom(missing);
+                    .TakeRandom(missing)
+                    .Concat(selectedLocations)
+                    .ToArray();
             }
 
-            return new ILocation[0];
+            return selectedLocations;
         }
 
         private HeroGroup[] GenerateHeroGroups(List<HeroGroupDefinition> heroGroupsDefinitions, IVillain villain, GenerationConfiguration config)
