@@ -1,0 +1,14 @@
+﻿.bg-success {
+    --bs-bg-opacity: 1;
+    background-color: #c458f6 !important;
+}
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: #6aadee !important;
+}
+
+.bg-danger {
+    --bs-bg-opacity: 1;
+    background-color: #fe5757 !important;
+}
