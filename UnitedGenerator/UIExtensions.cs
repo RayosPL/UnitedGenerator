@@ -18,7 +18,7 @@ namespace UnitedGenerator
             }
         }
 
-        public static MarkupString Break(this string? text, int cutAfter = 20)
+        public static MarkupString Break(this string? text, int cutAfter = 25)
         {
             if (text is null)
             {
