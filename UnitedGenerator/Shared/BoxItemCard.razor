@@ -5,20 +5,19 @@
             @header
         </div>
         <img src="@imgUrl" alt="@Item?.Name" onerror="@(() => ImageNotFound())">
-        <div class="card-body w-100">
-            <span class="fw-bold">@Item?.Name</span>
-            <br />
-
+        <div class="card-body">
+            <div class="fw-bold text-center">@Item?.Name</div>
+            
             @if (ShowBoxInfo)
             {
-                <span class="fst-italic">@Item?.Box.Name</span>
-                <br />
+                <div class="fst-italic text-center">@Item?.Box.Name</div>
             }
             
             @ChildContent
 
             @if (ShowDetails)
             {
+                <br />
                 <BoxItemDetails Item="Item" />
             }
         </div>
