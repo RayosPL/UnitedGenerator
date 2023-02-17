@@ -17,9 +17,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\images\AndroidInstall.jpg" />
-    <None Include="wwwroot\images\ChromeInstall.jpg" />
-    <None Include="wwwroot\images\IosInstall.jpg" />
+    <EmbeddedResource Include="wwwroot\images\others\AndroidInstall.jpg" />
+    <EmbeddedResource Include="wwwroot\images\others\ChromeInstall.jpg" />
+    <EmbeddedResource Include="wwwroot\images\others\IosInstall.jpg" />
+    <EmbeddedResource Include="wwwroot\images\others\photo-coming-soon.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\others\AndroidInstall.jpg" />
+    <None Include="wwwroot\images\others\ChromeInstall.jpg" />
+    <None Include="wwwroot\images\others\IosInstall.jpg" />
   </ItemGroup>
 
   <ItemGroup>
