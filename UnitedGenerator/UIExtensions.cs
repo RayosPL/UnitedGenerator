@@ -6,15 +6,15 @@ namespace UnitedGenerator
 {
     public static class UIExtensions
     {
-        public static string ToItemString(this IBoxItem item, IBoxItem parent)
+        public static MarkupString ToItemString(this IBoxItem item, IBoxItem parent)
         {
             if (item.Box.Id == parent.Box.Id)
             {
-                return item.Name;
+                return item.Name.Break();
             }
             else
             {
-                return $"{item.Name} ({item.Box.Name})";
+                return $"{item.Name} ({item.Box.Name})".Break();
             }
         }
 
@@ -25,13 +25,18 @@ namespace UnitedGenerator
                 return new MarkupString();
             }
 
-            if (text.Length > cutAfter)
+            return new MarkupString(BreakInternal(text, cutAfter));
+        }
+
+        private static string BreakInternal(this string text, int maxLength)
+        {
+            if (text.Length > maxLength)
             {
                 int index = text.IndexOf('(');
 
-                if (index <= 0)
+                if (index < maxLength / 3 || index > maxLength)
                 {
-                    index = text.IndexOf(" ", cutAfter);
+                    index = text.LastIndexOf(" ", maxLength);
                 }
 
                 if (index > 0)
@@ -39,11 +44,13 @@ namespace UnitedGenerator
                     string first = text.Substring(0, index);
                     string last = text.Substring(index).Trim();
 
-                    return new MarkupString($"{first}<br />{last}");
+                    last = BreakInternal(last, maxLength);
+
+                    return $"{first}<br />{last}";
                 }
             }
 
-            return new MarkupString(text);
+            return text;
         }
     }
 }

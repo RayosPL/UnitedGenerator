@@ -5,19 +5,18 @@
         </div>
         <div class="card-body">
             <span class="fw-bold">@((Item?.Name).Break(15))</span>
-            
+            <br />
+
             @if (ShowBoxInfo)
             {
-                <br />
                 <span class="fst-italic">@((Item?.Box.Name).Break())</span>
+                <br />
             }
             
             @ChildContent
-            
+
             @if (ShowDetails)
             {
-                <br />
-                <br />
                 <BoxItemDetails Item="Item" />
             }
         </div>
