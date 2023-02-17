@@ -1,14 +1,70 @@
-﻿.bg-success {
+﻿.bg-anti-hero {
     --bs-bg-opacity: 1;
-    background-color: #c458f6 !important;
+    background-color: #b9a6de !important;
 }
 
-.bg-primary {
+    .bg-anti-hero .card-header {
+        --bs-bg-opacity: 1;
+        background-color: mediumpurple !important;
+    }
+
+.bg-hero {
     --bs-bg-opacity: 1;
-    background-color: #6aadee !important;
+    background-color: skyblue !important;
 }
 
-.bg-danger {
+    .bg-hero .card-header {
+        --bs-bg-opacity: 1;
+        background-color: deepskyblue !important;
+    }
+
+.bg-hero-team {
     --bs-bg-opacity: 1;
-    background-color: #fe5757 !important;
+    background-color: skyblue !important;
 }
+
+    .bg-hero-team .card-header {
+        --bs-bg-opacity: 1;
+        background-color: darkblue !important;
+        color: white !important;
+    }
+
+.bg-villain {
+    --bs-bg-opacity: 1;
+    background-color: #ffa4a4 !important;
+}
+
+    .bg-villain .card-header {
+        --bs-bg-opacity: 1;
+        background-color: #ff4444 !important;
+    }
+
+.bg-villain-team {
+    --bs-bg-opacity: 1;
+    background-color: #ffa4a4 !important;
+}
+
+    .bg-villain-team .card-header {
+        --bs-bg-opacity: 1;
+        background-color: darkred !important;
+        color: white !important;
+    }
+
+.bg-challenge {
+    --bs-bg-opacity: 1;
+    background-color: lightgoldenrodyellow !important;
+}
+
+    .bg-challenge .card-header {
+        background-color: #feff7c !important;
+    }
+
+.bg-location {
+    --bs-bg-opacity: 1;
+    background-color: lightgrey !important;
+}
+
+    .bg-location .card-header {
+        background-color: #9d9d9d !important;
+    }
+

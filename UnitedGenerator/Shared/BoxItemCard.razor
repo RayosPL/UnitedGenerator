@@ -49,12 +49,12 @@
             if (value is IAntiHero)
             {
                 header = "Anti Hero";
-                CardClass = "bg-success text-white";
+                CardClass = "bg-anti-hero";
             }
             else if(value is IHero)
             {
                 header = "Hero";
-                CardClass = "bg-primary text-white";
+                CardClass = "bg-hero";
             }
             else if (value is IVillain)
             {
@@ -63,30 +63,30 @@
                 if (villain.IsVillainTeam)
                 {
                     header = "Villain Team";
-                    CardClass = "bg-dark text-white";
+                    CardClass = "bg-villain-team";
                 }
                 else
                 {
                     header = "Villain";
-                    CardClass = "bg-danger text-white";
+                    CardClass = "bg-villain";
                 }
             }
             else if (value is ILocation)
             {
                 header = "Location";
-                CardClass = "bg-light";
+                CardClass = "bg-location";
             }
             else if(value is IHeroTeam)
             {
                 var team = (IHeroTeam)value;
 
                 header = $"Team ({team.TeamType})";
-                CardClass = "bg-info text-white";
+                CardClass = "bg-hero-team";
             }
             else if (value is IChallenge)
             {
                 header = "Challenge";
-                CardClass = "bg-warning";
+                CardClass = "bg-challenge";
             }
         }
     }
