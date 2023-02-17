@@ -4,12 +4,12 @@
             @header
         </div>
         <div class="card-body">
-            <span class="fw-bold">@Item?.Name</span>
+            <span class="fw-bold">@((Item?.Name).Break(15))</span>
             
             @if (ShowBoxInfo)
             {
                 <br />
-                <span class="fst-italic">@Item?.Box.Name</span>
+                <span class="fst-italic">@((Item?.Box.Name).Break())</span>
             }
             
             @ChildContent
