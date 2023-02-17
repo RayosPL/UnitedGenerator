@@ -17,40 +17,5 @@ namespace UnitedGenerator
                 return $"{item.Name} ({item.Box.Name})";
             }
         }
-
-        public static MarkupString Break(this string? text, int cutAfter)
-        {
-            if (text is null)
-            {
-                return new MarkupString();
-            }
-
-            return new MarkupString(BreakInternal(text, cutAfter));
-        }
-
-        private static string BreakInternal(this string text, int maxLength)
-        {
-            if (text.Length > maxLength)
-            {
-                int index = text.IndexOf('(');
-
-                if (index < maxLength / 3 || index > maxLength)
-                {
-                    index = text.LastIndexOf(" ", maxLength);
-                }
-
-                if (index > 0)
-                {
-                    string first = text.Substring(0, index);
-                    string last = text.Substring(index).Trim();
-
-                    last = BreakInternal(last, maxLength);
-
-                    return $"{first}<br />{last}";
-                }
-            }
-
-            return text;
-        }
     }
 }

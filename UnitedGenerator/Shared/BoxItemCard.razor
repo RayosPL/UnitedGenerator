@@ -1,16 +1,16 @@
-﻿<div class="col-auto">
+﻿<div class="fixed-width col-auto">
     <div class="card mb-2 @CardClass">
-        <div class="card-header">
+        <div class="card-header col-12">
             @header
         </div>
-        <img class="card-img-top" src="./images/others/photo-coming-soon.jpg" alt="Card image cap">
-        <div class="card-body">
-            <span class="fw-bold @(ShowDetails ? "" :"card-width")">@Item?.Name</span>
+        <img src="./images/others/photo-coming-soon.jpg" alt="Card image cap">
+        <div class="card-body w-100">
+            <span class="fw-bold">@Item?.Name</span>
             <br />
 
             @if (ShowBoxInfo)
             {
-                <span class="fst-italic @(ShowDetails ? "" :"card-width")">@Item?.Box.Name</span>
+                <span class="fst-italic">@Item?.Box.Name</span>
                 <br />
             }
             
@@ -26,8 +26,6 @@
 
 @code 
 {
-    private IBoxItem? _item;
-
     private string? header;
 
     private string? CardClass { get; set; }
@@ -42,55 +40,58 @@
     public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
-    public IBoxItem? Item
+    public IBoxItem? Item { get; set; }
+
+    protected override void OnParametersSet()
     {
-        get { return _item; }
-        set
+        var value = Item;
+
+        if (value is IAntiHero)
         {
-            _item = value;
+            header = "Anti Hero";
+            CardClass = "bg-anti-hero";
+        }
+        else if(value is IHero)
+        {
+            header = "Hero";
+            CardClass = "bg-hero";
+        }
+        else if (value is IVillain)
+        {
+            var villain = (IVillain)value;
 
-            if (value is IAntiHero)
+            if (villain.IsVillainTeam)
             {
-                header = "Anti Hero";
-                CardClass = "bg-anti-hero";
+                header = "Villain Team";
+                CardClass = "bg-villain-team";
             }
-            else if(value is IHero)
+            else
             {
-                header = "Hero";
-                CardClass = "bg-hero";
-            }
-            else if (value is IVillain)
-            {
-                var villain = (IVillain)value;
-
-                if (villain.IsVillainTeam)
-                {
-                    header = "Villain Team";
-                    CardClass = "bg-villain-team";
-                }
-                else
-                {
-                    header = "Villain";
-                    CardClass = "bg-villain";
-                }
-            }
-            else if (value is ILocation)
-            {
-                header = "Location";
-                CardClass = "bg-location";
-            }
-            else if(value is IHeroTeam)
-            {
-                var team = (IHeroTeam)value;
-
-                header = $"Hero Team";
-                CardClass = "bg-hero-team";
-            }
-            else if (value is IChallenge)
-            {
-                header = "Challenge";
-                CardClass = "bg-challenge";
+                header = "Villain";
+                CardClass = "bg-villain";
             }
         }
+        else if (value is ILocation)
+        {
+            header = "Location";
+            CardClass = "bg-location";
+        }
+        else if(value is IHeroTeam)
+        {
+            var team = (IHeroTeam)value;
+
+            header = $"Hero Team";
+            CardClass = "bg-hero-team";
+        }
+        else if (value is IChallenge)
+        {
+            header = "Challenge";
+            CardClass = "bg-challenge";
+        }
+
+        if(ShowDetails)
+        {
+            CardClass += " card-wide";
+        }   
     }
 }
