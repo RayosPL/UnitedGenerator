@@ -1,20 +1,23 @@
-﻿<div class="@ColClass">
+﻿<div class="col-auto">
     <div class="card m-1 @CardClass">
         <div class="card-header">
             @header
         </div>
         <div class="card-body">
-            <h5 class="card-title">@Item?.Name</h5>
+            <span class="fw-bold">@Item?.Name</span>
             
             @if (ShowBoxInfo)
             {
-                <h6 class="card-subtitle mb-2">@Item?.Box.Name</h6>
+                <br />
+                <span class="fst-italic">@Item?.Box.Name</span>
             }
             
             @ChildContent
             
             @if (ShowDetails)
             {
+                <br />
+                <br />
                 <BoxItemDetails Item="Item" />
             }
         </div>
@@ -88,19 +91,6 @@
                 header = "Challenge";
                 CardClass = "bg-challenge";
             }
-        }
-    }
-
-    private string ColClass 
-    {
-        get
-        {
-            if(ShowDetails)
-            {
-                return "col-12 col-md-8 col-lg-6";
-            }
-
-            return "col-12 col-sm-6 col-md-4 col-lg-3";
         }
     }
 }
