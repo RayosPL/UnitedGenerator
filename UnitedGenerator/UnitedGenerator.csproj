@@ -11,9 +11,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Images\*.jpg">
+    <EmbeddedResource Include="wwwroot\images\*.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\AndroidInstall.jpg" />
+    <None Include="wwwroot\images\ChromeInstall.jpg" />
+    <None Include="wwwroot\images\IosInstall.jpg" />
   </ItemGroup>
 
   <ItemGroup>

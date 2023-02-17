@@ -18,39 +18,16 @@
     <p>When using desktop Chromium-based browsers, such as Edge or Chrome, an Add button appears within the URL bar. 
     After you click the Add button, you will receive a confirmation dialog:</p>
 
-    <img src="@ChromeImageUrl" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
+    <img src="./images/ChromeInstall.jpg" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
     
     <h3>IOS</h3>
     <p>On iOS, you can install the app using Safari's Share button and its Add to Homescreen option.</p> 
 
-    <img src="@IosImageUrl" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
+    <img src="./images/IosInstall.jpg" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
     
     <h3>Android</h3>
     <p>On Chrome for Android, you should select the Menu button in the upper-right corner, followed by Add to Home screen.</p>
 
-    <img src="@AndroidImageUrl" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
+    <img src="./images/AndroidInstall.jpg" class="figure-img col-12 col-md-8 col-lg-6 p-2" />
 
 </div>
-
-@code{
-    private string? ChromeImageUrl => GetUrl("ChromeInstall");
-    private string? IosImageUrl => GetUrl("IosInstall");
-    private string? AndroidImageUrl => GetUrl("AndroidInstall");
-
-    private string? GetUrl(string name)
-    {
-        Assembly myAssembly = Assembly.GetExecutingAssembly();
-        using Stream? myStream = myAssembly.GetManifestResourceStream($"UnitedGenerator.Images.{name}.jpg");
-
-        if (myStream != null)
-        {
-            using MemoryStream r = new MemoryStream();
-            myStream.CopyTo(r);
-
-            string imagesrc = Convert.ToBase64String(r.ToArray());
-            return string.Format("data:image/jpeg;base64,{0}", imagesrc);
-        }
-
-        return null;
-    }
-}
