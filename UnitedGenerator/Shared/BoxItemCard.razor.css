@@ -1,4 +1,12 @@
-﻿.bg-anti-hero {
+﻿img {
+    width: 180px !important;
+    height: 180px !important;
+    margin: 2px;
+    border: solid thin;
+    border-radius: 25%;
+}
+
+.bg-anti-hero {
     --bs-bg-opacity: 1;
     background-color: #b9a6de !important;
 }
