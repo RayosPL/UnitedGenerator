@@ -12,12 +12,14 @@ namespace UnitedGenerator.Data.Common
         protected BoxBase(ISeason season, string code)
         {
             Season = season;
+            Code = code;
             Id = $"S{season.Number}.{code}";
         }
 
         public abstract string Name { get; }
 
         public string Id { get; }
+        public string Code { get; }
 
         public ISeason Season { get; }
 

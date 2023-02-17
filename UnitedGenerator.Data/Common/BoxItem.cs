@@ -13,7 +13,8 @@ namespace UnitedGenerator.Data.Common
         {
             Name = name;
             Box = box;
-            Id = $"{Box.Id}.{TextOnly(Name)}";
+            Code = TextOnly(Name);
+            Id = $"{Box.Id}.{Code}";
         }
 
         public string Name { get; }
@@ -21,6 +22,7 @@ namespace UnitedGenerator.Data.Common
         public IBox Box { get; }
 
         public string Id { get; }
+        public string Code { get; }
 
         public ISeason Season => Box.Season;
 

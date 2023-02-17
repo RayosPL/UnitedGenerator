@@ -10,6 +10,7 @@ namespace UnitedGenerator.Common
     {
         string Name { get; }
         string Id { get; }
+        string Code { get; }
         ISeason Season { get; }
         IHero[] Heroes { get; }
         IVillain[] Villains { get; }

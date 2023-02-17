@@ -10,6 +10,7 @@ namespace UnitedGenerator.Common
     {
         string Name { get; }
         string Id { get; }
+        string Code { get; }
         IBox Box { get; }
         ISeason Season { get; }
     }

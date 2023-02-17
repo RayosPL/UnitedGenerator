@@ -72,6 +72,7 @@ namespace UnitedGenerator.Engine
                 TeamType = team.TeamType;
                 Name = team.Name;
                 Id = team.Id;
+                Code = team.Code;
                 Box = team.Box;
                 Season = team.Season;
             }
@@ -83,6 +84,8 @@ namespace UnitedGenerator.Engine
             public string Name { get; }
 
             public string Id { get; }
+
+            public string Code { get; }
 
             public IBox Box { get; }
 

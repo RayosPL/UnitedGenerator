@@ -1,9 +1,10 @@
-﻿<div class="fixed-width col-auto">
-    <div class="card mb-2 @CardClass">
+﻿@using System.IO;
+<div class="fixed-width col-auto">
+    <div class="card mb-2 @cardClass">
         <div class="card-header">
             @header
         </div>
-        <img src="./images/others/photo-coming-soon.jpg" alt="Card image cap">
+        <img src="@imgUrl" alt="@Item?.Name" onerror="@(() => ImageNotFound())">
         <div class="card-body w-100">
             <span class="fw-bold">@Item?.Name</span>
             <br />
@@ -28,7 +29,9 @@
 {
     private string? header;
 
-    private string? CardClass { get; set; }
+    private string? imgUrl;
+
+    private string? cardClass;
 
     [Parameter]
     public bool ShowBoxInfo { get; set; } = true;
@@ -42,56 +45,61 @@
     [Parameter]
     public IBoxItem? Item { get; set; }
 
+    private void ImageNotFound()
+    {
+        imgUrl = "./images/others/photo-coming-soon.jpg";
+    }
+
     protected override void OnParametersSet()
     {
-        var value = Item;
+        imgUrl = $"./images/S{Item?.Season.Number}/{Item?.Box.Code}/{Item?.Code}.png";
 
-        if (value is IAntiHero)
+        if (Item is IAntiHero)
         {
             header = "Anti Hero";
-            CardClass = "bg-anti-hero";
+            cardClass = "bg-anti-hero";
         }
-        else if(value is IHero)
+        else if(Item is IHero)
         {
             header = "Hero";
-            CardClass = "bg-hero";
+            cardClass = "bg-hero";
         }
-        else if (value is IVillain)
+        else if (Item is IVillain)
         {
-            var villain = (IVillain)value;
+            var villain = (IVillain)Item;
 
             if (villain.IsVillainTeam)
             {
                 header = "Villain Team";
-                CardClass = "bg-villain-team";
+                cardClass = "bg-villain-team";
             }
             else
             {
                 header = "Villain";
-                CardClass = "bg-villain";
+                cardClass = "bg-villain";
             }
         }
-        else if (value is ILocation)
+        else if (Item is ILocation)
         {
             header = "Location";
-            CardClass = "bg-location";
+            cardClass = "bg-location";
         }
-        else if(value is IHeroTeam)
+        else if(Item is IHeroTeam)
         {
-            var team = (IHeroTeam)value;
+            var team = (IHeroTeam)Item;
 
             header = $"Hero Team";
-            CardClass = "bg-hero-team";
+            cardClass = "bg-hero-team";
         }
-        else if (value is IChallenge)
+        else if (Item is IChallenge)
         {
             header = "Challenge";
-            CardClass = "bg-challenge";
+            cardClass = "bg-challenge";
         }
 
-        if(ShowDetails)
+        if (ShowDetails)
         {
-            CardClass += " card-wide";
+            cardClass += " card-wide";
         }   
     }
 }
