@@ -6,6 +6,11 @@
     border-radius: 25%;
 }
 
+.card-width {
+    max-width: 120px !important;
+    display: inline-block;
+}
+
 .bg-anti-hero {
     --bs-bg-opacity: 1;
     background-color: #b9a6de !important;
