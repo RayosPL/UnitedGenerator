@@ -1,16 +1,16 @@
 ﻿<div class="col-auto">
-    <div class="card m-1 @CardClass">
+    <div class="card mb-2 @CardClass">
         <div class="card-header">
             @header
         </div>
         <img class="card-img-top" src="./images/others/photo-coming-soon.jpg" alt="Card image cap">
         <div class="card-body">
-            <span class="fw-bold">@((Item?.Name).Break(18))</span>
+            <span class="fw-bold">@((Item?.Name).Break(14))</span>
             <br />
 
             @if (ShowBoxInfo)
             {
-                <span class="fst-italic">@((Item?.Box.Name).Break())</span>
+                <span class="fst-italic">@((Item?.Box.Name).Break(14))</span>
                 <br />
             }
             
@@ -83,7 +83,7 @@
             {
                 var team = (IHeroTeam)value;
 
-                header = $"Team ({team.TeamType})";
+                header = $"Hero Team";
                 CardClass = "bg-hero-team";
             }
             else if (value is IChallenge)

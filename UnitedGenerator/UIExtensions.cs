@@ -6,19 +6,19 @@ namespace UnitedGenerator
 {
     public static class UIExtensions
     {
-        public static MarkupString ToItemString(this IBoxItem item, IBoxItem parent)
+        public static string ToItemString(this IBoxItem item, IBoxItem parent)
         {
             if (item.Box.Id == parent.Box.Id)
             {
-                return item.Name.Break();
+                return item.Name;
             }
             else
             {
-                return $"{item.Name} ({item.Box.Name})".Break();
+                return $"{item.Name} ({item.Box.Name})";
             }
         }
 
-        public static MarkupString Break(this string? text, int cutAfter = 22)
+        public static MarkupString Break(this string? text, int cutAfter)
         {
             if (text is null)
             {
