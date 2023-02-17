@@ -11,25 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="wwwroot\images\*.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="wwwroot\images\others\AndroidInstall.jpg" />
-    <EmbeddedResource Include="wwwroot\images\others\ChromeInstall.jpg" />
-    <EmbeddedResource Include="wwwroot\images\others\IosInstall.jpg" />
-    <EmbeddedResource Include="wwwroot\images\others\photo-coming-soon.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\images\others\AndroidInstall.jpg" />
-    <None Include="wwwroot\images\others\ChromeInstall.jpg" />
-    <None Include="wwwroot\images\others\IosInstall.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.13" PrivateAssets="all" />
