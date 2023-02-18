@@ -12,6 +12,7 @@ namespace UnitedGenerator.Data.Season2
     {
         public KickstarterBonusBox(ISeason season) : base(season, "PledgeBonus")
         {
+            IsKickstartBonusBox = true;
         }
 
         public override string Name => "Season 2 Pledge Bonus";

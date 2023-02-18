@@ -28,7 +28,7 @@
 
     @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
     {
-        @foreach(var box in season.Boxes.OrderBy(x => x.Name))
+        @foreach(var box in season.Boxes.OrderByBoxDefault())
         {
             <h2>Season @season.Number: @box.Name</h2>
 

@@ -12,6 +12,7 @@ namespace UnitedGenerator.Data.Season1
     {
         public KickstarterPromoBox(ISeason season) : base(season, "Promos")
         {
+            IsKickstartBonusBox = true;
         }
 
         public override string Name => "Season 1 Promos";

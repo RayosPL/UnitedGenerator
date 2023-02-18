@@ -12,6 +12,7 @@ namespace UnitedGenerator.Data.Season2
     {
         public XMenCoreBox(ISeason season) : base(season, "XMenCore")
         {
+            IsCoreBox = true;
         }
 
         public override string Name => "X-Men";

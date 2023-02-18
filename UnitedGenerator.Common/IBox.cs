@@ -11,6 +11,8 @@ namespace UnitedGenerator.Common
         string Name { get; }
         string Id { get; }
         string Code { get; }
+        bool IsCoreBox { get; }
+        bool IsKickstartBonusBox { get; }
         ISeason Season { get; }
         IHero[] Heroes { get; }
         IVillain[] Villains { get; }

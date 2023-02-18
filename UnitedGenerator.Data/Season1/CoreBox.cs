@@ -12,6 +12,7 @@ namespace UnitedGenerator.Data.Season1
     {
         public CoreBox(ISeason season) : base(season, "Core")
         {
+            IsCoreBox = true;
         }
 
         public override string Name => "Marvel United";

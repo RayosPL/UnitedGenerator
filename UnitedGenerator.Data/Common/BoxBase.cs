@@ -18,6 +18,9 @@ namespace UnitedGenerator.Data.Common
 
         public abstract string Name { get; }
 
+        public bool IsCoreBox { get; protected set; }
+        public bool IsKickstartBonusBox { get; protected set; }
+
         public string Id { get; }
         public string Code { get; }
 

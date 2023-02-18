@@ -13,6 +13,7 @@ namespace UnitedGenerator.Data.Season2
     {
         public KickstarterPromoBox(ISeason season) : base(season, "Promos")
         {
+            IsKickstartBonusBox = true;
         }
 
         public override string Name => "Season 2 Promos";
@@ -67,7 +68,7 @@ namespace UnitedGenerator.Data.Season2
         public override IVillain[] Villains => new[]
         {
             OmegaRed,
-            Onslaugth,
+            Onslaught,
             Pyro,
             Sauron,
             ShadowKing,
@@ -146,7 +147,7 @@ namespace UnitedGenerator.Data.Season2
         public IAntiHero EmmaFrost => new AntiHero(this, "Emma Frost");
 
         public IVillain OmegaRed => new Villain(this, "Omega Red");
-        public IVillain Onslaugth => new Villain(this, "Onslaugth");
+        public IVillain Onslaught => new Villain(this, "Onslaught");
         public IVillain Pyro => new Villain(this, "Pyro")
         {
             ExcludeFromRandomSelection = true,

@@ -15,12 +15,12 @@
 
     @if (!Villain.IncludeInRandomVillainSelection)
     {
-        <p>Do not include in<br />random selection.</p>
+        <p>Do not include in random selection.</p>
     }
 
     @if (!Villain.CanBeVillainInTeamVsTeamMode)
     {
-        <p>Can't be villain in<br />Team vs Team games.</p>
+        <p>Can't be villain in Team vs Team games.</p>
     }
 
     @if (Villain.DisableChallenges)
@@ -30,12 +30,12 @@
 
     @if (Villain.ExcludeLocationsWhereHeroCanDrawCards)
     {
-        <p>Exclude locations where<br />heroes can draw cards.</p>
+        <p>Exclude locations where heroes can draw cards.</p>
     }
 
     @if (Villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians.HasValue)
     {
-        <p>Maximum @Villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians locations where starting<br />number of thugs are greather than civilians.</p>
+        <p>Maximum @Villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians locations where starting number of thugs are greather than civilians.</p>
     }
 
     @if (Villain.PreGamesCount > 0)
@@ -86,7 +86,7 @@
             <ul>
                 @foreach (var group in Villain.AdditionalHeroGroups)
                 {
-                    <li>@group.GroupName<br />(@group.Description)</li>
+                    <li>@group.GroupName (@group.Description)</li>
                 }
             </ul>
         </div>
