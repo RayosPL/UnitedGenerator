@@ -15,6 +15,16 @@
         <p>Use minimum @Challenge.HazardousLocationsCount hazardous locations.</p>
     }
 
+    @if (Challenge.MinimumPlayerCount.HasValue)
+    {
+        <p>Requires at least @Challenge.MinimumPlayerCount players.</p>
+    }
+
+    @if (Challenge.MaximumPlayerCount.HasValue)
+    {
+        <p>Requires at most @Challenge.MaximumPlayerCount players.</p>
+    }
+
     @if (Challenge.IncompatibleVillains.Any())
     {
         <div>

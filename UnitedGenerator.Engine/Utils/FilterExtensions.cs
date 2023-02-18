@@ -48,6 +48,14 @@ namespace UnitedGenerator.Engine.Utils
                 .Where(x => !x.IncompatibleVillains.Contains(villain))
                 .Where(x => x.HazardousLocationsCount + villain.AssignedLocations.Count() <= 6);
 
+            int before = result.Count();
+
+            result = result
+                .Where(x => !x.MaximumPlayerCount.HasValue || x.MaximumPlayerCount >= config.PlayerCount)
+                .Where(x => !x.MinimumPlayerCount.HasValue || x.MinimumPlayerCount <= config.PlayerCount);
+
+            int after = result.Count();
+
             if (config.OnlyHazardousLocationsChallenge)
             {
                 result = result.Where(x => x.HazardousLocationsCount > 0);

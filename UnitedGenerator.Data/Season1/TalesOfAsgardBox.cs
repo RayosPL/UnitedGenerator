@@ -64,10 +64,8 @@ namespace UnitedGenerator.Data.Season1
         public IChallenge TraitorChallenge => new Challenge(this, "Traitor Challenge")
         {
             CanBeUsedInTeamVsTeamMode = false,
-            DataComments = new[]
-            {
-                "TODO: Must only be used in 3-4 player games!"
-            }
+            MinimumPlayerCount = 3,
+            MaximumPlayerCount = 4
         };
     }
 }

@@ -22,6 +22,8 @@ namespace UnitedGenerator.Data.Common
         public IVillain[] IncompatibleVillains { get; init; }
         public bool CanBeUsedInTeamVsTeamMode { get; init; }
         public bool RequiresTeamvsTeamMode { get; init; }
+        public int? MinimumPlayerCount { get; init; }
+        public int? MaximumPlayerCount { get; init; }
         public string[] DataComments { get; init; }
     }
 }
