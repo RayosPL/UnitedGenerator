@@ -5,7 +5,7 @@
     <h1>@game.Title</h1>
 
     <h2>Villain</h2>
-    <div class="row">
+    <div class="row g-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
 
         @if (game.Villain.IsVillainTeam)
         {
@@ -31,7 +31,7 @@
     {
         <h2>@group.Name</h2>
 
-        <div class="row">
+        <div class="row g-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
             @if (group.Team != null)
             {
                 <BoxItemCard Item="group.Team" ShowDetails="ShowDetails" />
@@ -45,7 +45,7 @@
     }
 
     <h2>Locations</h2>
-    <div class="row">
+    <div class="row g-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
         @foreach (var location in game.Locations)
         {
             <BoxItemCard Item="location" ShowDetails="ShowDetails" />

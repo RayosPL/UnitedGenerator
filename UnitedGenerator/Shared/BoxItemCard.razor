@@ -1,11 +1,13 @@
 ﻿@using System.IO;
-<div class="fixed-width col-auto">
-    <div class="card mb-2 @cardClass">
+<div cass="col">
+    <div class="card mb-2 @cardClass" >
         <div class="card-header">
             @header
         </div>
-        <img src="@imgUrl" alt="@Item?.Name" onerror="@(() => ImageNotFound())">
-        <div class="card-body">
+        <div class="pt-2">
+            <img src="@imgUrl" class="border border-dark border-2 rounded-circle" alt="@Item?.Name" onerror="@(() => ImageNotFound())">
+        </div>
+        <div class="card-body p-1">
             <div class="fw-bold text-center">@Item?.Name</div>
             
             @if (ShowBoxInfo)
@@ -17,7 +19,6 @@
 
             @if (ShowDetails)
             {
-                <br />
                 <BoxItemDetails Item="Item" />
             }
         </div>
@@ -95,10 +96,5 @@
             header = "Challenge";
             cardClass = "bg-challenge";
         }
-
-        if (ShowDetails)
-        {
-            cardClass += " card-wide";
-        }   
     }
 }
