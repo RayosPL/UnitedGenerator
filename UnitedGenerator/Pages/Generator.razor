@@ -8,36 +8,36 @@
 
 @if (!generated)
 {
-    <div class ="col-12 col-xl-6">
+    <div class ="col-12 col-xl-4">
         <h4>Setup</h4>
         <NumberInput Text="Number of Heroes" Min="2" Max="6" @bind-Value="playerCount" />
     </div>
 
     <div class="row">
         <div class="mb-2">
-            <div class="card col-12 col-xl-6">
+            <div class="card col-12 col-xl-8">
                 <div class="card-body">
                     <h5 class="card-title">Preferences</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different events to happen.</h6>
 
-                    <PercentageInput Text="Select a Hero Team" @bind-Value="selectTeamProbability" />
-                    <PercentageInput Text="Select a Challenge" @bind-Value="selectChallengeProbability" />
+                    <PercentageInput Text="Prefer Heroes from a randomly selected Team" @bind-Value="selectTeamProbability" />
+                    <PercentageInput Text="Include a random Challenge" @bind-Value="selectChallengeProbability" />
                 </div>
             </div>
         </div>
 
         <div class="mb-2">
-            <div class="card col-12 col-xl-6">
+            <div class="card col-12 col-xl-8">
                 <div class="card-body">
-                    <h5 class="card-title">Demo/Test Settings</h5>
+                    <h5 class="card-title">Demo & Test Settings</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
 
                     <BooleanInput Text="Only include Villain Teams" @bind-Value="onlyUseTeamVillains" />
                     <BooleanInput Text="Only include Villains with multiple games" @bind-Value="onlyUsePreGameVillains" />
-                    <BooleanInput Text="Only include Anti Heroes" @bind-Value="onlyUseAntiHeroes" />
-                    <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="onlyUseHazardousChallenge" />
                     <BooleanInput Text="Only include Villains with Locations" @bind-Value="onlyVillainsWithLocations" />
                     <BooleanInput Text="Only include Villains with Location restrictions" @bind-Value="onlyIncludeVillainsWithLocationRestrictions" />
+                    <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="onlyUseHazardousChallenge" />
+                    <BooleanInput Text="Only include Anti Heroes" @bind-Value="onlyUseAntiHeroes" />
                 </div>
             </div>
         </div>
