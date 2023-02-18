@@ -25,8 +25,4 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\S1\Core\" />
-  </ItemGroup>
-
 </Project>
