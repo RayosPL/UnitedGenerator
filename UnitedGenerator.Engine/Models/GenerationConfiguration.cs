@@ -13,13 +13,15 @@ namespace UnitedGenerator.Engine.Models
             PlayerCount = 4;
             SelectTeamProbability = 5;
             SelectChallengeProbability = 20;
+            GameType = GameMode.Normal;
         }
 
         public int PlayerCount { get; set; }
-        public bool TeamVsTeamMode { get; set; }
+        public GameMode GameType { get; set; }
         public int SelectTeamProbability { get; set; }
         public int SelectChallengeProbability { get; set; }
 
+        public bool TeamVsTeamMode => GameType == GameMode.TeamVsTeam;
 
         public bool OnlyVillainTeams { get; set; }
         public bool OnlyVillainsWithPreGames { get; set; }

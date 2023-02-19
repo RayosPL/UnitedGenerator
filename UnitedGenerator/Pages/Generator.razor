@@ -8,29 +8,47 @@
 
 @if (!generated)
 {
-    <button class="btn btn-primary m-2" @onclick="() => GenerateGame(false)">Generate Normal Game</button>
-    <button class="btn btn-primary m-2" @onclick="() => GenerateGame(true)">Generate Team vs Team Game</button>
-    <BooleanInput Text="Show Demo & Test Settings" @bind-Value="showDebugSettings" />
-
-    <div class ="col-12 col-xl-4">
-        <h4>Game Setup</h4>
+    <div class ="col-12 col-md-10 col-lg-8 col-xxl-4">
+        <h2>Game Setup</h2>
         <NumberInput Text="Number of Heroes" Min="2" Max="8" @bind-Value="config.PlayerCount" StorageKey="generator.number.playercount" />
-    </div>
-
-    <div class="row">
-        <div class="mb-2">
-            <div class="card col-12 col-xl-8">
-                <div class="card-body">
-                    <h5 class="card-title">Preferences</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different events to happen.</h6>
-
-                    <PercentageInput Text="Prefer Heroes from a randomly selected Team" @bind-Value="config.SelectTeamProbability" StorageKey="generator.percent.heroteam" />
-                    <PercentageInput Text="Include a random Challenge" @bind-Value="config.SelectChallengeProbability" StorageKey="generator.percent.challenge" />
-                </div>
+    
+        <div class="row mb-3">
+            <label class="col-4 col-form-label" for="game-mode">Game Mode</label>
+            <div class="col-8">
+                <select class="form-select" @bind="config.GameType" id="game-mode">
+                    <option value="@GameMode.Normal">Normal Game</option>
+                    <option value="@GameMode.TeamVsTeam">Gold vs Blue Team</option>
+                </select>
             </div>
         </div>
 
-        
+        <div class="row m-3">
+            <BooleanInput Text="Show Preferences" @bind-Value="showPreferences" />
+            <BooleanInput Text="Show Demo & Test Settings" @bind-Value="showDebugSettings" />
+        </div>
+
+        <div class="row m-3">
+            <button class="btn btn-primary btn-lg mb-2 col-12" @onclick="GenerateGame">Generate Game</button>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        @if (showPreferences)
+        {
+            <div class="mb-2">
+                <div class="card col-12 col-xl-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Preferences</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different events to happen.</h6>
+
+                        <PercentageInput Text="Prefer Heroes from a randomly selected Team" @bind-Value="config.SelectTeamProbability" StorageKey="generator.percent.heroteam" />
+                        <PercentageInput Text="Include a random Challenge" @bind-Value="config.SelectChallengeProbability" StorageKey="generator.percent.challenge" />
+                    </div>
+                </div>
+            </div>
+        }
+
         @if (showDebugSettings)
         {
             <div class="mb-2">
@@ -61,8 +79,8 @@
 @if (generated)
 {
     <button class="btn btn-primary m-2" @onclick="GenerateGame">Generate Again</button>
-    <button class="btn btn-primary m-2" @onclick="Reset">Change Setup</button>
-    <BooleanInput Text="Show generation constraints" @bind-Value="showDetails" />
+    <button class="btn btn-secondary m-2" @onclick="Reset">Change Setup</button>
+    <BooleanInput Text="Show generation details" @bind-Value="showDetails" />
 }
 
 <Games CurrentGames="games" ShowDetails="showDetails" />
@@ -74,17 +92,12 @@
     private GenerationConfiguration config = new GenerationConfiguration();
     private bool generated = false;
     private bool showDetails = false;
+    private bool showPreferences = false;
     private bool showDebugSettings = false;
 
     protected override void OnInitialized()
     {
         random = new GameRandomizer(DataFactory.Seasons, myCollection);
-    }
-
-    private void GenerateGame(bool isTeamMode)
-    {
-        config.TeamVsTeamMode = isTeamMode;
-        GenerateGame();
     }
 
     private void GenerateGame()
