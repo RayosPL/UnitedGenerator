@@ -1,6 +1,7 @@
 ﻿@page "/collection"
 @using UnitedGenerator.Data;
 @using UnitedGenerator.Common;
+@using UnitedGenerator.Shared.Collection;
 @inject MyCollectionService myCollection;
 
 <PageTitle>My Collection</PageTitle>
@@ -30,23 +31,7 @@
     {
         @foreach(var box in season.Boxes.OrderByBoxDefault())
         {
-            <h2>Season @season.Number: @box.Name</h2>
-
-            <div class="btn-group btn-group-lg mb-2 col-auto" role="group" aria-label="Basic example">
-                <button class="btn btn-success" @onclick="() => SetState(box, true)">Include entire box</button>
-                <button class="btn btn-danger" @onclick="() => SetState(box, false)">Exclude entire box</button>
-            </div>
-
-            <div class="row g-2 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6">
-
-                @foreach(var item in box.AllItems)
-                {
-                    <BoxItemCard Item="item" ShowBoxInfo="false">
-                        <MyCollectionBoxItem Item="item" />
-                    </BoxItemCard>
-                }
-
-            </div>
+            <MyCollectionBox Box="box" />
         }
     }
 
@@ -54,16 +39,11 @@
 
 @code
 {
-    private void SetState(IBox box, bool include)
-    {
-        myCollection.SetIncluded(box, include);
-    }
-
     private void SetState(ISeason season, bool include)
     {
         foreach (var box in season.Boxes.OrderBy(x => x.Name))
         {
-            SetState(box, include);
+            myCollection.SetIncluded(box, include);
         }
     }
 
