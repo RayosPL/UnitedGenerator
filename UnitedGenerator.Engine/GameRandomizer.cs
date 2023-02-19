@@ -170,7 +170,8 @@ namespace UnitedGenerator.Engine
             return villain
                 .AssignedLocations
                 .Select(x => x.Location)
-                .WhereIsContainedIn(candidateLocations);
+                .Where(x => candidateLocations.Contains(x) || !x.IncludeInRandomSelection)
+                .ToArray();
         }
 
         private ILocation[] AddRemainingLocations(ILocation[] selected, ILocation[] candidates, IVillain villain)
