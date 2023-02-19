@@ -6,26 +6,32 @@
 
         <div class="row">
 
-            <div class="col-2">
-                <img class="img-fluid" src="./images/S1/Core/Box.jpg" />
+            <div class="col-9 col-md-4 col-lg-3">
+                <img class="img-fluid border border-1 border-dark m-2" src="./images/S1/Core/Box.jpg" />
             </div>
 
-            <div class="col-10">
-
+            <div class="col-12 col-md-8 col-lg-9">
                 <div class="row">
-                    <div class="col-auto">
-                        <h3>Season @Box.Season.Number: @Box.Name <span class="badge @BadgeClass">@Status</span></h3>
+                    <div class="col-12">
+                        <h1><span class="badge @BadgeClass">@Status</span></h1>
+                    </div>
+                    <div class="col-12">
+                        <h2>@Box.Name</h2>
+                    </div>
+                    <div class="col-12">
+                        <h4>Season @Box.Season.Number</h4>
                     </div>
                 </div>
-
                 <div class="row mb-3">
-                    <div class="btn-group">
+                    <div class="btn-group col-12 col-lg-10 col-xl-8">
                         <button class="btn btn-info" @onclick="Toggle"><span class="oi @ToogleText" aria-hidden="true"></span> Details</button>
                         <button class="btn btn-outline-primary" @onclick="() => SetState(Box, true)">Include All</button>
                         <button class="btn btn-outline-primary" @onclick="() => SetState(Box, false)">Exclude All</button>
                     </div>
                 </div>
+            </div>
 
+            <div class="col-12">
                 <div class="row g-2 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6">
 
                     @if (showItems)
