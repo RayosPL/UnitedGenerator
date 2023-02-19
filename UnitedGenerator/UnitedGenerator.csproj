@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\S1\InfinityGauntlet\" />
+    <Folder Include="wwwroot\images\S1\Promos\" />
     <Folder Include="wwwroot\images\S1\PledgeBonus\" />
     <Folder Include="wwwroot\images\S1\SinisterSix\" />
   </ItemGroup>

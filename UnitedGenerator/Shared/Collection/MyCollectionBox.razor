@@ -7,11 +7,11 @@
         <div class="row">
 
             <div class="col-9 col-md-4 col-lg-3">
-                <img class="img-fluid border border-1 border-dark m-2" src="./images/S1/Core/Box.jpg" />
+                <img class="img-fluid m-2" src="@imgUrl" />
             </div>
 
             <div class="col-12 col-md-8 col-lg-9">
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-12">
                         <h1><span class="badge @BadgeClass">@Status</span></h1>
                     </div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="btn-group col-12 col-lg-10 col-xl-8">
-                        <button class="btn btn-info" @onclick="Toggle"><span class="oi @ToogleText" aria-hidden="true"></span> Details</button>
+                        <button class="btn btn-info" @onclick="Toggle"><span class="oi @ToogleText" aria-hidden="true"></span> Content</button>
                         <button class="btn btn-outline-primary" @onclick="() => SetState(Box, true)">Include All</button>
                         <button class="btn btn-outline-primary" @onclick="() => SetState(Box, false)">Exclude All</button>
                     </div>
@@ -57,8 +57,14 @@
     public IBox? Box { get; set; }
 
     private bool showItems = false;
+    private string? imgUrl;
 
     private string ToogleText => showItems ? "oi-caret-top" : "oi-caret-bottom";
+
+    protected override void OnParametersSet()
+    {
+        imgUrl = $"./images/S{Box?.Season.Number}/{Box?.Code}/Box.jpg";
+    }
 
     private string Status
     {
