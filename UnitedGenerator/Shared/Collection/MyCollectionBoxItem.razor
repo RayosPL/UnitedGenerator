@@ -11,6 +11,9 @@
 
     private bool included;
 
+    [Parameter]
+    public EventCallback SelectionChanged { get; set; }
+
     protected override void OnAfterRender(bool firstRender)
     {
         if (Item != null)
@@ -29,6 +32,8 @@
         if (Item != null && e.Value is bool)
         {
             myCollection.SetIncluded(Item, (bool)e.Value);
+
+            SelectionChanged.InvokeAsync();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace UnitedGenerator
 
         public void SetIncluded(IBoxItem item, bool included)
         {
-            var boxState = ReadBox(item.Box);
+            var boxState = IsBoxIncluded(item.Box);
 
             if (boxState.HasValue)
             {
@@ -45,7 +45,7 @@ namespace UnitedGenerator
 
         public bool IsIncluded(IBoxItem item)
         {
-            return ReadBox(item.Box) ?? ReadBoxItem(item);
+            return IsBoxIncluded(item.Box) ?? ReadBoxItem(item);
         }
 
         private bool ReadBoxItem(IBoxItem item)
@@ -58,11 +58,23 @@ namespace UnitedGenerator
             return true;
         }
 
-        private bool? ReadBox(IBox box)
+        public bool? IsBoxIncluded(IBox box)
         {
             if(_storage.ContainKey(box.Id))
             {
                 return _storage.GetItem<bool>(box.Id);
+            }
+
+            var allItems = box.AllItems.Select(x => ReadBoxItem(x)).ToArray();
+
+            if (allItems.All(x => x))
+            {
+                return true;
+            }
+
+            if (allItems.All(x => !x))
+            {
+                return false;
             }
 
             return null;
