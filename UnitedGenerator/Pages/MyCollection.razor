@@ -13,16 +13,13 @@
     </div>
 
     <div class="m-3">
-        
-        <button class="btn btn-secondary m-1" @onclick="() => SetGlobalState(true)">Include EVERYTHING</button>
-        <button class="btn btn-secondary m-1" @onclick="() => SetGlobalState(false)">Exclude EVERYTHING</button>
-
         @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
         {
-            <button class="btn btn-secondary m-1" @onclick="() => SetState(season, true)">Include all of Season @season.Number</button>
-            <button class="btn btn-secondary m-1" @onclick="() => SetState(season, false)">Exclude all of Season @season.Number</button>
+            <div class="row">
+                <button class="btn btn-secondary m-1 col-auto" @onclick="() => SetState(season, true)">Include all of Season @season.Number</button>
+                <button class="btn btn-secondary m-1 col-auto" @onclick="() => SetState(season, false)">Exclude all of Season @season.Number</button>
+            </div>
         }
-
     </div>
 
     @foreach(var season in DataFactory.Seasons.OrderBy(x => x.Number))
