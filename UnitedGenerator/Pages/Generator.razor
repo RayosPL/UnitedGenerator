@@ -8,8 +8,12 @@
 
 @if (!generated)
 {
+    <button class="btn btn-primary m-2" @onclick="() => GenerateGame(false)">Generate Normal Game</button>
+    <button class="btn btn-primary m-2" @onclick="() => GenerateGame(true)">Generate Team vs Team Game</button>
+    <BooleanInput Text="Show Demo & Test Settings" @bind-Value="showDebugSettings" />
+
     <div class ="col-12 col-xl-4">
-        <h4>Setup</h4>
+        <h4>Game Setup</h4>
         <NumberInput Text="Number of Heroes" Min="2" Max="8" @bind-Value="config.PlayerCount" StorageKey="generator.number.playercount" />
     </div>
 
@@ -26,34 +30,33 @@
             </div>
         </div>
 
-        <div class="mb-2">
-            <div class="card col-12 col-xl-8">
-                <div class="card-body">
-                    <h5 class="card-title">Demo & Test Settings</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
+        
+        @if (showDebugSettings)
+        {
+            <div class="mb-2">
+                <div class="card col-12 col-xl-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Demo & Test Settings</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
 
-                    <BooleanInput Text="Only include Villain Teams" @bind-Value="config.OnlyVillainTeams" />
-                    <BooleanInput Text="Only include Villains with multiple games" @bind-Value="config.OnlyVillainsWithPreGames" />
-                    <BooleanInput Text="Only include Villains with Hero groups" @bind-Value="config.OnlyVillainsWithHeroGroups" />
-                    <BooleanInput Text="Only include Villains with Locations" @bind-Value="config.OnlyVillainsWithLocations" />
-                    <BooleanInput Text="Only include Villains with Location restrictions" @bind-Value="config.OnlyIncludeVillainsWithLocationRestrictions" />
-                    <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="config.OnlyHazardousLocationsChallenge" />
-                    <BooleanInput Text="Only include Anti Heroes" @bind-Value="config.OnlyUseAntiHeroes" />
+                        <BooleanInput Text="Only include Villain Teams" @bind-Value="config.OnlyVillainTeams" />
+                        <BooleanInput Text="Only include Villains with multiple games" @bind-Value="config.OnlyVillainsWithPreGames" />
+                        <BooleanInput Text="Only include Villains with Hero groups" @bind-Value="config.OnlyVillainsWithHeroGroups" />
+                        <BooleanInput Text="Only include Villains with Locations" @bind-Value="config.OnlyVillainsWithLocations" />
+                        <BooleanInput Text="Only include Villains with Location restrictions" @bind-Value="config.OnlyIncludeVillainsWithLocationRestrictions" />
+                        <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="config.OnlyHazardousLocationsChallenge" />
+                        <BooleanInput Text="Only include Anti Heroes" @bind-Value="config.OnlyUseAntiHeroes" />
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
-
-    <button class="btn btn-primary m-2" @onclick="() => GenerateGame(false)">Generate Normal Game</button>
-    <button class="btn btn-primary m-2" @onclick="() => GenerateGame(true)">Generate Team vs Team Game</button>
 }
 
 @if(games.Length == 0 && generated)
 {
     <div>No possible game, please change your options and try again!</div>
 }
-
-<Games CurrentGames="games" ShowDetails="showDetails" />
 
 @if (generated)
 {
@@ -62,6 +65,8 @@
     <BooleanInput Text="Show generation constraints" @bind-Value="showDetails" />
 }
 
+<Games CurrentGames="games" ShowDetails="showDetails" />
+
 @code {
     private GameRandomizer? random;
     private GameSetup[] games = new GameSetup[0];
@@ -69,6 +74,7 @@
     private GenerationConfiguration config = new GenerationConfiguration();
     private bool generated = false;
     private bool showDetails = false;
+    private bool showDebugSettings = false;
 
     protected override void OnInitialized()
     {
