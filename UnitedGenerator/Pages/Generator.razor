@@ -10,7 +10,7 @@
 {
     <div class ="col-12 col-xl-4">
         <h4>Setup</h4>
-        <NumberInput Text="Number of Heroes" Min="2" Max="8" @bind-Value="playerCount" StorageKey="generator.number.playercount" />
+        <NumberInput Text="Number of Heroes" Min="2" Max="8" @bind-Value="config.PlayerCount" StorageKey="generator.number.playercount" />
     </div>
 
     <div class="row">
@@ -20,8 +20,8 @@
                     <h5 class="card-title">Preferences</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different events to happen.</h6>
 
-                    <PercentageInput Text="Prefer Heroes from a randomly selected Team" @bind-Value="selectTeamProbability" StorageKey="generator.percent.heroteam" />
-                    <PercentageInput Text="Include a random Challenge" @bind-Value="selectChallengeProbability" StorageKey="generator.percent.challenge" />
+                    <PercentageInput Text="Prefer Heroes from a randomly selected Team" @bind-Value="config.SelectTeamProbability" StorageKey="generator.percent.heroteam" />
+                    <PercentageInput Text="Include a random Challenge" @bind-Value="config.SelectChallengeProbability" StorageKey="generator.percent.challenge" />
                 </div>
             </div>
         </div>
@@ -32,12 +32,13 @@
                     <h5 class="card-title">Demo & Test Settings</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
 
-                    <BooleanInput Text="Only include Villain Teams" @bind-Value="onlyUseTeamVillains" />
-                    <BooleanInput Text="Only include Villains with multiple games" @bind-Value="onlyUsePreGameVillains" />
-                    <BooleanInput Text="Only include Villains with Locations" @bind-Value="onlyVillainsWithLocations" />
-                    <BooleanInput Text="Only include Villains with Location restrictions" @bind-Value="onlyIncludeVillainsWithLocationRestrictions" />
-                    <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="onlyUseHazardousChallenge" />
-                    <BooleanInput Text="Only include Anti Heroes" @bind-Value="onlyUseAntiHeroes" />
+                    <BooleanInput Text="Only include Villain Teams" @bind-Value="config.OnlyVillainTeams" />
+                    <BooleanInput Text="Only include Villains with multiple games" @bind-Value="config.OnlyVillainsWithPreGames" />
+                    <BooleanInput Text="Only include Villains with Hero groups" @bind-Value="config.OnlyVillainsWithHeroGroups" />
+                    <BooleanInput Text="Only include Villains with Locations" @bind-Value="config.OnlyVillainsWithLocations" />
+                    <BooleanInput Text="Only include Villains with Location restrictions" @bind-Value="config.OnlyIncludeVillainsWithLocationRestrictions" />
+                    <BooleanInput Text="Only include Hazardous Location Challenge" @bind-Value="config.OnlyHazardousLocationsChallenge" />
+                    <BooleanInput Text="Only include Anti Heroes" @bind-Value="config.OnlyUseAntiHeroes" />
                 </div>
             </div>
         </div>
@@ -65,17 +66,7 @@
     private GameRandomizer? random;
     private GameSetup[] games = new GameSetup[0];
 
-    private int playerCount = 4;
-    private int selectTeamProbability = 5;
-    private int selectChallengeProbability = 20;
-    private bool onlyUseTeamVillains = false;
-    private bool onlyUsePreGameVillains = false;
-    private bool onlyUseAntiHeroes = false;
-    private bool onlyUseHazardousChallenge = false;
-    private bool onlyVillainsWithLocations = false;
-    private bool onlyIncludeVillainsWithLocationRestrictions = false;
-    private bool teamMode = false;
-
+    private GenerationConfiguration config = new GenerationConfiguration();
     private bool generated = false;
     private bool showDetails = false;
 
@@ -86,7 +77,7 @@
 
     private void GenerateGame(bool isTeamMode)
     {
-        teamMode = isTeamMode;
+        config.TeamVsTeamMode = isTeamMode;
         GenerateGame();
     }
 
@@ -94,19 +85,7 @@
     {
         if (random != null)
         {
-            games = random.Generate(new GenerationConfiguration()
-                {
-                    PlayerCount = playerCount,
-                    TeamVsTeamMode = teamMode,
-                    SelectTeamProbability = selectTeamProbability,
-                    SelectChallengeProbability = selectChallengeProbability,
-                    OnlyVillainTeams = onlyUseTeamVillains,
-                    OnlyVillainsWithPreGames = onlyUsePreGameVillains,
-                    OnlyUseAntiHeroes = onlyUseAntiHeroes,
-                    OnlyHazardousLocationsChallenge = onlyUseHazardousChallenge,
-                    OnlyVillainsWithLocations = onlyVillainsWithLocations,
-                    OnlyIncludeVillainsWithLocationRestrictions = onlyIncludeVillainsWithLocationRestrictions
-                });
+            games = random.Generate(config);
 
             generated = true;
         }

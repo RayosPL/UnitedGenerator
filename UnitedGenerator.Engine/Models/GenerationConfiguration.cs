@@ -15,17 +15,18 @@ namespace UnitedGenerator.Engine.Models
             SelectChallengeProbability = 20;
         }
 
-        public int PlayerCount { get; init; }
-        public bool TeamVsTeamMode { get; init; }
-        public int SelectTeamProbability { get; init; }
-        public int SelectChallengeProbability { get; init; }
+        public int PlayerCount { get; set; }
+        public bool TeamVsTeamMode { get; set; }
+        public int SelectTeamProbability { get; set; }
+        public int SelectChallengeProbability { get; set; }
 
 
-        public bool OnlyVillainTeams { get; init; }
-        public bool OnlyVillainsWithPreGames { get; init; }
-        public bool OnlyVillainsWithLocations { get; init; }
-        public bool OnlyUseAntiHeroes { get; init; }
-        public bool OnlyHazardousLocationsChallenge { get; init; }
-        public bool OnlyIncludeVillainsWithLocationRestrictions { get; init; }
+        public bool OnlyVillainTeams { get; set; }
+        public bool OnlyVillainsWithPreGames { get; set; }
+        public bool OnlyVillainsWithLocations { get; set; }
+        public bool OnlyVillainsWithHeroGroups { get; set; }
+        public bool OnlyUseAntiHeroes { get; set; }
+        public bool OnlyHazardousLocationsChallenge { get; set; }
+        public bool OnlyIncludeVillainsWithLocationRestrictions { get; set; }
     }
 }

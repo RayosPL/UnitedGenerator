@@ -108,6 +108,11 @@ namespace UnitedGenerator.Engine.Utils
                 result = result.Where(x => x.ExcludeLocationsWhereHeroCanDrawCards || x.MaximumLocationsWhereStartingThugsAregreatherThanCivilians.HasValue);
             }
 
+            if (config.OnlyVillainsWithHeroGroups)
+            {
+                result = result.Where(x => x.AdditionalHeroGroups.Any());
+            }
+
             return result.ToArray();
         }
 
