@@ -31,21 +31,20 @@
                 </div>
             </div>
 
-            <div class="col-12">
-                <div class="row g-2 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6">
+            @if (showItems)
+            {
+                <div class="col-12">
+                    <div class="row g-2 mb-5 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6">
 
-                    @if (showItems)
-                    {
                         @foreach (var item in Box.AllItems)
                         {
                             <BoxItemCard Item="item" ShowBoxInfo="false">
                                 <MyCollectionBoxItem Item="item" SelectionChanged="() => StateHasChanged()" />
                             </BoxItemCard>
                         }
-                    }
-
+                    </div>
                 </div>
-            </div>
+            }
 
         </div>
     </div>
