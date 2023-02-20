@@ -83,11 +83,6 @@
     </div>
 }
 
-@if(games.Length == 0 && generated)
-{
-    <div>No possible game, please change your options and try again!</div>
-}
-
 @if (generated)
 {
     <button class="btn btn-primary m-2" @onclick="GenerateGame">Generate Again</button>
@@ -96,6 +91,15 @@
 }
 
 <Games CurrentGames="games" ShowDetails="showDetails" />
+
+@if (games.Length == 0 && generated)
+{
+    <div class="row">
+        <div class="alert alert-danger m-5" role="alert">
+            Not possible to generate a game, please change your options or collection and try again!
+        </div>
+    </div>
+}
 
 @code {
     private GameRandomizer? random;
