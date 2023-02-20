@@ -15,7 +15,7 @@ namespace UnitedGenerator.Data.Season2
             IsCoreBox = true;
         }
 
-        public override string Name => "X-Men";
+        public override string Name => "X-Men Core";
 
         public override IHero[] Heroes => new IHero[]
         {

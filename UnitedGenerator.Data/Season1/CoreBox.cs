@@ -15,7 +15,7 @@ namespace UnitedGenerator.Data.Season1
             IsCoreBox = true;
         }
 
-        public override string Name => "Marvel United";
+        public override string Name => "Core";
 
         public override IHero[] Heroes => new IHero[]
         {
