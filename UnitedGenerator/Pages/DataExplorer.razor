@@ -3,13 +3,13 @@
 
 <PageTitle>Data Review</PageTitle>
 
-<div class="alert alert-primary" role="alert">
-    This page is only intended for those who wants to know (or review) what data goes into the generation.<br />
-    Please report any errors you might find!
-</div>
-<div class="alert alert-secondary" role="alert">
-    Developers are welcome to take a even deeper look into the source at <a href="https://github.com/norsjensen/UnitedGenerator" target="_blank">GitHub</a>
-</div>
+<h1>Data Review</h1>
+<p>This page is only intended for those who wants to know (or review) what data goes into the generation.<br />
+Please report any errors you might find!</p>
+
+<h4>For Developers</h4>
+<p>Developers are welcome to take a even deeper look into the source at <a href="https://github.com/norsjensen/UnitedGenerator" target="_blank">GitHub</a><br />
+The site is a C# Blazor PWA app with Bootstrap 5.</p>
 
 <h2 id="top">Shortcuts to Boxes</h2>
 <ul>
@@ -26,7 +26,6 @@
         </li>
     }
 </ul>
-
 
 @foreach (var season in DataFactory.Seasons.OrderBy(x => x.Number))
 {
