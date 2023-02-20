@@ -39,7 +39,9 @@
                         @foreach (var item in Box.AllItems)
                         {
                             <BoxItemCard Item="item" ShowBoxInfo="false">
-                                <MyCollectionBoxItem Item="item" SelectionChanged="() => StateHasChanged()" />
+                                <div class="d-flex justify-content-center">
+                                    <MyCollectionBoxItem Item="item" SelectionChanged="() => StateHasChanged()" />
+                                </div>
                             </BoxItemCard>
                         }
                     </div>
