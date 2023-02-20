@@ -42,8 +42,20 @@
                         <h5 class="card-title">Preferences</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Adjust how likely you want different events to happen.</h6>
 
-                        <PercentageInput Text="Prefer Heroes from a randomly selected Team" @bind-Value="config.SelectTeamProbability" StorageKey="generator.percent.heroteam" />
+                        <PercentageInput Text="Use a Hero Team" @bind-Value="config.SelectTeamProbability" StorageKey="generator.percent.heroteam" />
+                        <div class="text-info">
+                            If a Hero Team is used all Heroes will be selected from the list of team members, but others will be added if needed.
+                            Please note that team members can also be selected normally without being part of a team. This feature is just added so you
+                            have a realistic chance of playing as the Fantastic Four or a similar Team.
+                        </div>
+
+                        <hl />
+
                         <PercentageInput Text="Include a random Challenge" @bind-Value="config.SelectChallengeProbability" StorageKey="generator.percent.challenge" />
+                        <div class="text-info">
+                            A random Challenge could be added and taken into account during the generation. Please note that not all Challenges are valid in all setups and that some 
+                            Villains disables all Challenges. A Challenge may not be selected even if this is set to 100%. If you never want a Challenge added, simply set this setting to 0%.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,7 +67,7 @@
                 <div class="card col-12 col-xl-8">
                     <div class="card-body">
                         <h5 class="card-title">Demo & Test Settings</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
+                        <h6 class="card-subtitle mb-4 text-muted">Theese settings are mostly used for test and demo purporses, but feel free to play around with them.</h6>
 
                         <BooleanInput Text="Only include Villain Teams" @bind-Value="config.OnlyVillainTeams" />
                         <BooleanInput Text="Only include Villains with multiple games" @bind-Value="config.OnlyVillainsWithPreGames" />
