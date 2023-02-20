@@ -1,0 +1,15 @@
+﻿@page "/version"
+@using UnitedGenerator.Data;
+
+<PageTitle>Version</PageTitle>
+
+<h1>Version</h1>
+<p>This allows you to validate the version you are using, auto updating of the app can take a very long time and on some platform it does not seem to happen at all!</p>
+<p>Please restart the application or re-open the browser tab TWICE, to ensure you have the latest version.</p>
+<p>On iOS it is not sufficient to minimize the app, is must be closed by swiping up, and you need to do it TWICE!</p>
+
+<h4 class="mt-5">
+    Current version: 
+    @System.Reflection.Assembly.GetExecutingAssembly().GetName().Version
+</h4>
+
