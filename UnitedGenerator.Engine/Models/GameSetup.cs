@@ -10,15 +10,25 @@ namespace UnitedGenerator.Engine.Models
     public class GameSetup
     {
         internal GameSetup(string title, IEnumerable<HeroGroup> heroGroups, IVillain villain, IEnumerable<ILocation> locations, IChallenge? challenge)
+            : this(title, villain, true)
         {
-            Title = title;
             HeroGroups = heroGroups.ToArray();
-            Villain = villain;
             Locations = locations.ToArray();
             Challenge = challenge;
         }
 
+        internal GameSetup(string title, IVillain villain, bool visible = false) 
+        {
+            Title = title;
+            Villain = villain;
+            Visible = visible;
+            HeroGroups = new HeroGroup[0];
+            Locations = new ILocation[0];
+        }
+
         public string Title { get; }
+
+        public bool Visible { get; }
 
         public HeroGroup[] HeroGroups { get; }
 

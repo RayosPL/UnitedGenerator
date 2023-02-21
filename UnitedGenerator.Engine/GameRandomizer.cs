@@ -71,6 +71,10 @@ namespace UnitedGenerator.Engine
             {
                 games.Add(GenerateVillainFight($"Game {i}", config, villain, heroes));
             }
+            else
+            {
+                games.Add(new GameSetup("Hidden Game", villain));
+            }
 
             return games.ToArray();
         }
