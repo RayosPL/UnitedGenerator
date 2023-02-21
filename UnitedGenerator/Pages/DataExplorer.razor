@@ -12,20 +12,21 @@ Please report any errors you might find!</p>
 The site is a C# Blazor PWA app with Bootstrap 5.</p>
 
 <h2 id="top">Shortcuts to Boxes</h2>
-<ul>
+
+<div class="row">
     @foreach (var season in DataFactory.Seasons.OrderBy(x => x.Number))
     {
-        <li>
-            Season @season.Number
+        <div class="col-12 col-lg-6 col-xxl-4">
+            <h4>Season @season.Number</h4>
             <ul>
                 @foreach (var box in season.Boxes.OrderByBoxDefault())
                 {
                     <li><a href="data#@box.Id" target="_top">@box.Name</a></li>
                 }
             </ul>
-        </li>
+        </div>
     }
-</ul>
+</div>
 
 @foreach (var season in DataFactory.Seasons.OrderBy(x => x.Number))
 {
