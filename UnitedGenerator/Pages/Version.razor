@@ -19,24 +19,22 @@
     The list below is LIVE updated everytime you view this page, if the latest version on the list does not match your version, please restart some more!
 </p>
 
-@if (releases == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <ul>
-        @foreach (var release in releases)
+<div class="row">
+    <div class="alert alert-info" role="alert">
+        @if (releases == null)
         {
-            <li>
-                @release.Version
-                <ul>
-                    <li>@release.Comment</li>
-                </ul>
-            </li>
+            <p>Loading...</p>
         }
-    </ul>
-}
+        else
+        {
+            @foreach (var release in releases)
+            {
+                <h6>@release.Version</h6>
+                <p>@release.Comment</p>
+            }
+        }
+    </div>
+</div>
 
 @code {
     private Release[]? releases;
