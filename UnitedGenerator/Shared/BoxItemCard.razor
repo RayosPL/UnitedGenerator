@@ -5,7 +5,7 @@
             @header
         </div>
         <div class="pt-2">
-            <img src="@imgUrl" class="border border-dark border-2 rounded-circle" alt="@Item?.Name" onerror="@(() => ImageNotFound())">
+            <img src="@imgUrl" class="border border-dark border-2 rounded-circle" alt="@Item?.Name" />
         </div>
         <div class="card-body p-1">
             <div class="fw-bold text-center">@Item?.Name</div>
@@ -44,11 +44,6 @@
 
     [Parameter]
     public IBoxItem? Item { get; set; }
-
-    private void ImageNotFound()
-    {
-        imgUrl = "./images/others/photo-coming-soon.jpg";
-    }
 
     protected override void OnParametersSet()
     {
