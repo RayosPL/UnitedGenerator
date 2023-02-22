@@ -29,19 +29,30 @@
         {
             @foreach (var release in releases)
             {
-                <h6>@release.Version</h6>
-                <p>@release.Comment</p>
+                <p>
+                    @release.Version<br />
+                    @release.Comment
+                </p>
             }
         }
     </div>
 </div>
 
+<p>@updated</p>
+
 @code {
     private Release[]? releases;
+    private string? updated;
 
     protected override async Task OnInitializedAsync()
     {
-        releases = await Http.GetFromJsonAsync<Release[]>("releases.json");
+        try
+        {
+            releases = await Http.GetFromJsonAsync<Release[]>("releases.json");
+            updated = $"List updated at {DateTime.Now}";
+        }
+        catch (Exception)
+        { }
     }
 
     public class Release
