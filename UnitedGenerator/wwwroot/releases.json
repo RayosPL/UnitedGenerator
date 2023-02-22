@@ -1,5 +1,9 @@
 [
   {
+    "version": "0.9.4.x",
+    "comment": "Improved loading screen."
+  },
+  {
     "version": "0.9.3.x",
     "comment": "Minor layout fixes."
   },
@@ -18,5 +22,6 @@
   {
     "version": "0.1.x.x",
     "comment": "Aplha versions, everything is work in progress!"
-  }
+  },
+  { "$ref": "#" }
 ]
