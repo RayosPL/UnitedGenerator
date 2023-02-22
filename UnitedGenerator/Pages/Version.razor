@@ -1,4 +1,5 @@
 ﻿@page "/version"
+@inject HttpClient Http
 @using UnitedGenerator.Data;
 
 <PageTitle>Version</PageTitle>
@@ -6,7 +7,7 @@
 <h1>Version</h1>
 <p>This allows you to validate the version you are using, auto updating of the app can take a very long time and on some platform it does not seem to happen at all!</p>
 <p>Please restart the application or re-open the browser tab TWICE, to ensure you have the latest version.</p>
-<p>On iOS it is not sufficient to minimize the app, is must be closed by swiping up, and you need to do it TWICE!</p>
+<p>On iOS it is not sufficient to minimize the app, is must be closed by swiping up, and you need to do it TWICE! (and sometimes more)</p>
 
 <h4 class="m-5">
     Current version: 
@@ -14,7 +15,40 @@
 </h4>
 
 <h2>Version History</h2>
-<ul>
-    <li>0.9.0.x: Beta versions, very close to the final version.</li>
-    <li>0.1.x.x: Aplha versions, everything is work in progress!</li>
-</ul>
+<p>
+    The list below is LIVE updated everytime you view this page, if the latest version on the list does not match your version, please restart some more!
+</p>
+
+@if (releases == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <ul>
+        @foreach (var release in releases)
+        {
+            <li>
+                @release.Version
+                <ul>
+                    <li>@release.Comment</li>
+                </ul>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private Release[]? releases;
+
+    protected override async Task OnInitializedAsync()
+    {
+        releases = await Http.GetFromJsonAsync<Release[]>("releases.json");
+    }
+
+    public class Release
+    {
+        public string? Version { get; set; }
+        public string? Comment { get; set; }
+    }
+}

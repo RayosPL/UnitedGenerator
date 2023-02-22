@@ -1,0 +1,10 @@
+[
+  {
+    "version": "0.9.0.x",
+    "comment": "Beta versions, very close to the final version."
+  },
+  {
+    "version": "0.1.x.x",
+    "comment": "Aplha versions, everything is work in progress!"
+  }
+]
