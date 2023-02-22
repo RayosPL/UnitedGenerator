@@ -1,5 +1,9 @@
 [
   {
+    "version": "0.9.2.x",
+    "comment": "Test of live version history."
+  },
+  {
     "version": "0.9.1.x",
     "comment": "Live version history added."
   },
