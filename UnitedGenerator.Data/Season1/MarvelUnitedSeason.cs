@@ -9,9 +9,9 @@ namespace UnitedGenerator.Data.Season1
 {
     internal class MarvelUnitedSeason : ISeason
     {
-        public int Number => 1;
-
-        public string Name => "Marvel United";
+        public string Name => "Season 1";
+        public int SortIndex => 1;
+        public string Code => "S1";
 
         public IBox[] Boxes => new IBox[]
         {

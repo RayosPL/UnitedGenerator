@@ -8,8 +8,9 @@ namespace UnitedGenerator.Common
 {
     public interface ISeason
     {
-        int Number { get; }
+        int SortIndex { get; }
         string Name { get; }
+        string Code { get; }
         IBox[] Boxes { get; }
     }
 }

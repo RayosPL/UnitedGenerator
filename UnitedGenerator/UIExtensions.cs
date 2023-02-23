@@ -23,8 +23,7 @@ namespace UnitedGenerator
         public static IEnumerable<IBox> OrderByBoxDefault(this IEnumerable<IBox> items)
         {
             return items
-                .OrderBy(x => x.IsConventionExclusive)
-                .ThenBy(x => !x.IsCoreBox)
+                .OrderBy(x => !x.IsCoreBox)
                 .ThenBy(x => x.IsKickstartBonusBox)
                 .ThenBy(x => x.Name);
         }

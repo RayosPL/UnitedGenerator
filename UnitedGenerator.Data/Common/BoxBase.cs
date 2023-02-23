@@ -13,7 +13,7 @@ namespace UnitedGenerator.Data.Common
         {
             Season = season;
             Code = code;
-            Id = $"S{season.Number}.{code}";
+            Id = $"{season.Code}.{code}";
         }
 
         public abstract string Name { get; }

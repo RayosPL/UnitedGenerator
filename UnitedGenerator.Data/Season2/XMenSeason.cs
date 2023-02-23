@@ -9,9 +9,9 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class XMenSeason : ISeason
     {
-        public int Number => 2;
-
-        public string Name => "Marvel United: X-Men";
+        public string Name => "Season 2";
+        public int SortIndex => 1;
+        public string Code => "S2";
 
         public IBox[] Boxes => new IBox[]
         {
@@ -26,8 +26,7 @@ namespace UnitedGenerator.Data.Season2
             KickstarterBonus,
             KickstarterPromos,
             TheHorsemenOfApocalypse,
-            PhoenixFive,
-            ConventionExclusives
+            PhoenixFive
         };
 
         public XMenCoreBox CoreBox => new XMenCoreBox(this);
@@ -42,6 +41,5 @@ namespace UnitedGenerator.Data.Season2
         public KickstarterPromoBox KickstarterPromos => new KickstarterPromoBox(this);
         public TheHorsemenOfApocalypseBox TheHorsemenOfApocalypse => new TheHorsemenOfApocalypseBox(this);
         public PhoenixFiveBox PhoenixFive => new PhoenixFiveBox(this);
-        public ConventionExclusivesBox ConventionExclusives => new ConventionExclusivesBox(this);
     }
 }

@@ -36,7 +36,7 @@ namespace UnitedGenerator.Engine
 
         public IChallenge[] Challenges => Boxes
             .SelectMany(x => x.Challenges)
-            .OrderBy(x => x.Season.Number)
+            .OrderBy(x => x.Season.SortIndex)
             .DistinctBy(x => x.Name)
             .Where(ApplyFilter)
             .ToArray();

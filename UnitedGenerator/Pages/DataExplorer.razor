@@ -10,10 +10,10 @@
 <h2 id="top">Shortcuts to Boxes</h2>
 
 <div class="row">
-    @foreach (var season in DataFactory.Seasons.OrderBy(x => x.Number))
+    @foreach (var season in DataFactory.Seasons.OrderBy(x => x.SortIndex))
     {
         <div class="col-12 col-lg-6 col-xxl-4">
-            <h4>Season @season.Number</h4>
+            <h4>@season.Name</h4>
             <ul>
                 @foreach (var box in season.Boxes.OrderByBoxDefault())
                 {
@@ -24,11 +24,11 @@
     }
 </div>
 
-@foreach (var season in DataFactory.Seasons.OrderBy(x => x.Number))
+@foreach (var season in DataFactory.Seasons.OrderBy(x => x.SortIndex))
 {
     @foreach (var box in season.Boxes.OrderByBoxDefault())
     {
-        <h2 id="@box.Id">Season @season.Number: @box.Name</h2>
+        <h2 id="@box.Id">@season.Name: @box.Name</h2>
 
         <div class="row g-2 row-cols-1 row-cols-lg-2 row-cols-xxl-3">
 

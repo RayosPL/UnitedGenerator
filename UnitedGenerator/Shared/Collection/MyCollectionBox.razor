@@ -19,7 +19,7 @@
                         <h2>@Box.Name</h2>
                     </div>
                     <div class="col-12">
-                        <h4>Season @Box.Season.Number</h4>
+                        <h4>@Box.Season.Name</h4>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -64,7 +64,7 @@
 
     protected override void OnParametersSet()
     {
-        imgUrl = $"./images/S{Box?.Season.Number}/{Box?.Code}/Box.jpg";
+        imgUrl = $"./images/{Box?.Season.Code}/{Box?.Code}/Box.jpg";
     }
 
     private string Status

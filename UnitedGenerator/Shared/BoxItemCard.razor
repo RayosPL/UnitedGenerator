@@ -47,7 +47,7 @@
 
     protected override void OnParametersSet()
     {
-        imgUrl = $"./images/S{Item?.Season.Number}/{Item?.Box.Code}/{Item?.Code}.png";
+        imgUrl = $"./images/{Item?.Season.Code}/{Item?.Box.Code}/{Item?.Code}.png";
 
         if (Item is IAntiHero)
         {
