@@ -10,13 +10,12 @@
 <p>On iOS it is not sufficient to minimize the app, is must be closed by swiping up, and you need to do it TWICE! (and sometimes more)</p>
 
 <h4 class="m-5">
-    Current version: 
-    @System.Reflection.Assembly.GetExecutingAssembly().GetName().Version
+    Current version: @currentVersion
 </h4>
 
 <h2>Version History</h2>
 <p>
-    The list below is LIVE updated everytime you view this page, if the latest version on the list does not match your version, please restart some more!
+    The list below is LIVE updated everytime you view this page, if any versions are marked with red you are missing the latest features! Please restart some more!
 </p>
 
 <div class="row">
@@ -30,7 +29,7 @@
             @foreach (var release in releases)
             {
                 <p>
-                    @release.Version<br />
+                    <h5><span class="badge @GetBadgeClass(release.Version)">@release.Version</span></h5>
                     @release.Comment
                 </p>
             }
@@ -43,6 +42,24 @@
 @code {
     private Release[]? releases;
     private string? updated;
+    private System.Version? currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+
+    private string GetBadgeClass(string? versionString)
+    {
+        versionString = versionString?.Replace('x', '0');
+
+        System.Version? version;
+        System.Version.TryParse(versionString, out version);
+
+        if (version <= currentVersion)
+        {
+            return "bg-success";
+        }
+        else
+        {
+            return "bg-danger";
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {

@@ -1,5 +1,9 @@
 [
   {
+    "version": "0.9.8.x",
+    "comment": "Improved version list with red/green colors."
+  },
+  {
     "version": "0.9.7.x",
     "comment": "Moved Grey Hulk and Hero Juggernaut from Season 2 to Off-Season. They will need to be re-added to your collection again!"
   },
