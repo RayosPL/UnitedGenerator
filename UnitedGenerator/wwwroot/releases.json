@@ -1,5 +1,9 @@
 [
   {
+    "version": "0.9.5.x",
+    "comment": "Updated Scarlet Witch & Quicksilver image."
+  },
+  {
     "version": "0.9.4.x",
     "comment": "Improved loading screen."
   },
