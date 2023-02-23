@@ -1,5 +1,9 @@
 [
   {
+    "version": "0.9.6.x",
+    "comment": "Added Grey Hulk and Hero Juggernaut, but not included as default."
+  },
+  {
     "version": "0.9.5.x",
     "comment": "Updated Scarlet Witch & Quicksilver image."
   },
