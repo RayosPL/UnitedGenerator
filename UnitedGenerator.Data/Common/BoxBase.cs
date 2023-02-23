@@ -14,13 +14,14 @@ namespace UnitedGenerator.Data.Common
             Season = season;
             Code = code;
             Id = $"{season.Code}.{code}";
+            IncludeItemsInCollectionAsDefault = true;
         }
 
         public abstract string Name { get; }
 
         public bool IsCoreBox { get; protected set; }
         public bool IsKickstartBonusBox { get; protected set; }
-        public bool IsConventionExclusive { get; protected set; }
+        public bool IncludeItemsInCollectionAsDefault { get; protected set; }
 
         public string Id { get; }
         public string Code { get; }

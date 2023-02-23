@@ -13,7 +13,7 @@ namespace UnitedGenerator.Common
         string Code { get; }
         bool IsCoreBox { get; }
         bool IsKickstartBonusBox { get; }
-        bool IsConventionExclusive { get; }
+        bool IncludeItemsInCollectionAsDefault { get; }
         ISeason Season { get; }
         IHero[] Heroes { get; }
         IVillain[] Villains { get; }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnitedGenerator.Common;
-using UnitedGenerator.Data.Season2;
 
 namespace UnitedGenerator.Data.OffSeason
 {

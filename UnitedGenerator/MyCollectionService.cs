@@ -55,7 +55,7 @@ namespace UnitedGenerator
                 return _storage.GetItem<bool>(item.Id);
             }
 
-            return !item.Box.IsConventionExclusive; // Include everything as default, but not conventions stuff!
+            return item.Box.IncludeItemsInCollectionAsDefault;
         }
 
         public bool? IsBoxIncluded(IBox box)

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using UnitedGenerator.Common;
 using UnitedGenerator.Data.Common;
 
-namespace UnitedGenerator.Data.Season2
+namespace UnitedGenerator.Data.OffSeason
 {
     internal class ConventionExclusivesBox : BoxBase
     {
         public ConventionExclusivesBox(ISeason season) : base(season, "Conventions")
         {
-            IsConventionExclusive = true;
+            IncludeItemsInCollectionAsDefault = false;
         }
 
         public override string Name => "Convention Exclusives";
