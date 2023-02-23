@@ -90,7 +90,7 @@ namespace UnitedGenerator.Data.Season2
 
         private static readonly string[] DataComment = new string[]
         {
-            "For simplicity all of the Phoenix Five hero versions, are always excluded."
+            "For simplicity all of the Phoenix Five Hero versions, are always excluded."
         };
 
         private class BackupHeroes : IHeroGroupDefinition

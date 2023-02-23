@@ -1,7 +1,11 @@
 [
   {
+    "version": "0.9.9.x",
+    "comment": "Fixed a lot of spelling and grammar mistakes."
+  },
+  {
     "version": "0.9.8.x",
-    "comment": "Improved version list with red/green colors."
+    "comment": "Improved version list with red/green colours."
   },
   {
     "version": "0.9.7.x",

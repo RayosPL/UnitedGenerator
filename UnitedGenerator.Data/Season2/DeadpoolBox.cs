@@ -56,7 +56,7 @@ namespace UnitedGenerator.Data.Season2
             },
             DataComments = new[]
             {
-                "There should be an unlimited number of backup heroes, is 8 sufficient?"
+                "There should be an unlimited number of backup Heroes, is 8 sufficient?"
             }
         };
 
@@ -71,7 +71,7 @@ namespace UnitedGenerator.Data.Season2
         {
             public string GroupName => "Backup Heroes";
 
-            public string Description => "8 heroes";
+            public string Description => "8 Heroes";
 
             public int GroupSize(int playerCount)
             {

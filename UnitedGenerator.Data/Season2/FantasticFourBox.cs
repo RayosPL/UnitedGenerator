@@ -92,7 +92,7 @@ namespace UnitedGenerator.Data.Season2
             },
             DataComments = new[]
             {
-                "The rulebook does not list the incompatible villains, this is my best guess."
+                "The rulebook does not list the incompatible Villains, this is my best guess."
             }
         };
 

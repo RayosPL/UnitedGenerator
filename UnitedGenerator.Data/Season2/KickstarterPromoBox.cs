@@ -164,7 +164,7 @@ namespace UnitedGenerator.Data.Season2
             },
             DataComments = new[]
             {
-                "The location is not mandatory, but keept in the loop so players can select it as the starting location."
+                "The Location is not mandatory, but keept in the loop so players can select it as the starting Location."
             }
         };
         public IVillain Blob => new Villain(this, "Blob")
@@ -193,7 +193,7 @@ namespace UnitedGenerator.Data.Season2
             },
             DataComments = new[]
             {
-                "The location is not mandatory, but keept in the loop so players can select it as the starting location."
+                "The Location is not mandatory, but keept in the loop so players can select it as the starting Location."
             }
         };
         public IVillain Avalance => new Villain(this, "Avalance");

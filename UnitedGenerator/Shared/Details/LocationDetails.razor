@@ -1,8 +1,8 @@
 ﻿@if (Location != null)
 {
     <p>
-        @Location.StartingCivilians Startings Civilians.<br/>
-        @Location.StartingThugs Startings Thugs.
+        @Location.StartingCivilians Starting Civilian(s).<br/>
+        @Location.StartingThugs Startings Thug(s).
     </p>
 
     @if (!Location.IncludeInRandomSelection)
@@ -12,7 +12,7 @@
 
     @if (Location.Hazardous)
     {
-        <p>Hazardous location.</p>
+        <p>Hazardous Location.</p>
     }
 
     @if (Location.AllowsHeroesToDrawCards)

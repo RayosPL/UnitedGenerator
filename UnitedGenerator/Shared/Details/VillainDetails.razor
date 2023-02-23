@@ -20,22 +20,22 @@
 
     @if (!Villain.CanBeVillainInTeamVsTeamMode)
     {
-        <p>Can't be villain in Team vs Team games.</p>
+        <p>Can't be Villain in Team vs Team games.</p>
     }
 
     @if (Villain.DisableChallenges)
     {
-        <p>Never include challenges.</p>
+        <p>Never include Challenges.</p>
     }
 
     @if (Villain.ExcludeLocationsWhereHeroCanDrawCards)
     {
-        <p>Exclude locations where heroes can draw cards.</p>
+        <p>Exclude Locations where Heroes can draw cards.</p>
     }
 
     @if (Villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians.HasValue)
     {
-        <p>Maximum @Villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians locations where starting number of thugs are greather than civilians.</p>
+        <p>Maximum @Villain.MaximumLocationsWhereStartingThugsAregreatherThanCivilians Locations where starting number of Thugs are greather than Civilians.</p>
     }
 
     @if (Villain.PreGamesCount > 0)
@@ -51,7 +51,7 @@
     @if (Villain.PreGameCandidateVillains.Any())
     {
         <div>
-            Select villains between:
+            Select Villains between:
             <ul>
                 @foreach (var sub in Villain.PreGameCandidateVillains)
                 {
@@ -64,7 +64,7 @@
     @if (Villain.ExcludeHeroes.Any())
     {
         <div>
-            Do not use heroes:
+            Do not use Heroes:
             <ul>
                 @foreach (var hero in Villain.ExcludeHeroes)
                 {
@@ -76,13 +76,13 @@
 
     @if (Villain.ReuseHeroesFromFirstPreGame)
     {
-        <p>Reuse same heroes in all games.</p>
+        <p>Reuse same Heroes in all games.</p>
     }
 
     @if (Villain.AdditionalHeroGroups.Any())
     {
         <div>
-            Generate additional hero groups:
+            Generate additional Hero groups:
             <ul>
                 @foreach (var group in Villain.AdditionalHeroGroups)
                 {
@@ -95,7 +95,7 @@
     @if (Villain.AssignedLocations.Any())
     {
         <div>
-            Include locations:
+            Include Locations:
             <ul>
                 @foreach (var location in Villain.AssignedLocations)
                 {

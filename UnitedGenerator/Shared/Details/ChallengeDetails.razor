@@ -12,7 +12,7 @@
 
     @if (Challenge.HazardousLocationsCount > 0)
     {
-        <p>Use minimum @Challenge.HazardousLocationsCount hazardous locations.</p>
+        <p>Use minimum @Challenge.HazardousLocationsCount hazardous Locations.</p>
     }
 
     @if (Challenge.MinimumPlayerCount.HasValue)
@@ -28,7 +28,7 @@
     @if (Challenge.IncompatibleVillains.Any())
     {
         <div>
-            Can't be used with villains:
+            Can't be used with Villain(s):
             <ul>
             @foreach (var villain in Challenge.IncompatibleVillains)
             {

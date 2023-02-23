@@ -119,7 +119,7 @@ namespace UnitedGenerator.Data.Season1
         {
             public string GroupName => "Backup Heroes";
 
-            public string Description => "1 less than starting number of heroes";
+            public string Description => "1 less than starting number of Heroes";
 
             public int GroupSize(int playerCount)
             {
