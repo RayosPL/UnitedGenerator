@@ -1,5 +1,9 @@
 [
   {
+    "version": "0.9.7.x",
+    "comment": "Moved Grey Hulk and Hero Juggernaut from Season 2 to Off-Season. They will need to be re-added to your collection again!"
+  },
+  {
     "version": "0.9.6.x",
     "comment": "Added Grey Hulk and Hero Juggernaut, but not included as default."
   },
