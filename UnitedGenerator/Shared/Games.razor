@@ -7,7 +7,7 @@
     <h2>Villain</h2>
     <div class="row g-2 @ColClass">
 
-        @if (game.Villain.IsVillainTeam)
+        @if (game.Villain.IsVillainTeam && game.ShowSubVillains)
         {
             <BoxItemCard Item="game.Villain" ShowDetails="ShowDetails" />
 

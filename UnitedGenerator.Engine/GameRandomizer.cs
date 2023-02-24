@@ -181,7 +181,7 @@ namespace UnitedGenerator.Engine
             return heroeGroups.ToArray();
         }
 
-        private GameSetup GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain, HeroGroup[]? heroes = null)
+        private GameSetup GenerateVillainFight(string title, GenerationConfiguration config, IVillain villain, HeroGroup[]? heroes = null, bool showSubVillains = false)
         {
             if (heroes == null)
             {
@@ -194,7 +194,7 @@ namespace UnitedGenerator.Engine
 
             ILocation[] locations = SelectLocations(villain, challenge);
 
-            return new GameSetup(title, heroes, villain, locations, challenge);
+            return new GameSetup(title, heroes, villain, locations, challenge, showSubVillains);
         }
 
         private GameSetup[] GenerateVillainFightWithPreGames(GenerationConfiguration config, IVillain villain)
@@ -211,7 +211,8 @@ namespace UnitedGenerator.Engine
             int i = 1;
             foreach (var preVillain in preGameVillains)
             {
-                var fight = GenerateVillainFight($"Game {i++}", config, preVillain, heroes);
+
+                var fight = GenerateVillainFight($"Game {i++}", config, preVillain, heroes, false);
 
                 games.Add(fight);
 
@@ -223,7 +224,7 @@ namespace UnitedGenerator.Engine
 
             if (!villain.OnlyPlayPreGames)
             {
-                games.Add(GenerateVillainFight($"Game {i}", config, villain, heroes));
+                games.Add(GenerateVillainFight($"Game {i}", config, villain, heroes, false));
             }
             else
             {
