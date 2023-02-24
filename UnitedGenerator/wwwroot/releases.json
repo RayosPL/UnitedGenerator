@@ -1,5 +1,9 @@
 [
   {
+    "version": "1.0.1.x",
+    "comment": "Corrected a spelling mistake in Havok."
+  },
+  {
     "version": "1.0.0.x",
     "comment": "Added feedback links, this is Version 1.0 we are LIVE!!"
   },

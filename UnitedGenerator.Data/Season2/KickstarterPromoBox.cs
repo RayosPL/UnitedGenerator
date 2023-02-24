@@ -42,7 +42,7 @@ namespace UnitedGenerator.Data.Season2
             Sunfire,
             Guardian,
             Gwenpool,
-            Hawok,
+            Havok,
             KittyPryde,
             Longshot,
             Magik,
@@ -115,7 +115,7 @@ namespace UnitedGenerator.Data.Season2
         public IHero Sunfire => new Hero(this, "Sunfire");
         public IHero Guardian => new Hero(this, "Guardian");
         public IHero Gwenpool => new Hero(this, "Gwenpool");
-        public IHero Hawok => new Hero(this, "Hawok");
+        public IHero Havok => new Hero(this, "Havok");
         public IHero KittyPryde => new Hero(this, "Kitty Pryde");
         public IHero Longshot => new Hero(this, "Longshot");
         public IHero Magik => new Hero(this, "Magik");
