@@ -77,3 +77,11 @@
         background-color: #9d9d9d !important;
     }
 
+.bg-starting-location {
+    --bs-bg-opacity: 1;
+    background-color: #ffa4a4 !important;
+}
+
+    .bg-starting-location .card-header {
+        background-color: #ff4444 !important;
+    }

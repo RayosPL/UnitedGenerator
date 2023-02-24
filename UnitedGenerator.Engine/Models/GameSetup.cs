@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnitedGenerator.Common;
+using UnitedGenerator.Engine.Utils;
 
 namespace UnitedGenerator.Engine.Models
 {
@@ -14,10 +12,11 @@ namespace UnitedGenerator.Engine.Models
         {
             HeroGroups = heroGroups.ToArray();
             Locations = locations.ToArray();
+            StartingLocation = locations.RandomOrDefault(); //TODO: Set specific location if villain have predefined starting location 
             Challenge = challenge;
         }
 
-        internal GameSetup(string title, IVillain villain, bool visible = false) 
+        internal GameSetup(string title, IVillain villain, bool visible = false)
         {
             Title = title;
             Villain = villain;
@@ -37,5 +36,6 @@ namespace UnitedGenerator.Engine.Models
         public ILocation[] Locations { get; }
 
         public IChallenge? Challenge { get; }
+        public ILocation StartingLocation { get; }
     }
 }

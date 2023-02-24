@@ -45,6 +45,12 @@
     [Parameter]
     public IBoxItem? Item { get; set; }
 
+    [Parameter]
+    public int? Number { get; set; }
+
+    [Parameter]
+    public bool IsStartingLocation { get; set; }
+
     protected override void OnParametersSet()
     {
         imgUrl = $"./images/{Item?.Season.Code}/{Item?.Box.Code}/{Item?.Code}.png";
@@ -82,7 +88,7 @@
         else if (Item is ILocation)
         {
             header = "Location";
-            cardClass = "bg-location";
+            cardClass = IsStartingLocation ? "bg-starting-location" : "bg-location";
         }
         else if(Item is IHeroTeam)
         {
@@ -95,6 +101,11 @@
         {
             header = "Challenge";
             cardClass = "bg-challenge";
+        }
+
+        if (Number.HasValue)
+        {
+            header += " " + Number;
         }
     }
 }
