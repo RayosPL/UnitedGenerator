@@ -1,5 +1,9 @@
 [
   {
+    "version": "1.0.0.x",
+    "comment": "Added feedback links, this is Version 1.0 we are LIVE!!"
+  },
+  {
     "version": "0.9.9.x",
     "comment": "Fixed a lot of spelling and grammar mistakes."
   },
