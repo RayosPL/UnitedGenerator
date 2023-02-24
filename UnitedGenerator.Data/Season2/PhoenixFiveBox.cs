@@ -11,13 +11,13 @@ namespace UnitedGenerator.Data.Season2
         private static readonly string[] DataComment = new string[]
         {
             "For simplicity all of the Phoenix Five Hero versions, are always excluded.",
-            "Swap two of the Thread Cards with two of the Phoenix Force thread cards."
         };
 
         private static readonly string[] SubVillainComment = new string[]
         {
             "DO NOT use this villain game piece or any cards!",
             "Put this villain board under main villan board so just the BAM effect is visible.",
+            "Swap one of the Thread Cards with one of the Phoenix Force thread cards."
         };
 
         private static readonly IHero[] ExcludedHeroes = new IHero[]

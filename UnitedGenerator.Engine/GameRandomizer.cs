@@ -19,11 +19,11 @@ namespace UnitedGenerator.Engine
 
         public GameSetup[] Generate(GenerationConfiguration config)
         {
-            //var villain = _data
-            //    .Villains
-            //    .Filter(config)
-            //    .RandomOrDefault();
-            var villain = _data.Villains.FirstOrDefault(x => x.Name == "Phoenix Five");
+            var villain = _data
+                .Villains
+                .Filter(config)
+                .RandomOrDefault();
+
             if (villain != null)
             {
                 if (villain.PreGamesCount > 0)
