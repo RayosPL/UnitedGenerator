@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ExceptionServices;
-using UnitedGenerator.Common;
+using UnitedGenerator.Common.Interfaces;
 
 namespace UnitedGenerator
 {

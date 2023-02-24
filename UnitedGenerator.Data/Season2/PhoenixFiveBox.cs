@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnitedGenerator.Common;
+﻿using System.Linq;
+using UnitedGenerator.Common.Interfaces;
+using UnitedGenerator.Common.Utils;
 using UnitedGenerator.Data.Common;
 using static UnitedGenerator.Data.DataFactory;
 
@@ -11,57 +8,78 @@ namespace UnitedGenerator.Data.Season2
 {
     internal class PhoenixFiveBox : BoxBase
     {
+        private static readonly string[] DataComment = new string[]
+        {
+            "For simplicity all of the Phoenix Five Hero versions, are always excluded.",
+            "Swap two of the Thread Cards with two of the Phoenix Force thread cards."
+        };
+
+        private static readonly string[] SubVillainComment = new string[]
+        {
+            "DO NOT use this villain game piece or any cards!",
+            "Put this villain board under main villan board so just the BAM effect is visible.",
+        };
+
+        private static readonly IHero[] ExcludedHeroes = new IHero[]
+        {
+            XMen.CoreBox.Cyclops,
+            XMen.FirstClass.Cyclops,
+            XMen.KickstarterPromos.EmmaFrost,
+            XMen.GoldTeam.Colossus,
+            XMen.KickstarterPromos.Magik,
+            XMen.KickstarterPromos.Namor
+        };
+
         public PhoenixFiveBox(ISeason season) : base(season, "PhoenixFive")
         {
         }
 
-        public override string Name => "Phoenix Five";
-
         public override IHero[] Heroes => new[]
-        {
+{
             HopeSummers
         };
 
-        public override IVillain[] Villains => new[]
-        {
-            Cyclops,
-            EmmaFrost,
-            Colossus,
-            Magik,
-            Namor,
-            PhoenixFive
-        };
-
         public IHero HopeSummers => new Hero(this, "Hope Summers");
+        public IVillain Colossus => new Villain(this, "Colossus")
+        {
+            ExcludeHeroes = ExcludedHeroes,
+            DataComments = DataComment,
+            SubVillains = GetVillainSubVillains("Colossus")
+
+        };
 
         public IVillain Cyclops => new Villain(this, "Cyclops")
         {
             ExcludeHeroes = ExcludedHeroes,
-            DataComments = DataComment
+            DataComments = DataComment,
+            SubVillains = GetVillainSubVillains("Cyclops")
         };
+
         public IVillain EmmaFrost => new Villain(this, "Emma Frost")
         {
             ExcludeHeroes = ExcludedHeroes,
-            DataComments = DataComment
+            DataComments = DataComment,
+            SubVillains = GetVillainSubVillains("Emma Frost")
         };
-        public IVillain Colossus => new Villain(this, "Colossus")
-        {
-            ExcludeHeroes = ExcludedHeroes,
-            DataComments = DataComment
-        };
+
         public IVillain Magik => new Villain(this, "Magik")
         {
             ExcludeHeroes = ExcludedHeroes,
             DataComments = DataComment,
-            AdditionalHeroGroups = new[] 
-            { 
-                new BackupHeroes() 
+            SubVillains = GetVillainSubVillains("Magik"),
+            AdditionalHeroGroups = new[]
+            {
+                new BackupHeroes()
             }
         };
+
+        public override string Name => "Phoenix Five";
+
         public IVillain Namor => new Villain(this, "Namor")
         {
             ExcludeHeroes = ExcludedHeroes,
-            DataComments = DataComment
+            DataComments = DataComment,
+            SubVillains = GetVillainSubVillains("Namor")
         };
 
         public IVillain PhoenixFive => new Villain(this, "Phoenix Five")
@@ -78,26 +96,32 @@ namespace UnitedGenerator.Data.Season2
             }
         };
 
-        private static readonly IHero[] ExcludedHeroes = new IHero[]
-        {
-            XMen.CoreBox.Cyclops,
-            XMen.FirstClass.Cyclops,
-            XMen.KickstarterPromos.EmmaFrost,
-            XMen.GoldTeam.Colossus,
-            XMen.KickstarterPromos.Magik,
-            XMen.KickstarterPromos.Namor
+        public override IVillain[] Villains => new[]
+                        {
+            Cyclops,
+            EmmaFrost,
+            Colossus,
+            Magik,
+            Namor,
+            PhoenixFive
         };
 
-        private static readonly string[] DataComment = new string[]
+        private IVillain[] SubVillains => new[]
         {
-            "For simplicity all of the Phoenix Five Hero versions, are always excluded."
+            new Villain(this, "Cyclops"){ DataComments = SubVillainComment },
+            new Villain(this, "Emma Frost"){ DataComments = SubVillainComment },
+            new Villain(this, "Colossus"){ DataComments = SubVillainComment },
+            new Villain(this, "Magik"){ DataComments = SubVillainComment },
+            new Villain(this, "Namor"){ DataComments = SubVillainComment }
         };
+
+        private IVillain[] GetVillainSubVillains(string name) =>
+            SubVillains.Where(villain => villain.Name != name).TakeRandom(2);
 
         private class BackupHeroes : IHeroGroupDefinition
         {
-            public string GroupName => "Backup Heroes";
-
             public string Description => "Always 3 heroes";
+            public string GroupName => "Backup Heroes";
 
             public int GroupSize(int playerCount)
             {

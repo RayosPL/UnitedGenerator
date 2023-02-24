@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitedGenerator.Engine.Utils
+namespace UnitedGenerator.Common.Utils
 {
-    internal static class RandomExtensions
+    public static class RandomExtensions
     {
         private static readonly Random _random = new Random();
 
@@ -32,7 +32,7 @@ namespace UnitedGenerator.Engine.Utils
                 return items.ElementAt(r);
             }
 
-            return default(T);
+            return default;
         }
 
         public static T[] Randomize<T>(this IEnumerable<T> items)
@@ -68,7 +68,7 @@ namespace UnitedGenerator.Engine.Utils
             }
             else
             {
-                return default(T);
+                return default;
             }
         }
 

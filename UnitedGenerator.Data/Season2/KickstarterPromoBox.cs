@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
-using UnitedGenerator.Common;
+using UnitedGenerator.Common.Interfaces;
 using UnitedGenerator.Data.Common;
 
 namespace UnitedGenerator.Data.Season2

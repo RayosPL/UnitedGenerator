@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitedGenerator.Common
+namespace UnitedGenerator.Common.Interfaces
 {
-    public interface IBoxItem
+    public interface ISeason
     {
+        int SortIndex { get; }
         string Name { get; }
-        string Id { get; }
         string Code { get; }
-        IBox Box { get; }
-        ISeason Season { get; }
+        IBox[] Boxes { get; }
     }
 }

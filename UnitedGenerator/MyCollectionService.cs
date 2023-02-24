@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnitedGenerator.Common;
+using UnitedGenerator.Common.Interfaces;
 using UnitedGenerator.Engine;
 
 namespace UnitedGenerator

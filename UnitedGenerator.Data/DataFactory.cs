@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnitedGenerator.Common;
+﻿using UnitedGenerator.Common.Interfaces;
 using UnitedGenerator.Data.OffSeason;
 using UnitedGenerator.Data.Season1;
 using UnitedGenerator.Data.Season2;

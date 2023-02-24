@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitedGenerator.Common
+namespace UnitedGenerator.Common.Interfaces
 {
     public interface ILocation : IBoxItem
     {
