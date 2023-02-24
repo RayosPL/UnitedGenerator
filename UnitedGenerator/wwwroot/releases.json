@@ -1,5 +1,9 @@
 [
   {
+    "version": "1.0.2.x",
+    "comment": "Tried to make the Villain's starting location more clear."
+  },
+  {
     "version": "1.0.1.x",
     "comment": "Corrected a spelling mistake in Havok."
   },

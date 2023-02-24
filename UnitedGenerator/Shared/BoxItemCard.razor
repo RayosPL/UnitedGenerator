@@ -45,6 +45,9 @@
     [Parameter]
     public IBoxItem? Item { get; set; }
 
+    [Parameter]
+    public int? Number { get; set; }
+
     protected override void OnParametersSet()
     {
         imgUrl = $"./images/{Item?.Season.Code}/{Item?.Box.Code}/{Item?.Code}.png";
@@ -95,6 +98,11 @@
         {
             header = "Challenge";
             cardClass = "bg-challenge";
+        }
+
+        if (Number.HasValue)
+        {
+            header += " " + Number;
         }
     }
 }
